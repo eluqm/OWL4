@@ -1,0 +1,31 @@
+The below is what has been changed since AIM version 2 revision 15. 
+
+1. Remove "isPresent" attribute from AnatomicEntityCharacteristic and ImagingObservationCharacteristic.
+
+2. Remove Rating class.
+
+3. Add the following class to replace Rating with enhanced information capturing
+   - CharacteristicQuantification (an abstract class) is the parent of the following classes:
+     - Interval class
+     - Numerical class
+     - Quantile class
+     - Scale class 
+     - NonQuantifiable class
+
+4. Remove "segmentationType" from Segmentation class since SOPClassUID represents the same information.
+
+5. Add "precedentReferencedAnnotationUID" to Annotation class. It is a Digital Imaging and Communication in Medicine (DICOM) (style) 
+    unique identifier for referencing earlier instance of AIM annotation. 
+
+6. Add algorithmName and algorithmVersion in Calculation class for algorithm identification.
+
+7. Add AIMStatus class. It is used to capture a status of an annotation instance using coded term, a version of annotation 
+        instance and update authorization (authorizedBy).
+
+8. Remove SegmentationType in value domain (caDSR Value Domain)
+
+9. Add an association between ImagingObservation and ReferencedGeometricShape
+
+10. Add PresentationState class for DICOM Presentation State
+
+11. Add label attribute to AnatomicEntity, AnatomicEntityCharacteristic, ImagingObservation, ImagingObservationCharacteristic
