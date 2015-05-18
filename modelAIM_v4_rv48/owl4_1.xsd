@@ -1,0 +1,2357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include/>
+	<xs:complexType name="AnnotationOfAnnotationHasTimePointLesionObservationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of annotation of annotation may have one or more timepoint lesion observations associate with it. AnnotationOfAnnotationHasTimePointLesionObservationEntityStatement represents a direct relationship between an instance of annotation of annotation and timepoint lesion observation. If you have two general timepoint observations, you will need to create two statements.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationOfAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TwoDimensionMultiPoint">
+		<xs:annotation>
+			<xs:documentation>Multiple pixels each denoted by an (column,row) pair.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TwoDimensionGeometricShapeEntity">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GeneralImage">
+		<xs:annotation>
+			<xs:documentation>General Image specifies the Attributes that identify and describe an image within a particular series.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="patientOrientationColumn" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The Patient Orientation relative to the image plane shall be specified by two values that designate the anatomical direction of the positive row axis (left to right or horizontal) and the positive column axis (top to bottom or vertical). This attribute store vertical value. The value may come from DICOM tag 0020,0020.
+
+The first entry is the direction of the rows, given by the direction of the last pixel in the first row from the first pixel in that row. The second entry is the direction of the columns, given by the direction of the last pixel in the first column from the first pixel in that column. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="patientOrientationRow" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The Patient Orientation relative to the image plane shall be specified by two values that designate the anatomical direction of the positive row axis (left to right or horizontal) and the positive column axis (top to bottom or vertical). This attribute store horizontal value. The value may come from DICOM tag 0020,0020.
+
+The first entry is the direction of the rows, given by the direction of the last pixel in the first row from the first pixel in that row. The second entry is the direction of the columns, given by the direction of the last pixel in the first column from the first pixel in that column. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CharacteristicQuantification" abstract="true">
+		<xs:sequence>
+			<xs:element name="annotatorConfidence" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A real number, between 0 and 1, indicating annotator's confidence that a characteristic quantification is present.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="characteristicQuantificationIndex" type="xs:int" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>It is used to store an index value that identifies the order of each possible answer in quantification collection.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Free text comment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A human readable description of the characteristic quantification.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="valueDescription" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A human readable description.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="valueLabel" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A value that associates with the label.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnnotationOfAnnotationHasAnnotationOfAnnotationStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of AnnotationOfAnnotation can reference existing annotation of annotations. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationOfAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ThreeDimensionGeometricShapeEntityIsComprisedOfThreeDimensionGeometricShapeEntityStatement">
+		<xs:annotation>
+			<xs:documentation>Two or more graphical drawings captured as ThreeDimensionGeometricShapeEntity instances have a direct relationship with other graphical drawings when these drawings are placed on the same physical entity or thing. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LesionObservationEntity">
+		<xs:annotation>
+			<xs:documentation>The class is an abstract class stores observations made about lesions in both clinical trial and day-to-day clinical treatments.
+
+For detail information: See DICOM Clinical Trials Results Reporting Supplement (Working group 18)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Entity">
+				<xs:sequence>
+					<xs:element name="isAdditionalObservation" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A coded boolean value required if the observation is additional to a parent entity that has previously been completed. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="lesionUniqueIdentifier" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A globally unique identifier for all instances of this particular combination of lesion, subject, and reader role.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="annotationEntity" type="AnnotationEntity" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationOfAnnotationHasAnnotationRoleEntityStatement">
+		<xs:annotation>
+			<xs:documentation>A given instance of type AnnotationOfAnnotation can have a role assigned. Examples of roles can be baseline, follow-up, referenced case, etc. They are captured in the model as coded terms in AnnotationRoleEntity class. Some of these roles have been defined in DICOM standard part 16, Content Mapping Resource. For example:
+Baseline Category:
+DCM 112074 Target Lesion at Baseline
+DCM 112075 Non-Target Lesion at Baseline
+DCM 112076 Non-Lesion at Baseline</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationOfAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CalculationData">
+		<xs:sequence>
+			<xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The data of the result.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="coordinateCollection" type="Coordinate" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationIsComparedWithAnnotationOfAnnotationStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of ImageAnnotation is used to compared with another instance of AnnotationOfAnnotation. AIM users can further create CalculationEntityIsComparedWithCalculationEntityStatement to compare a calculation result from the subject AnnotationOfAnnotation instance with a calculation result from the object imageAnnotation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationOfAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Image">
+		<xs:annotation>
+			<xs:documentation>The Image class references the pixel data of images. It contains two UIDs. The first UID can be used to identified a type of image e.g. CT, MR, CR, etc. It is based on DICOM SOP Class UID. The second UID uniquely identifies an image. An image is defined by its image plane, pixel data characteristics, gray scale and/or color mapping characteristics, overlay planes and modality specific characteristics (acquisition parameters and image creation information).
+
+A single image may contain a single frame of pixels or as multiple frames of pixel data. The frames of a Multi-frame image (a cine run or the slices of a volume) are sequentially ordered and share a number of common properties.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="sopClassUid" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Unique identifier specific for a Service-Object Pair (SOP) class, as specified in the DICOM standard.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sopInstanceUid" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Unique identifier for a Service-Object Pair (SOP) instance, as specified in a DICOM tag.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="imagePlane" type="ImagePlane" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="generalImage" type="GeneralImage" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationHasTwoDimensionGeometricShapeEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of image annotation may have one or more two-dimension graphical drawings associate with it. ImageAnnotationHasTwoDimensionGeometricShapeEntityStatement represents a direct relationship between an instance of image annotation and a drawing. If you have two drawings on an image, you will need to create two statements.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AuditTrail">
+		<xs:annotation>
+			<xs:documentation>It is used to capture any activity, in coded terms , that requires an entry in the audit trail, including general and time point lesion observations, time point observations, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="changeReason" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Provides reasons for edit or modification reasons.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Provides comments about the edit or modification.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dateTime" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Date and time when an audit trail was created.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="statusCode" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Coded entry data used to describe or capture the type of an AIM status, e.g. preliminary, final, addendum, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="worklistSubtaskUid" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Provides a reference to the sub-task (and parent task) information for the sub-task in which the observation was created.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImagingPhysicalEntityHasTextAnnotationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An image physical entity can have a text annotation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationOfAnnotationHasInferenceEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of AnnotationOfAnnotation can have a conclusion derived by interpreting image(s) and/or other supplemental information related to the image(s). The conclusion is stored in InferenceEntity.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationOfAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationCollection" abstract="true">
+		<xs:annotation>
+			<xs:documentation>AIM 3.0 model does not support a collection concept. In AIM 3.0, each AIM annotation is stored as a single AIM XML document or AIM DICOM SR. A typical imaging study generates more than one AIM annotation. Managing AIM annotations of the same study becomes an extra activity that AIM implementers have to deal with. AIM 4.0 model has adopted an ability to store the same type of related AIM annotations into a single source. AIM has two types of annotations, image annotation and annotation of annotation. Image annotations annotate images. Annotation of annotations annotate other annotations, both image annotations and annotation of annotation. AIM 4.0, therefore, has a mechanism to manage collection of the same type of AIM annotations.
+
+It is an abstract concept of a container that collects the same type of annotation. An annotation captures information that can be described, measured, calculated and drawn on image(s) either from a human or machine observer.
+
+This abstract class is the parent of ImageAnnotationCollection and AnnotationofAnnotationCollection. It provides a general concept that AIM may contain one or more instance of the same type. It associates with two optional classes used to capture the information about a person or computer program generating AIM instances as well as the manufacturer's information of the software used to create AIM instances.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="aimVersion" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The version of the AIM model used by this annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dateTime" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Date and Time (Julian) that the annotation was created.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Free text describing the content of Annotations, and is not intended for rendering. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uniqueIdentifier" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An identifier string that can either be a string representation of an OID, such as a DICOM (style) unique identifier or UUID. It is used to uniquely reference a specific annotation container.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="equipment" type="Equipment" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="user" type="User" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Dimension">
+		<xs:sequence>
+			<xs:element name="index" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Zero based unique index of the dimension</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A human readable description of the dimension</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="size" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>How many members a dimension has</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImagingObservationEntityIsIdentifiedByTwoDimensionGeometricShapeEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of imaging observation entity may have one or more three-dimension graphical drawings associate with it. ImageObservationEntityHasThreeDimensionGeometricShapeEntityStatement represents a direct relationship between an instance of imaging observation entity and a markup. If you have two markups on an image, you will need to create two statements.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ThreeDimensionGeometricShapeEntityExcludesThreeDimensionGeometricShapeEntityStatement">
+		<xs:annotation>
+			<xs:documentation>Two graphical drawings captured as ThreeDimensionGeometricShapeEntity instances have a direct relationship with other graphical drawings when these drawings are placed on the same physical entity or thing. Area in one shape excludes from the other shape.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImagingObservationCharacteristic">
+		<xs:sequence>
+			<xs:element name="annotatorConfidence" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>annotatorConfidence is a real number, between 0 and 1, indicating annotator's confidence level.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Free text comment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A human readable description. It can be used to store textual description of a question being asked. The question is related to questionTypeCode attribute.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="questionIndex" type="xs:int" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>It is used to store an index value that identifies the order of each question in an imagingObservationCharacteristic collection.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="questionTypeCode" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Coded entry data used to describe or capture the question being asked about imaging observation characteristic. It is associated with the typeCode.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="typeCode" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Coded entry data used to describe or capture an imaging observation characteristic.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="characteristicQuantificationCollection" type="CharacteristicQuantification" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Coordinate">
+		<xs:sequence>
+			<xs:element name="dimensionIndex" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>which dimension the data belongs to</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="position" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Position within the dimension</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DicomSegmentationEntity">
+		<xs:annotation>
+			<xs:documentation>A multi-frame image representing a classification of pixels in one or more referenced images. Segmentations are either binary or fractional. See DICOM part 3 Segmentation IOD for further information.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="SegmentationEntity">
+				<xs:sequence>
+					<xs:element name="referencedSopInstanceUid" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The Service Object Pair Instance Unique Identifier of the image that Segmentation is referenced.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="segmentNumber" type="xs:int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Identification number of the segment. The value of Segment Number (0062,0004) shall be unique within the Segmentation instance in which it is created.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="sopClassUid" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Uniquely identifies the Service Object Pair (SOP) Class. A class represents a type of DICOM object, e.g. Segmentation Storage Class = 1.2.840.10008.5.1.4.1.1.66.4.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="sopInstanceUid" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The Service Object Pair Instance Unique Identifier of the Segmentation.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ReferencedDicomObject">
+		<xs:annotation>
+			<xs:documentation>Referenced image(s) may have a collection of related DICOM objects created from the image(s), e.g. presentation state, SR document, radiotherapy objects, waveform, encapsulated document, etc.  The class represents an instance of such  related DICOM object.
+
+For example, DICOM presentation state will be displayed in a device independent grayscale space or color space, and what graphical annotations and spatial and grayscale contrast transformations will be applied to the referenced image pixel data.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="modality" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Modality is the equipment used to acquire images of subjects or things, such as human and animal bodies. It is also used to reference other types of DICOM objects created by imaging modality or software program e.g. presentation state, SR document, radiotherapy objects, waveform, eModality is the equipment used to acquire images of subjects or things, such as human and animal bodies. It is also used to reference other types of DICOM objects created by imaging modality or software program e.g. presentation state, SR document, radiotherapy objectsncapsulated document, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sopInstanceUid" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Unique identifier for a Service-Object Pair (SOP) instance, as specified in a DICOM tag.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UriImageReferenceEntityHasImagingPhysicalEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An URI image reference can have imaging physical entity associate with it. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DicomImageReferenceEntityHasImagingObservationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>A DICOM, captured in DICOMImageReferencEntity, can associate with an image observation, captured in ImagingObservationEntity, to describe an observation on the image.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TimePointLesionObservationEntityHasImagingPhysicalEntityStatement">
+		<xs:annotation>
+			<xs:documentation>The class is used to record a relationship between a timepoint lesion observation and imaging physical entity. Each lesion observation can only be directly related to one imaging physical entity.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageStudy">
+		<xs:annotation>
+			<xs:documentation>Defines the characteristics of an imaging study performed on an entity. A study in the AIM model has one series.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="instanceUid" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Unique identifier for an occurrence of a medical imaging study.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="procedureDescription" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>It is information about the procedure being performed on a subject.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDate" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Date an imaging study started.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startTime" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Time in HR(24):mm an imaging study started.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="imageSeries" type="ImageSeries" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="referencedDicomObjectCollection" type="ReferencedDicomObject" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DicomImageReferenceEntityHasImagingPhysicalEntityStatement">
+		<xs:annotation>
+			<xs:documentation>A DICOM image, captured in DICOMImageReferenceEntity, can associate with an image physical entity, captured in ImagingPhysicalEntity, to describe an observation on the image.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationEntityHasPlannedTaskContextEntityStatement">
+		<xs:annotation>
+			<xs:documentation>The class is used to record a planned activity or task. The task is used to inform users or computer programs of what activity needs to be performed in order to create AIM instance. The instance may be created from one or more planned task. Since this is an abstract class, users will have to create either ImageAnnotation or AnnotationOfAnnotation to be used with this statement. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImagingPhysicalEntityCharacteristic">
+		<xs:annotation>
+			<xs:documentation>ImagingPhysicalEntityCharacteristic are characteristics of imaging physical entities. These are in contradistinction to ImagingObservationCharacteristic. So, for example in a medical area, "dilated" might be an imaging physical entity characteristic of the "colon" imaging physical entity.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="annotatorConfidence" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>annotatorConfidence is a real number, between 0 and 1, indicating annotator's confidence level.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Free text about the imaging physical entity characteristic.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A human readable description. It can be used to store textual description of a question being asked. The question is related to questionTypeCode attribute.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="questionIndex" type="xs:int" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>It is used to store an index value that identifies the order of each question in an imagingPhysicalEntityCharacteristic collection.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="questionTypeCode" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Coded entry data used to describe or capture the question being asked about anatomic entity characteristic. It is associated with the typeCode.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="typeCode" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Coded entry data used to describe or capture an anatomic entity characteristic.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="characteristicQuantificationCollection" type="CharacteristicQuantification" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImagingObservationEntityHasCalculationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An image observation can have a calculation result associate with it.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImagingObservationEntityIsFoundInImagingPhysicalEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An image observation can be found in an imaging physical entity.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationOfAnnotationIsComparedWithAnnotationOfAnnotationStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of AnnotationOfAnnotation can be used for comparison with another instance of AnnotationOfAnnotation. AIM users can further create CalculationEntityIsComparedWithCalculationEntityStatement to compare a calculation result from the subject AnnotationOfAnnotation instance with a calculation result from the object AnnotationOfAnnotation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationOfAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DicomImageReferenceEntity">
+		<xs:annotation>
+			<xs:documentation>DICOMImageReferenceEntity is the source image for the annotation. It represents images stored in DICOM format.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageReferenceEntity">
+				<xs:sequence>
+					<xs:element name="imageStudy" type="ImageStudy" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ExtendedCalculationResult">
+		<xs:annotation>
+			<xs:documentation>Stores a result of a calculation individually with precise location of each element in the result. It supports sparse matrix type result.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="CalculationResult">
+				<xs:sequence>
+					<xs:element name="calculationDataCollection" type="CalculationData" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CalculationResult" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Base class of calculation result.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dataType" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Coded entry data used to describe or capture a type of parameter. Coded data type can be a primitive programming data type such as integer, double, etc. as well as other data type such as URI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="type" type="CalculationResultIdentifier" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The type of result, that is binary, scalar, vector, histogram, array, histogram, uri or matrix.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="unitOfMeasure" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A string representation of UCUM unit for the value of the calculation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dimensionCollection" type="Dimension" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UriImageReferenceEntityHasImagingObservationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>A URI image reference can have an imaging observation. It is used in conjunction with UriImageReferenceHasImagingPhysicalEntityStatement. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TwoDimensionGeometricShapeEntityExcludesTwoDimensionGeometricShapeEntityStatement">
+		<xs:annotation>
+			<xs:documentation>A graphical drawing captured as GeometricShapeEntity can contain another graphical drawing that is used to subtract from the first graphical drawing. This statement is used, for example, in case of a donut drawing where the total area of the enclosed object is subtracted from the area of enclosing object.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationIsComparedWithImageAnnotationStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of ImageAnnotaion is used to compare with another instance of ImageAnnotation. AIM users can further create CalculationEntityIsComparedWithCalculationEntityStatement to compare a calculation result from the subject AnnotationOfAnnotation instance with a calculation result from the object imageAnnotation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationOfAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageReferenceEntity" abstract="true">
+		<xs:annotation>
+			<xs:documentation>An abstract class that references the image being annotated.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Entity">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CalculationEntity">
+		<xs:complexContent>
+			<xs:extension base="Entity">
+				<xs:sequence>
+					<xs:element name="description" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A human understandable, brief description of the calculation.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="mathML" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>An optional mathML representation of the calculation.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="questionIndex" type="xs:int" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>It is used to store an index value that identifies the order of the question in an AIM Template.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="questionTypeCode" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>questionTypeCode is used to collect coded entry data that describes the question being asked that is related to the typeCode attribute.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="typeCode" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Coded entry data used to describe or capture a calculation. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="algorithm" type="Algorithm" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="calculationResultCollection" type="CalculationResult" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationOfAnnotationCollection">
+		<xs:annotation>
+			<xs:documentation>This class is the second root classes in the model. It inherits all AnnotationCollection properties. This class signifies that all members of a collection is of type AnnotatonOfAnnotation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationCollection">
+				<xs:sequence>
+					<xs:element name="annotationOfAnnotations" type="AnnotationOfAnnotation" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TaskContextEntity">
+		<xs:annotation>
+			<xs:documentation>This class contains identifying and descriptive attributes of the reading session and the reading subtask that result in clinical environment or trial results. The class consists of the overall task and the specific subtask. A task represents a unit of overall work, e.g. "Read all of the available time points for the subjects". It may have one or more subtasks.
+
+It can be used to capture planned (scheduled) and to record performed tasks.  </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Entity">
+				<xs:sequence>
+					<xs:element name="worklistSubtaskClosedDateTime" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The end date and time of the subtask. Whether completed or not; will be the same as Verification DateTime (0040,A030) if closed as complete and signed.      </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="worklistSubtaskName" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The name of the worklist sub-task within the worklist task that was selected to initiate the reading sub-task for the subject. E.g., this might be a sub-task to read the current time point in comparison with previous time points in a sequential read.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="worklistSubtaskStartDateTime" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The start date and time of the subtask. It does not change once started, even if the sub-task is closed as incomplete and re-opened one or more times before completion.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="worklistSubtaskUid" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A unique identifier for each worklist sub-task.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="worklistTaskCategory" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The category of a worklist task. E.g., whether or not a “sequential read” is “locked”, or a “substitute read”.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="worklistTaskDescription" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A description of the task.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="worklistTaskLevel" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The level of the task with respect to adjudication of multiple task performers’ work. E.g., perform initial task, comparison or repeat rejected task.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="worklistTaskName" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The name of the worklist task that was selected to initiate the reading session for the subject. E.g., this might be to read all of the available time points for the subject.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="worklistTaskRepeatType" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The reason why a task (read) is to be repeated for a previously completed time point.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="worklistTaskType" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The type of worklist task. E.g., the type of read, such as a “sequential read” or an “adjudication”.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="worklistTaskUid" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A unique identifier for each worklist task.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="worklistTaskVariabilityType" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The type of variability within or between performers that is being evaluated by a task.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="worklistTaskVersion" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The version of the task identified by the Worklist Task UID. For example, if the content of a task (request) is edited after it is created but before it is performed.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="taskContextEntityCollection" type="TaskContextEntity" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImagingPhysicalEntityHasTwoDimensionGeometricShapeEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An image physical entity can have a graphical drawing.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationOfAnnotation">
+		<xs:annotation>
+			<xs:documentation>AnnotationOfAnnotations annotate other annotations (for example comparisons).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationEntity">
+				<xs:sequence>
+					<xs:element name="annotationOfAnnotationStatementCollection" type="AnnotationStatement" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="adjudicationObservation" type="AdjudicationObservation" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationHasImagingObservationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An image annotation can have imaging observation associate with it.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationHasTextAnnotationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An image annotation can have a text annotation associate with it.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Algorithm">
+		<xs:annotation>
+			<xs:documentation>A well-defined instructions for arriving to result(s).</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Human readable description of the algorithm.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A name of the algorithm.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="type" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The family (class) to which an algorithm belongs.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uniqueIdentifier" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A UID (DICOM-like unique identifier) of an algorithm.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="version" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Information describing a version of algorithm.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parameterCollection" type="Parameter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UriImageReferenceEntity">
+		<xs:annotation>
+			<xs:documentation>A UriImageReference is the source image for the annotation. It can be accessed via Intranet, Internet, local computer and/or file sharing systems.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageReferenceEntity">
+				<xs:sequence>
+					<xs:element name="mimeType" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Multipurpose Internet Mail Extensions (MIME) is an Internet media type. It is used to identify content in a file on the Internet. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="uri" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Uniform Resource Locator of the image, e.g., http://www.nic.gov,  file:///home/nci/Missions.docx or file:///home/nci/JPEG.jpg.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImagingPhysicalEntityHasCalculationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An imaging physical entity can have a calculation result.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CalculationEntityUsesCalculationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>A calculation result can use another calculation result for its own computation purposes.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImagePlane">
+		<xs:annotation>
+			<xs:documentation>The class contains common imaging attributes in DICOM Image Plane module. DICOM modalities that share the same module are CT, MR, RT and PET. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="columnImageOrientationX" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Image Orientation specifies the direction cosines of the first row and the first column with respect to the patient. These Attributes shall be provide as a pair. Row value for the x, y, and z axes respectively followed by the Column value for the x, y, and z axes respectively.
+
+This attribute store column value X. The value may come from DICOM tag 0020,0037.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="columnImageOrientationY" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Image Orientation specifies the direction cosines of the first row and the first column with respect to the patient. These Attributes shall be provide as a pair. Row value for the x, y, and z axes respectively followed by the Column value for the x, y, and z axes respectively.
+
+This attribute store column value Y. The value may come from DICOM tag 0020,0037.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="columnImageOrientationZ" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Image Orientation specifies the direction cosines of the first row and the first column with respect to the patient. These Attributes shall be provide as a pair. Row value for the x, y, and z axes respectively followed by the Column value for the x, y, and z axes respectively.
+
+This attribute store column value Z. The value may come from DICOM tag 0020,0037.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="horizontalPixelSpacing" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Physical distance in the patient between the center of each pixel, specified by a numeric pair. This attribute stores adjacent row or horizontal spacing in millimeter (mm). 
+
+All pixel spacing related attributes shall have positive non-zero values, except Physical distance in the patient between the center of each pixel, specified by a numeric pair. This attribute stores adjacent column or vertical spacing in millimeter (mm). When there is only a single row or column or pixel of data present, in which case the corresponding value may be zero. This attribute and description applies to and able to store values from:
+• Pixel Spacing (0028,0030)
+• Imager Pixel Spacing (0018,1164)
+• Nominal Scanned Pixel Spacing (0018,2010)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="imagePositionX" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The Image Position specifies the x coordinate of the upper left hand corner of the image; it is the center of the first voxel transmitted.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="imagePositionY" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The Image Position specifies the y coordinate of the upper left hand corner of the image; it is the center of the first voxel transmitted.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="imagePositionZ" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The Image Position specifies the z coordinate of the upper left hand corner of the image; it is the center of the first voxel transmitted.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rowImageOrientationX" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Image Orientation specifies the direction cosines of the first row and the first column with respect to the patient. These Attributes shall be provide as a pair. Row value for the x, y, and z axes respectively followed by the Column value for the x, y, and z axes respectively.
+
+This attribute store row value X. The value may come from DICOM tag 0020,0037.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rowImageOrientationY" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Image Orientation specifies the direction cosines of the first row and the first column with respect to the patient. These Attributes shall be provide as a pair. Row value for the x, y, and z axes respectively followed by the Column value for the x, y, and z axes respectively.
+
+This attribute store row value Y. The value may come from DICOM tag 0020,0037.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rowImageOrientationZ" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Image Orientation specifies the direction cosines of the first row and the first column with respect to the patient. These Attributes shall be provide as a pair. Row value for the x, y, and z axes respectively followed by the Column value for the x, y, and z axes respectively.
+
+This attribute store row value Y. The value may come from DICOM tag 0020,0037.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sliceThickness" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Nominal slice thickness, in mm.  It is a DICOM tag 0018,0050. It contains the distance that the ray used for projection of the center of the plane traveled through the volume.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verticalPixelSpacing" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Physical distance in the patient between the center of each pixel, specified by a numeric pair. This attribute stores adjacent column or vertical spacing in millimeter (mm). 
+
+All pixel spacing related attributes shall have positive non-zero values, except Physical distance in the patient between the center of each pixel, specified by a numeric pair. This attribute stores adjacent column or vertical spacing in millimeter (mm). When there is only a single row or column or pixel of data present, in which case the corresponding value may be zero. This attribute and description applies to and able to store values from:
+• Pixel Spacing (0028,0030)
+• Imager Pixel Spacing (0018,1164)
+• Nominal Scanned Pixel Spacing (0018,2010)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationHasTimePointLesionObservationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of image annotation may have one or more timepoint lesion observations associate with it. ImageAnnotationHasTimePointLesionObservationEntityStatement represents a direct relationship between an instance of image annotation and timepoint lesion observation. If you have two general timepoint observations on an image, you will need to create two statements.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationRoleEntity">
+		<xs:annotation>
+			<xs:documentation>Describes the role of referenced annotation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Entity">
+				<xs:sequence>
+					<xs:element name="questionTypeCode" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>questionTypeCode is used to collect coded entry data that describes the question being asked that is related to the typeCode attribute.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="roleCode" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Coded entry data used to describe or capture a role of annotation.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="roleSequenceNumber" type="xs:int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Repreresent ordering within the role.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="User">
+		<xs:sequence>
+			<xs:element name="loginName" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The login name of the author on the software that is being used to create the annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The full name of the author of the annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="numberWithinRoleOfClinicalTrial" type="xs:int" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An identifier assigned to the author by the clinical trial, for example, role might be "reader", and NumberWithinRole might be "42", or numberWithinRoleOfCLinicalTrial might be "A12345".</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="roleInTrial" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The role of the author in the clinical trial, for example, "reader", or "adjudicator".</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Numerical">
+		<xs:complexContent>
+			<xs:extension base="CharacteristicQuantification">
+				<xs:sequence>
+					<xs:element name="operator" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>An operator represents comparison operators, i.e. &gt;, &gt;=, &lt;, &lt;=,==,!=.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ucumString" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A string representation of UCUM unit for a number in Numerical.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A numeric value of a number in Numerical class.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Interval">
+		<xs:complexContent>
+			<xs:extension base="CharacteristicQuantification">
+				<xs:sequence>
+					<xs:element name="maxOperator" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>An operator represents comparison operators, i.e. &gt;, &gt;=, &lt;, &lt;=,==,!=.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="maxValue" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The maximum value for that particular interval. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="minOperator" type="ComparisonOperator" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>An operator represents comparison operators, i.e. &gt;, &gt;=, &lt;, &lt;=,==,!=.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="minValue" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The minimum value for that particular interval. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ucumString" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A string representation of UCUM unit for a number in Interval.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TwoDimensionEllipse">
+		<xs:annotation>
+			<xs:documentation>An ellipse defined by four pixel (column,row) pairs, the first two points specifying the endpoints of the major axis and the second two points specifying the endpoints of the minor axis of an ellipse.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TwoDimensionGeometricShapeEntity">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImagingPhysicalEntity">
+		<xs:annotation>
+			<xs:documentation>ImagingPhysicalEntity is an entity or object that can be identified on an image. For medical imaging, it may represent anatomical location of an organ or body structure. Terms from controlled vocabulary such as RadLex, SNOMED CT, DCIOM, etc. are used to record the type of entity.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Entity">
+				<xs:sequence>
+					<xs:element name="annotatorConfidence" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>annotatorConfidence is a real number, between 0 and 1, indicating annotator's confidence level.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Free text about the imaging physical entity.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="isPresent" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A boolean value indicates whether or not an imaging physical entity exist in observed image(s).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A human readable description. It can be used to store textual description of a question being asked. The question is related to questionTypeCode attribute.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="questionIndex" type="xs:int" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>It is used to store an index value that identifies the order of each question in an imagingPhysicalEntity collection.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="questionTypeCode" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Coded entry data used to describe or capture the question being asked about imaging physical entity. It is associated with the typeCode.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="typeCode" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Coded entry data used to describe or capture an imaging physical entity.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="imagingPhysicalEntityCharacteristicCollection" type="ImagingPhysicalEntityCharacteristic" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="imagingObservationCharacteristicCollection" type="ImagingObservationCharacteristic" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationOfAnnotationHasImagingPhysicalEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of AnnotationOfAnnotation can reference an imaging physical entity, a thing that can be identified on an image. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationOfAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ThreeDimensionGeometricShapeEntity" abstract="true">
+		<xs:annotation>
+			<xs:documentation>This abstract class represents three dimension coordinates of a graphical drawing that can be placed on an image to identify a region of interest (ROI).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GeometricShapeEntity">
+				<xs:sequence>
+					<xs:element name="fiducialUid" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The globally unique identifier for this fiducial item. 
+A fiducial is some unique feature or landmark suitable as a spatial reference or correlation between similar objects. The fiducial may contribute to the definition of the origin and orientation of a chosen coordinate system. Identifying fiducials in different data sets is a common means to establish the spatial relationship between similar objects.
+Note: The fiducial UID can be used to associate this set of graphics with other Content Items.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="frameOfReferenceUid" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Uniquely identifies the Frame of Reference within which the coordinates are defined. The Frame of Reference Information Entity identifies the coordinate system that conveys spatial and/or temporal information of composite instances in a series.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="threeDimensionSpatialCoordinateCollection" type="ThreeDimensionSpatialCoordinate" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ThreeDimensionEllipse">
+		<xs:annotation>
+			<xs:documentation>An ellipse defined by four (x,y,z) triplets, the first two triplets specifying the endpoints of the major axis and the second two triplets specifying the endpoints of the minor axis.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ThreeDimensionGeometricShapeEntity">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationOfAnnotationHasCalculationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of AnnotationOfAnnotation can have one or more calculation results. The instance can reference one calculation at a time. For example, if there are three calculation results, there must be three AnnotationOfAnnotationHasCalculationEntityStatements. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationOfAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ThreeDimensionEllipsoid">
+		<xs:annotation>
+			<xs:documentation>A three-dimensional geometric surface whose plane sections are either ellipses or circles and contains three intersecting orthogonal axes, “a”, “b”, and “c”. The ellipsoid is defined by six (x,y,z) triplets, the first and second triplets specifying the endpoints of axis “a”, the third and fourth triplets specifying the endpoints of axis “b”, and the fifth and sixth triplets specifying the endpoints of axis “c”.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ThreeDimensionGeometricShapeEntity">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotation">
+		<xs:annotation>
+			<xs:documentation>ImageAnnotations annotate images.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationEntity">
+				<xs:sequence>
+					<xs:element name="segmentationEntityCollection" type="SegmentationEntity" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="imageReferenceEntityCollection" type="ImageReferenceEntity" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="imageAnnotationStatementCollection" type="AnnotationStatement" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="markupEntityCollection" type="MarkupEntity" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="InferenceEntity">
+		<xs:annotation>
+			<xs:documentation>A conclusion derived by interpreting image(s) and/or other supplemental information related to the image(s) such as medical history, geographic history, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Entity">
+				<xs:sequence>
+					<xs:element name="annotatorConfidence" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>annotatorConfidence is a real number, between 0 and 1, indicating annotator's confidence level.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Free text about the inference.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Free text describing inference not intended for rendering. It is used to provide user detail information related to a conclusion based on imaging observation and its characteristic(s).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="imageEvidence" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A flag, if set, indicates that the inference is considered by the annotator to be ground truth.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="isPresent" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>isPresent, a boolean value indicating whether or not an inference exists in the observed image(s).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A human readable description. It can be used to store textual description of a question being asked. The question is related to questionTypeCode attribute.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="questionIndex" type="xs:int" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>It is used to store an index value that identifies the order of the question in an AIM Template.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="questionTypeCode" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Coded entry data used to describe or capture the question being asked about imaging inference. It is associated with the typeCode.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="typeCode" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Coded entry data used to describe or capture an anatomic entity characteristic.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationHasUriImageReferenceEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An image annotation can have a URI reference that directs to the actual storage location of the image used in image annotation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationHasCalculationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An image annotation can have a calculation result associate with it.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ThreeDimensionMultiPoint">
+		<xs:annotation>
+			<xs:documentation>Multiple locations each denoted by an (x,y,z) triplet; the points need not be coplanar.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ThreeDimensionGeometricShapeEntity">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Equipment">
+		<xs:sequence>
+			<xs:element name="deviceSerialNumber" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Manufacturer’s serial number of the equipment that produced the sources.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="manufacturerModelName" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text to capture the manufacturer's model names of the (imaging) equipment that produced the composite instances.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="manufacturerName" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text to capture the name of the manufacturer of medical imaging equipment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="softwareVersion" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Numeric value to designate manufacturer's software version of the equipment that produced the (imaging) composite instances.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TwoDimensionPolyline">
+		<xs:annotation>
+			<xs:documentation>A series of connected line segments with ordered vertices denoted by (column,row) pairs; if the first and last vertices are the same it is a closed polygon.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TwoDimensionGeometricShapeEntity">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GeneralLesionObservationEntityHasImagingPhysicalEntityStatement">
+		<xs:annotation>
+			<xs:documentation>The class is used to record a relationship between a general lesion observation and imaging physical entity. Each lesion observation can only be directly related to one imaging physical entity.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImagingObservationEntityIsIdentifiedByTextAnnotationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An imaging observation can be identified by a text annotation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationHasGeneralLesionObservationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of image annotation may have one or more general lesion observations associate with it. ImageAnnotationHasGeneralLesionObservationEntityStatement represents a direct relationship between an instance of image annotation and general lesion observation. If you have two general lesion observations on an image, you will need to create two statements.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageSeries">
+		<xs:annotation>
+			<xs:documentation>A series contains a set of images. Each series is associated with exactly one Study. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="instanceUid" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Unique identifer of a study series.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="modality" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Modality is the equipment used to acquire images of subjects or things, such as human and animal bodies. It is also used to reference other types of DICOM objects created by imaging modality or software program e.g. presentation state, SR document, radiotherapy objects, waveform, eModality is the equipment used to acquire images of subjects or things, such as human and animal bodies. It is also used to reference other types of DICOM objects created by imaging modality or software program e.g. presentation state, SR document, radiotherapy objectsncapsulated document, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="imageCollection" type="Image" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TwoDimensionGeometricShapeEntityIsComprisedOfTwoDimensionGeometricShapeEntityStatement">
+		<xs:annotation>
+			<xs:documentation>Two or more graphical drawings captured as GeometricShapeEntity instances have a direct relationship with other graphical drawings when these drawings are placed on the same physical entity or thing. A user draws two different drawings on the same lesion.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationHasInferenceEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An image annotation can have a conclusion derived by interpreting image(s) and/or other supplemental information related to the image(s).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationOfAnnotationHasImagingObservationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of AnnotationOfAnnotation can have one or more imaging observations associated with the instance. AnnotationOfAnnotationHasImagingObservationEntityStatement expresses a relationship between single instance of AnnotationOfAnnotation and an imaging observation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationOfAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="UriImageReferenceEntityHasCalculationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>A URI image reference can have a calculation associated with it.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Parameter">
+		<xs:annotation>
+			<xs:documentation>A set of structured data to be used in a calculation or computation of an algorithm.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dataType" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Coded entry data used to describe or capture a type of parameter. Coded data type can be a primitive programming data type such as integer, double, etc. as well as other data type such as URI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name of the parameter.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>String value of a calculation. It actual type is determined by the type attribute in this class.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnnotationOfAnnotationHasGeneralLesionObservationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of annotation of annotation may have one or more general lesion observations associate with it. AnnotationOfAnnotationHasGeneralLesionObservationEntityStatement represents a direct relationship between an instance of annotation of annotation and general lesion observation. If you have two general lesion observations, you will need to create two statements.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationOfAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationStatement" abstract="true">
+		<xs:annotation>
+			<xs:documentation>It represents a general concept about a statement used to describe something found and to be addressed on an image or the same thing on images in a series. A statement consists of a subject, predicate and object. 
+
+This class has AIM statements that can only be applied to ImageAnnotation. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Quantile">
+		<xs:annotation>
+			<xs:documentation>It is a point taken at regular interval , dividing ordered data into q essentially equal-sized data.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="CharacteristicQuantification">
+				<xs:sequence>
+					<xs:element name="bins" type="xs:int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A number representing the dividing ordered data into an equal-sized data subsets. For example, maxValue is 100. It's divided by four. Four is the value for the bins.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="maxValue" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Maximum value is the largest value in a range.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="minValue" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Minimum value is the lowest value in a range.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="selectedBin" type="xs:int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>An integer value of the selected bin.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImagingObservationEntity">
+		<xs:annotation>
+			<xs:documentation>An ImagingObservationEntity is the description of things that are seen in an image. Examples include: "Mass", "Pleural Effusion", "Foreign Body", and "Artifact", are all imaging observation entity.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Entity">
+				<xs:sequence>
+					<xs:element name="annotatorConfidence" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>annotatorConfidence is a real number, between 0 and 1, indicating annotator's confidence level.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Free text comment</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="isPresent" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A boolean value indicates whether or not an imaging observation exist in observed image(s).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A human readable description. It can be used to store textual description of a question being asked. The question is related to questionTypeCode attribute.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="questionIndex" type="xs:int" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>It is used to store an index value that identifies the order of each question in an imagingObservationEntity collection.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="questionTypeCode" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Coded entry data used to describe or capture the question being asked about imaging observation. It is associated with the typeCode.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="typeCode" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Coded entry data used to describe or capture an imaging observation.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="imagingObservationCharacteristicCollection" type="ImagingObservationCharacteristic" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationEntity" abstract="true">
+		<xs:annotation>
+			<xs:documentation>AnnotationEntity captures information that can be described, measured, calculated and drawn on image(s) either from a human or machine observer. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Entity">
+				<xs:sequence>
+					<xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Free text about the annotation not intended for rendering on the image.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dateTime" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Date and Time (Julian) that the annotation was created</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Human readable colloquial name of the annotation not guaranteed to be unique</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="precedentReferencedAnnotationUid" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A Digital Imaging and Communication in Medicine (DICOM) (style) unique identifier for referencing earlier instance of AIM annotation. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="templateUid" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A UID that references to an AIM template used to capture semantic meaning of pixel data, markup and calculation.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="typeCode" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Coded entry data used to describe or capture a type of an annotation.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="imagingPhysicalEntityCollection" type="ImagingPhysicalEntity" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="inferenceEntityCollection" type="InferenceEntity" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="taskContextEntityCollection" type="TaskContextEntity" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="annotationRoleEntityCollection" type="AnnotationRoleEntity" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="imagingObservationEntityCollection" type="ImagingObservationEntity" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="calculationEntityCollection" type="CalculationEntity" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="auditTrailCollection" type="AuditTrail" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SegmentationEntity" abstract="true">
+		<xs:annotation>
+			<xs:documentation>This is an abstract class representing a result of segmentation process where segmenting or partitioning digital image(s) in to a set of pixels. These pixels are stored in a separate file from original image(s).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Entity">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationHasAnnotationRoleEntityStatement">
+		<xs:annotation>
+			<xs:documentation>This class is used to define an annotation role to an image annotation. For example, an image annotation can be a based line in one study. But, it also can be a follow-up in another study.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationOfAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationHasChildImageAnnotationStatement">
+		<xs:annotation>
+			<xs:documentation>An image annotation can have a child image annotation. This represents a hierarchical structure between images. A child image implicitly has a parent image. A use case of this type of statement is a diagnostic mammogram image has another magnification image associate with the diagnostic image. Other use case in a whole slide image with 10X magnification factor may have a section of the image magnify and store as a separate image. Both images can have parent-child relationship. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationHasThreeDimensionGeometricShapeEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of image annotation may have one or more three-dimension graphical drawings associate with it. ImageAnnotationHasThreeDimensionGeometricShapeEntityStatement represents a direct relationship between an instance of image annotation and a drawing. If you have two drawings on an image, you will need to create two statements.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationHasDicomSegmentationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An image annotation can have one or more DICOM segmentation objects. An ImageAnnotationHasDICOMSegmentationEntityStatement represents a direct relationship between an image annotation and DICOM segmentation entity. If the image annotation has three DICOM segmentation entities, there need to be three ImageAnnotationHasDICOMSegmentationEntityStatements.
+
+A use case:
+A user found two nodules in a CT axial series, the user used a workstation to create two DICOM segmentation objects. The user annotated and stored the findings in AIM format with segmentation information.
+
+Working with AIM:
+1. Create image annotation instance.
+2. Create DICOM image reference instance and its associated image study, image series and image instances.
+3. An image annotation has the set of CT images in the series. We need to create a statement that associate image annotation with DICOM images. 
+   ** Use : ImageAnnotationHasDICOMImageReferenceEntityStatement  
+   ** The statement has the image annotation instance as subject and DICOM image reference instance as object.
+4. Create two DICOM segmentation entity instances. Each instance contains a reference information about a DICOM segmentation object.
+5. Create two statements of type ImageAnnotationHasDICOMSegmentationEntityStatement. Each statement has the same image annotation but different DICOM segmentation entity. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TwoDimensionGeometricShapeEntity" abstract="true">
+		<xs:annotation>
+			<xs:documentation>This abstract class represents three dimension coordinates of a graphical drawing that can be placed on an image to identify a region of interest (ROI).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GeometricShapeEntity">
+				<xs:sequence>
+					<xs:element name="imageReferenceUid" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>This attribute contains DICOM SOP Instance UID. It is a unique UID used to identify an image. SOP Instance UID is used to uniquely reference an image. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="referencedFrameNumber" type="xs:int" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Identifies the frame numbers within the Referenced SOP Instance to which the reference applies. The first frame shall be denoted as frame number 1. Or, the frame number of the frame that contains the image in the case of multi-frame images.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Uri" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Uniform Resource Locator of the image, e.g., http://www.nic.gov, file:///home/nci/Missions.docx or file:///home/nci/JPEG.jpg.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="twoDimensionSpatialCoordinateCollection" type="TwoDimensionSpatialCoordinate" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationOfAnnotationStatement" abstract="true">
+		<xs:annotation>
+			<xs:documentation>It represents a general concept about a statement used to describe something found and to be addressed on an image or the same thing on images in a series. A statement consists of a subject, predicate and object. 
+
+This class has AIM statements that can only be applied to AnnotationOfAnnotation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImagingPhysicalEntityHasThreeDimensionGeometricShapeEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of imaging physical entity may have one or more three-dimension graphical drawings associate with it. ImagePhysicalEntityHasThreeDimensionGeometricShapeEntityStatement represents a direct relationship between an instance of imaging physical entity and a markup. If you have two markups on an image, you will need to create two statements.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TwoDimensionSpatialCoordinate">
+		<xs:annotation>
+			<xs:documentation>The 2D coordinates of the shape.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="coordinateIndex" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The order in which a coordinate appears.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="x" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A horizontal coordinate that is used together with a vertical coordinate to specify an exact point in space.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="y" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Y axis value. Coordinates have to be in units of acutal pixels in the image. So, the use of normalized coordinate is not permitted, such as 0.0 to1.0.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationCollection">
+		<xs:annotation>
+			<xs:documentation>This class is one of two root classes in the model. It inherits all AnnotationCollection properties. This class signifies that all members of a collection is of type ImageAnnotaton.  </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationCollection">
+				<xs:sequence>
+					<xs:element name="imageAnnotations" type="ImageAnnotation" minOccurs="1" maxOccurs="unbounded"/>
+					<xs:element name="person" type="Person" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ThreeDimensionPoint">
+		<xs:annotation>
+			<xs:documentation>A single location denoted by a single (x,y,z) triplet.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ThreeDimensionGeometricShapeEntity">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationHasDicomImageReferenceEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of image annotation can have DICOM image(s) of the same series.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CalculationEntityIsComparedWithCalculationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>When an AIM user wants to compare two calculation results, the user can use CalculationEntityIsComparedWithCalculationEntityStatement to identify a subject and object calculation result. A result from this comparison may be captured as a new calculation result or as an instance of InferenceEntity.
+
+This statement should not exist alone. There should be a statement such as AnnotationOfAnnotationIsComparedWithAnnotationOfAnnotationStatement or AnnotationOfAnnotationIsComparedWithImageAnnotationStatement exist along side the CalculationEntityIsComparedWithCalculationEntityStatement.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationOfAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationOfAnnotationHasImageAnnotationStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of AnnotationOfAnnotation can reference existing image annotations. Results from image annotations can be used to further analysis, computation, comparison, reference, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationOfAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DicomSegmentationEntityHasImagingObservationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>A DICOM segmentation object can have an imaging observation to further describe the segmentation object.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TwoDimensionPoint">
+		<xs:annotation>
+			<xs:documentation>A single pixel denoted by a single (column,row) pair.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TwoDimensionGeometricShapeEntity">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Scale">
+		<xs:complexContent>
+			<xs:extension base="CharacteristicQuantification">
+				<xs:sequence>
+					<xs:element name="type" type="ScaleType" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Represents different types of scales that are Nominal, Ordinal or Ratio.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A numerical quantity or a set of words assigned.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CompactCalculationResult">
+		<xs:annotation>
+			<xs:documentation>The result of a calculation captured in a string format. The type attribute of the base class defines what kind of data format the string is captured as.
+
+A string value of a calculation and its type is determined by the type attribute in this class, which inherits from CalculationResult class. A type can be an array, binary, histogram, matrix, scalar, uri and vector. An encoding method is used to applied to the content of the value attribute. A compression method can be used to compress the content in value attribute in order to reduce the size of the value attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="CalculationResult">
+				<xs:sequence>
+					<xs:element name="compression" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Compression method used to compress the content in value attribute.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="encoding" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Encoding method applied to the content of the value attribute.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>String value of a calculation. It actual type is determined by the type attribute in this class, which inherits from CalculationResult class. It can hold a value of array, binary, histogram, matrix, scalar, uri and vector.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GeneralLesionObservationEntity">
+		<xs:annotation>
+			<xs:documentation>This class contains general observations made about lesions in clinical trial results and day-to-day clinical treatment that are not specific to time point.
+
+For detail information: See DICOM Clinical Trials Results Reporting Supplement (Working group 18)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LesionObservationEntity">
+				<xs:sequence>
+					<xs:element name="laterality" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The value set contains codes for right, left, both and unilateral (unpaired), hence is always required for coded finding sites. G-C171, SRT, “Laterality”</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="lesionType" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Lesion type.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="reconstructionInterval" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Used to record that user has overridden rules related to minimum lesion size relative to reconstruction interval. Required if  “Lesion Type” is “Target lesion” and "Reconstruction Interval” is false for the image referenced by the baseline defining this lesion.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="trackingIdentifier" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The definition is “A text label used for tracking a finding or feature, potentially across multiple reporting objects, over time. This label shall be unique within the domain in which it is used.” 
+Shall be the same for all instances of the same lesion with the same Tracking Unique Identifier.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationEntityHasPerformedTaskContextEntityStatement">
+		<xs:annotation>
+			<xs:documentation>The class is used to record an activity or a performed task used to create an AIM instance. The AIM instance may contain zero or more performed tasks. Either ImageAnnotation or AnnotationOfAnnotation class can be a subject of this statement.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotationHasImagingPhysicalEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An image annotation can have imaging physical entity associate with it.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TwoDimensionCircle">
+		<xs:annotation>
+			<xs:documentation>A circle defined by two (column,row) pairs. The first point is the central pixel. The second point is a pixel on the perimeter of the circle.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TwoDimensionGeometricShapeEntity">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CalculationEntityReferencesCalculationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>A calculation result can reference another calculation result without using the referenced calculation result. Both results are related
+
+A use case:
+A cardiac magnetic resonance imaging 
+
+Working with AIM:</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ThreeDimensionSpatialCoordinate">
+		<xs:annotation>
+			<xs:documentation>The 3D coordinates of the shape.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="coordinateIndex" type="xs:int" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The order in which a coordinate appears.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="x" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>X axis value.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="y" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Y axis value.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="z" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Z axis value.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TextAnnotationEntity">
+		<xs:annotation>
+			<xs:documentation>TextAnnotationEntity represents the text and the markup of text intended to be rendered on the image.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="MarkupEntity">
+				<xs:sequence>
+					<xs:element name="font" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Font type</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="fontColor" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Font color</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="fontEffect" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Font effect (bold, italic, etc.)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="fontOpacity" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Opacity level for the font as a percentage</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="fontSize" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Font size in point</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="fontStyle" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Font style</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="text" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The text that makes up the markup.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="textJustify" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Text position (Left, Right, Center)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="geometricShapeEntity" type="GeometricShapeEntity" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImagingPhysicalEntityHasImagingObservationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An image physical entity can have an imaging observation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GeometricShapeEntity" abstract="true">
+		<xs:annotation>
+			<xs:documentation>The shape of graphical drawing placed on a region of interest (ROI).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="MarkupEntity">
+				<xs:sequence>
+					<xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Free text about a geometric shape entity.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Free text about the geometric shape not intended for rendering. It is used to provide user detail information related to how to create a markup for AIM annotation.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="includeFlag" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A boolean flag that determines if the particular shape in question is donut or hole.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="interpolationMethod" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>An interpolation method such as linear, polynomial, spline and piecewise constant interpolation that is used to create new data points from a discrete set of data points.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="label" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A human readable description of the geometric shape.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="lineColor" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Color of the line to be used for markup of the geometric shape.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="lineOpacity" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Opacity of the line to be used for markup of the geometric shape.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="lineStyle" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Style of the line to be used for markup of the geometric shape.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="lineThickness" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Thickness of the line to be used for markup of the geometric shape.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="questionIndex" type="xs:int" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>It is used to store an index value that identifies the order of the question in an AIM Template.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="questionTypeCode" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Coded entry data used to describe or capture the question being asked about imaging inference. It is associated with the typeCode.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="shapeIdentifier" type="xs:int" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A unique integer assigned to each shape within an annotation.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AdjudicationObservation">
+		<xs:annotation>
+			<xs:documentation>An observation is made about comparison between two or more performers&amp;rsquo; clinical results (i.e., &amp;ldquo;adjudication&amp;rdquo;). It describes a specific time point or all previous time points as well that is explicitly called out.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Information about adjudication observations. Comment cannot be empty text if the attribute is present.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="identifierWithinAcceptedPersonObserversRole" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>This identifies which observer, if any, was chosen from the choices available (i.e., their results were accepted by the adjudicator).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="identifierWithinRejectedPersonObserversRole" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>This identifies which observer(s) were not chosen from the choices available (i.e., their results were rejected by the adjudicator, in favor of the results of the identifier within an accepted person observer's role.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="imageQualityIssuesDiscordance" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Image quality issues contribute to discordance.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="observationScope" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Adjudication Observation Scope. Whether or not the adjudication is performed and recorded one time point at a time (sequential) or at a specific time point with reference to all preceding time points.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="observationUid" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Unique identifier for an occurrence of an adjudication observation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="personObserversRoleInThisProcedure" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the role of the observers whose work is being adjudicated, e.g., a code for &amp;ldquo;reader&amp;rdquo;. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="reasonForChoice" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Coded reason for accepting and/or rejecting observers.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="reasonForDiscordance" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Adjudication discordance reason.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Person">
+		<xs:sequence>
+			<xs:element name="birthDate" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The month, day and year on which the patient/participant was born.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ethnicGroup" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>the patient's/participant's self declared ethnic origination, independent of racail origination, based on OMB approved categories.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="id" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The unique number assigned to identify a patient/participant on a protocol.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The current legal name of the person registered on the clinical trial.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sex" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text code to represent a patient's sex determination.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ThreeDimensionPolygon">
+		<xs:annotation>
+			<xs:documentation>A series of connected line segments with ordered vertices denoted by (x,y,z) triplets, where the first and last vertices shall be the same forming a polygon; the points shall be coplanar.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ThreeDimensionGeometricShapeEntity">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationStatement" abstract="true">
+		<xs:annotation>
+			<xs:documentation>This abstract class is the parent of ImageAnnotationStatement and AnnotationOfAnnotationStatement class. It represents a general concept about a statement used to describe something found and to be addressed on an image or the same thing on images in a series. A statement concept expresses a most granular amount of information an AIM annotation can have. AIM annotation presents its content in a collection of semantic statements. Statements describe a thing found, measured and graphically annotated on an image or images from the same series. A statement consists of a subject, predicate and object. There are three types of statements, AnnotationStatement, AnnotationOfAnnotationStatement and ImageAnnotation.
+
+The AnnotationStatement class have nine different subtypes of annotation statements that can be applied to both AnnotationOfAnnotationStatement and ImageAnnotationStatement. The classes derived from AnnotationStatement  can be seen in the AIM 4.0 UML diagram section called "AnnotationStatement (common to both types of annotations)".
+
+A statement class represents a predicate. Each statement class has subject and object association. A subject and object association can have a link to ImagingPhysicalEntity, ImagingObservationEntity, InferenceEntity, ReferencedAnnotationEntity, GeometricShapeEntity, TextAnnotationEntity, UriImageReferenceEntity, DICOMImageReferenceEntity, ImageAnnotation and AnnotationOfAnnotation. Not all combinations between these classes are valid. See valid statement tables for valid statements.
+
+Naming convention for a statement shall begin with the name of subject class, predicate or relation (e.g. has, compares, references, excludes, is comprise of and uses) and name of object class. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="objectUniqueIdentifier" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An identifier string that can either be a string representation of an OID, such as a DICOM (style) unique identifier or UUID. It is used to uniquely reference a object of selected AIM predicate.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subjectUniqueIdentifier" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An identifier string that can either be a string representation of an OID, such as a DICOM (style) unique identifier or UUID. It is used to uniquely reference a subject of selected AIM predicate.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ThreeDimensionPolyline">
+		<xs:annotation>
+			<xs:documentation>A series of connected line segments with ordered vertices denoted by (x,y,z) triplets; the points need not be coplanar.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ThreeDimensionGeometricShapeEntity">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Entity" abstract="true">
+		<xs:annotation>
+			<xs:documentation>An Entity abstract class represents an existence of thing, concept, observation, calculation, measurement and graphical drawing  in AIM. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="uniqueIdentifier" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An identifier string that can either be a string representation such as a DICOM (style) unique identifier or UUID. It is used to uniquely reference a specific subtype such as Imaging Physical Entity, Imaging Observation, Calculation, Image Reference, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnnotationOfAnnotationIsComparedWithImageAnnotationStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of AnnotationOfAnnotation can be used for comparison with an instance of ImageAnnotation. AIM users can further create CalculationEntityIsComparedWithCalculationEntityStatement to compare a calculation result from the subject AnnotationOfAnnotation instance with a calculation result from the object imageAnnotation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AnnotationOfAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DicomImageReferenceEntityHasCalculationEntityStatement">
+		<xs:annotation>
+			<xs:documentation>A DICOM image can have a calculation associated with the image.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonQuantifiable">
+		<xs:complexContent>
+			<xs:extension base="CharacteristicQuantification">
+				<xs:sequence>
+					<xs:element name="typeCode" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Coded entry data used to describe or capture a type of a non-quantifiable.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MarkupEntity" abstract="true">
+		<xs:annotation>
+			<xs:documentation>This abstract class represents graphical drawing and textual description that can be placed on an image.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Entity">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TimePointLesionObservationEntity">
+		<xs:annotation>
+			<xs:documentation>This class contains observations made about lesions in day-to-day clinical interpretations and clinical trial results at a specific time point. It also includes “lesions” that are created for the purpose of calibrating scanned film or other secondary capture images.
+
+For detail information: See DICOM Clinical Trials Results Reporting Supplement (Working group 18)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LesionObservationEntity">
+				<xs:sequence>
+					<xs:element name="calibration" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A coded boolean value for a lesion created for the purpose of calibrating scanned film or secondary capture images. Calibrations are managed as lesions to capture a UID, completion status and change reasons when recalibration occures.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="canEvaluateLesion" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A required boolean value defaulting to no at baseline, which may represent missing images or calibration information. May be yes if there are measurements present or if there is no therapeutic assessment (never the case at baseline).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="canMeasureLesion" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A boolean value indicating whether a lesion can be measured.
+
+Required if  “Time Point Baseline” of the enclosing time point content item is  “No” and “Lesion Type” for the same Tracking Unique Identifier is NOT “Non-target lesion" and Row 11 EV(DD0043, 99SupNNN, “Unable to evaluate lesion”) is (R-00339,SRT, “No”) and “Qualitative Assessment” is absent and measurement object is “No". Shall not be present otherwise.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Lesion comments at the time point level are optional, and there may only be one of them.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="isUnequivocalProgression" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>A oboolean value used to indicate unequivocal progression when measurement is required but unable to measure.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="predecessorLesionTrackingUid" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>UID of one or more lesions on a previous time point that have been split or merged at this time point. Shall be a single value referencing the parent lesion if a lesion has been split at this time point; shall be multiple values referencing all the lesions at the previous time point that have been  merged. Predecessor relationship exists.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="qualitativeAssessment" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>PET lesion qualitative assessment. May be present for certain types of PET protocols, for example.
+Required if  “Calibration” is  “No”. Shall not be present otherwise.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="reasonUnableToEvaluate" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Provides a coded reason for why the lesion cannot be evaluated.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="reasonUnableToMeasure" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Reason for why the lesion cannot be measured.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="therapeuticResponse" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Therapeutic response of interventional outcome.
+Required if EV (DD0022, 99SupNNN, “Time Point Baseline”) of the enclosing time point content item is (R-00339,SRT, “No”)  and it is a non-target lesion. Or, if the modality of the image on which the lesion is defined is PET. Shall not be present otherwise.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImagingObservationEntityIsIdentifiedByThreeDimensionGeometricShapeEntityStatement">
+		<xs:annotation>
+			<xs:documentation>An instance of imaging observation entity may have one or more three-dimension graphical drawings associate with it. ImageObservationEntityHasThreeDimensionGeometricShapeEntityStatement represents a direct relationship between an instance of imaging observation entity and a markup. If you have two markups on an image, you will need to create two statements.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ImageAnnotationStatement">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

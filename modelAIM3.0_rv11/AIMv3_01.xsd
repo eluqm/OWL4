@@ -1,0 +1,1789 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.radiology.northwestern.edu/aim/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:aim="http://www.radiology.northwestern.edu/aim/1" elementFormDefault="qualified">
+	<xs:import namespace=""/>
+	<xs:import namespace=""/>
+	<xs:import namespace=""/>
+	<xs:complexType name="MultiPoint">
+		<xs:complexContent>
+			<xs:extension base="aim:GeometricShape">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ReferencedCalculation">
+		<xs:sequence>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uniqueIdentifier">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Referenced calculation UID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SpatialCoordinate">
+		<xs:sequence>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="coordinateIndex">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The order in which a coordinate appears.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReferencedAnnotation">
+		<xs:sequence>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="referencedAnnotationUID">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Referenced annotation ID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="annotationRole">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:AnnotationRole" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Annotation" abstract="true">
+		<xs:sequence>
+			<xs:element name="aimVersion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The version of the AIM model used by this annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeMeaning">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The human understandable meaning of the coded value.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeValue">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>codeValue represents the identifier of the particular term in a coded vocabulary. Should be unique within a given coding scheme.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeDesignator">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The designator of the vocabulary from which the term was selected.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeVersion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Identifies the version of the coding scheme used.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Free text about the annotation not intended for rendering on the image.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dateTime" type="xs:date" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Date and Time (Julian) that the annotation was created</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Human readable colloquial name of the annotation not guaranteed to be unique</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="precedentReferencedAnnotationUID">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>A Digital Imaging and Communication in Medicine (DICOM) (style) unique identifier for referencing earlier instance of AIM annotation. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uniqueIdentifier">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>A DICOM (style) unique identifier for this particular instance of an annotation. Used to reference a specific annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="user">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:User" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="aimStatus">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:AimStatus" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="inferenceCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:Inference" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="calculationCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:Calculation" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="imagingObservationCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:ImagingObservation" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="equipment">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:Equipment" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="anatomicEntityCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:AnatomicEntity" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Numerical">
+		<xs:complexContent>
+			<xs:extension base="aim:CharacteristicQuantification">
+				<xs:sequence>
+					<xs:element name="operator">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="ComparisonOperators" minOccurs="0" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>An operator represents comparison operators, i.e. &gt;, &gt;=, &lt;, &lt;=,==,!=.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ucumString">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>A string representation of UCUM unit for a number in Numerical.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="value">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="Double" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>A numeric value of a number in Numerical class.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CalculationData">
+		<xs:sequence>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="value" type="xs:double" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The data of the result.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="coordinateCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:Coordinate" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReferencedGeometricShape">
+		<xs:sequence>
+			<xs:element name="cagridId">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="referencedShapeIdentifier">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>It contains an integer value of a shapeIdentifier within an AIM Image Annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnatomicEntity">
+		<xs:sequence>
+			<xs:element name="annotatorConfidence" type="xs:double" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A real number, between 0 and 1, indicating annotator's confidence that a characteristic is present.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeMeaning" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The human understandable meaning of the coded value.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeValue" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The code of the term in the native vocabulary.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeDesignator" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The designator of the vocabulary from which the term was selected.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeVersion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Identifies the version of the coding scheme used.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isPresent" type="xs:boolean" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A boolean value indicates whether or not an imaging observation exist in observed image(s).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>A human readable description of the anatomic entity characteristic.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="anatomicEntityCharacteristicCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:AnatomicEntityCharacteristic" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Coordinate">
+		<xs:sequence>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dimensionIndex" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>which dimension the data belongs to</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="position" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Position within the dimension</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnatomicEntityCharacteristic">
+		<xs:sequence>
+			<xs:element name="annotatorConfidence" type="xs:double" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A real number, between 0 and 1, indicating annotator's confidence that a characteristic is present.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cagridId">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeMeaning">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The human understandable meaning of the term as determined by the coding scheme.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeValue">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>codeValue represents the identifier of the particular term in a coded vocabulary. Should be unique within a given coding scheme.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeDesignator">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The designator of the vocabulary from which the term was selected.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeVersion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The version of the coding scheme used.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>A human readable description of the anatomic entity characteristic.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="characteristicQuantificationCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:CharacteristicQuantification" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImageReference" abstract="true">
+		<xs:sequence>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DICOMImageReference">
+		<xs:complexContent>
+			<xs:extension base="aim:ImageReference">
+				<xs:sequence>
+					<xs:element name="presentationStateCollection">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="aim:PresentationState" minOccurs="0" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="imageStudy">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="aim:ImageStudy" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="WebImageReference">
+		<xs:complexContent>
+			<xs:extension base="aim:ImageReference">
+				<xs:sequence>
+					<xs:element name="uri" type="xs:string" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Uniform Resource Identifier of the image.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Dimension">
+		<xs:sequence>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="index" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Zero based unique index of the dimension</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A human readable description of the dimension</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="size" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>How many members a dimension has</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Image">
+		<xs:sequence>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sopClassUID">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Unique identifier specific for a Service-Object Pair (SOP) class, as specified in the DICOM standard.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sopInstanceUID">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Unique identifer for a Service-Object Pair (SOP) instance, as specified in a DICOM tag.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnnotationOfAnnotation">
+		<xs:complexContent>
+			<xs:extension base="aim:Annotation">
+				<xs:sequence>
+					<xs:element name="referencedAnnotationCollection">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="aim:ReferencedAnnotation" minOccurs="1" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Point">
+		<xs:complexContent>
+			<xs:extension base="aim:GeometricShape">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TextAnnotation">
+		<xs:sequence>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="font" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Font type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fontColor" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Font color</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fontEffect" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Font effect (bold, italic, etc.)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fontOpacity" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Opacity level for the font as a percentage</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fontSize" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Font size in point</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="fontStyle" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Font style</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="text" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The text that makes up the markup.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="textJustify" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Text position (Left, Right, Center)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiPoint">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:MultiPoint" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GeometricShape" abstract="true">
+		<xs:sequence>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="includeFlag" type="xs:boolean" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A boolean flag that determines if the particular shape in question is donut or hole.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lineColor" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Color of the line to be used for markup of the greometric shape.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lineOpacity" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Opacity of the line to be used for markup of the greometric shape.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lineStyle" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Style of the line to be used for markup of the greometric shape.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lineThickness" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Thickness of the line to be used for markup of the greometric shape.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="shapeIdentifier">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>A unique integer assigned to each shape within an annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="spatialCoordinateCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:SpatialCoordinate" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Scale">
+		<xs:complexContent>
+			<xs:extension base="aim:CharacteristicQuantification">
+				<xs:sequence>
+					<xs:element name="comment">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>Free text about the scale not intended for rendering.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="description">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>A human readable description of the scale.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="value">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>A numerical quantity or a set of words assigned.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Segmentation" abstract="true">
+		<xs:sequence>
+			<xs:element name="cagridId">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="referencedSopInstanceUID">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The Service Object Pair Instance Unique Identifier of the image that Segmentation is referenced.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="segmentNumber">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Identification number of the segment. The 
+value of Segment Number (0062,0004)
+shall be unique within the Segmentation
+instance in which it is created.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sopClassUID">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Uniquely identifies the Service Object Pair (SOP) Class. A class represents a type of DICOM object, e.g. Segmentation Storage Class = 1.2.840.10008.5.1.4.1.1.66.4.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sopInstanceUID">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The Service Object Pair Instance Unique Identifier of the Segmentation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="imagingObservation">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:ImagingObservation" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Polyline">
+		<xs:complexContent>
+			<xs:extension base="aim:GeometricShape">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AimStatus">
+		<xs:sequence>
+			<xs:element name="annotationVersion" type="xs:double" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>It captures a numerical, using a double value, version of an annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="authorizedBy">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>It is used to identify authorization update of the annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cagridId">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeMeaning">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The human understandable meaning of the coded value.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeValue">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Identifier for a concept in a coded vocabulary. Unique within a given vocabulary.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeDesignator">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The designator of the vocabulary from which the term was selected.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeVersion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Identifies the version of the coding scheme used.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Quantile">
+		<xs:complexContent>
+			<xs:extension base="aim:CharacteristicQuantification">
+				<xs:sequence>
+					<xs:element name="bin">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>An integer value which divides100 into equal proportions.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CharacteristicQuantification">
+		<xs:sequence>
+			<xs:element name="annotatorConfidence" type="xs:double" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A real number, between 0 and 1, indicating annotator's confidence that a characteristic quantification is present.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cagridId">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The maximum value for that particular scale. The default value is 1.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnnotationRole">
+		<xs:sequence>
+			<xs:element name="cagridId">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeMeaning">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The human understandable meaning of the coded value.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeValue">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>codeValue represents the identifier of the particular term in a coded vocabulary. Should be unique within a given coding scheme.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeDesignator">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The designator of the vocabulary from which the term was selected.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeVersion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Identifies the version of the coding scheme used.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="roleSequenceNumber">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Repreresent ordering within the role.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Calculation">
+		<xs:sequence>
+			<xs:element name="algorithmName">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>A name of the algorithm.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="algorithmVersion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Information describing a version of algorithm.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeMeaning">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The human understandable meaning of the coded value.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeValue">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>codeValue represents the identifier of the particular term in a coded vocabulary. Should be unique within a given coding scheme.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeDesignator">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The designator of the vocabulary from which the term was selected.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeVersion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Identifies the version of the coding scheme used.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="description" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A human understandable, brief description of the calculation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mathML" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An optional mathMLrepresentaion of the calculation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uid" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A unique identifier for a calculation such that an individual calculation can be referenced.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="calculationResultCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:CalculationResult" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="referencedGeometricShapeCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:ReferencedGeometricShape" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="referencedCalculationCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:ReferencedCalculation" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Interval">
+		<xs:complexContent>
+			<xs:extension base="aim:CharacteristicQuantification">
+				<xs:sequence>
+					<xs:element name="maxOperator">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="ComparisonOperators" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>An operator represents comparison operators, i.e. &gt;, &gt;=, &lt;, &lt;=,==,!=.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="maxValue" type="xs:double" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The maximum value for that particular interval. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="minOperator">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="ComparisonOperators" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>An operator represents comparison operators, i.e. &gt;, &gt;=, &lt;, &lt;=,==,!=.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="minValue" type="xs:double" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>The minimum value for that particular interval. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ucumString">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>A string representation of UCUM unit for a number in Interval.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ImagingObservation">
+		<xs:sequence>
+			<xs:element name="annotatorConfidence" type="xs:double" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A real number, between 0 and 1, indicating annotator's confidence that a characteristic is present.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cagridId">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeMeaning" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The human understandable meaning of the coded value.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeValue" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The code of the term in the native vocabulary.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeDesignator" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The designator of the vocabulary from which the term was selected.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeVersion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Identifies the version of the coding scheme used.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Free text comment</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isPresent" type="xs:boolean" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A boolean value indicates whether or not an imaging observation exist in observed image(s).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>A human readable description of the anatomic entity characteristic.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="imagingObservationCharacteristicCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:ImagingObservationCharacteristic" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="referencedGeometricShape">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:ReferencedGeometricShape" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="User">
+		<xs:sequence>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="loginName" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The login name of the author on the software that is being used to create the annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The full name of the author of the annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="numberWithinRoleOfClinicalTrial" type="xs:integer" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An identifier assigned to the author by the clinical trial, for example, role might be "reader", and NumberWithinRole might be "42", or numberWithinRoleOfCLinicalTrial might be "A12345".</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="roleInTrial" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The role of the author in the clinical trial, for example, "reader", or "adjudicator".</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImageSeries">
+		<xs:sequence>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="instanceUID">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Unique identifer of a study series.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="imageCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:Image" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImagingObservationCharacteristic">
+		<xs:sequence>
+			<xs:element name="annotatorConfidence" type="xs:double" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A real number, between 0 and 1, indicating annotator's confidence that a characteristic is present.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeMeaning" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The human understandable meaning of the coded value.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeValue" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The code of the term in the native vocabulary.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeDesignator" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The designator of the vocabulary from which the term was selected.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeVersion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Identifies the version of the coding scheme used.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Free text comment</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>A human readable description of the imaging observation characteristic.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="characteristicQuantificationCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:CharacteristicQuantification" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Equipment">
+		<xs:sequence>
+			<xs:element name="cagridId">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="manufacturerModelName">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Text to capture the manufacturer's model names of the (imaging) equipment that produced the composite instances.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="manufacturerName">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Text to capture the name of the manufacturer of medical imaging equipment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="softwareVersion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Numeric value to designate manufacturer's software version of the equipment that produced the (imaging) composite instances.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Circle">
+		<xs:complexContent>
+			<xs:extension base="aim:GeometricShape">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ThreeDimensionSpatialCoordinate">
+		<xs:complexContent>
+			<xs:extension base="aim:SpatialCoordinate">
+				<xs:sequence>
+					<xs:element name="frameOfReferenceUID">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>Uniquely identifies the frame of reference for a Series.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="x" type="xs:double" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>X axis value.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="y" type="xs:double" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Y axis value.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="z" type="xs:double" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Z axis value.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonQuantifiable">
+		<xs:complexContent>
+			<xs:extension base="aim:CharacteristicQuantification">
+				<xs:sequence>
+					<xs:element name="codeMeaning">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>The human understandable meaning of the coded value.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="codeValue">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>codeValue represents the identifier of the particular term in a coded vocabulary. Should be unique within a given coding scheme.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="codingSchemeDesignator">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>The designator of the vocabulary from which the term was selected.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="codingSchemeVersion">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>Identifies the version of the coding scheme used.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CalculationResult">
+		<xs:sequence>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="numberOfDimensions" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Total number of dimensions</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="type">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="CalculationResultIdentifier" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The type of result, for example, scalar, vector, histogram, array.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="unitOfMeasure" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A string representation of UCUM unit for the dimensions</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dimensionCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:Dimension" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="calculationDataCollection">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:CalculationData" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Ellipse">
+		<xs:complexContent>
+			<xs:extension base="aim:GeometricShape">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Person">
+		<xs:sequence>
+			<xs:element name="birthDate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Date" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The month, day and year on which the patient/participant was born.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cagridId">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ethnicGroup">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>the patient's/participant's self declared ethnic origination, independent of racail origination, based on OMB approved categories.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="id">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The unique number assigned to identify a patient/participant on a protocol.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The current legal name of the person registered on the clinical trial.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sex">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Text code to represent a patient's sex determination.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImageStudy">
+		<xs:sequence>
+			<xs:element name="cagridId" type="xs:integer" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="instanceUID">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Unique identifier for an occurrence of a medical imaging study.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startDate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Date" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Date an imaging study started.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="startTime">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Time in HR(24):Mn an imaging study started.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="imageSeries">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="aim:ImageSeries" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PresentationState">
+		<xs:sequence>
+			<xs:element name="cagridId">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sopInstanceUID">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Unique identifer for a Service-Object Pair (SOP) instance, as specified in a DICOM tag.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Inference">
+		<xs:sequence>
+			<xs:element name="annotatorConfidence" type="xs:double" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A real number indicates the level of confidence between 0.0 to 1.0, where 1 is equal to 100%.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cagridId">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Integer" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>One or more characters used to identify, name, or characterize the nature, properties, or contents of a thing.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeMeaning">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The human understandable meaning of the coded value.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codeValue">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>Identifier for a concept in a coded vocabulary. Unique within a given vocabulary.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeDesignator">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>The designator of the vocabulary from which the term was selected.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="codingSchemeVersion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="String" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:annotation>
+					<xs:documentation>It is used to identify the version of a coding scheme if necessary to resolve ambiguity in the Code Value (0008,0100) or Code Meaning (0008,0104).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="imageEvidence" type="xs:boolean" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A flag, if set, indicates that the inference is considered by the annotator to be ground truth.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImageAnnotation">
+		<xs:complexContent>
+			<xs:extension base="aim:Annotation">
+				<xs:sequence>
+					<xs:element name="person">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="aim:Person" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="segmentationCollection">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="aim:Segmentation" minOccurs="0" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="geometricShapeCollection">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="aim:GeometricShape" minOccurs="0" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="textAnnotationCollection">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="aim:TextAnnotation" minOccurs="0" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="imageReferenceCollection">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="aim:ImageReference" minOccurs="1" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TwoDimensionSpatialCoordinate">
+		<xs:complexContent>
+			<xs:extension base="aim:SpatialCoordinate">
+				<xs:sequence>
+					<xs:element name="imageReferenceUID">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="String" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>sopInstanceUID or URI</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="referencedFrameNumber" type="xs:integer" minOccurs="1" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Identifies the frame numbers within the Referenced SOP Instance to which the reference applies. The first frame shall be denoted as frame number 1. Or, the frame number of the frame that contains the image in the case of multi-frame images.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="x">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="Double" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>The row offset of the pixel from TLHC.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="y">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="Double" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:annotation>
+							<xs:documentation>The column offset of the pixel from TLHC.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>
