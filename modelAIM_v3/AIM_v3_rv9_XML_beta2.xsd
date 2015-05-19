@@ -1,119 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM" targetNamespace="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM" elementFormDefault="qualified" version="AIM_v3_rv9_XML_beta">
-	<xs:simpleType name="CalculationResultIdentifier">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Scalar"/>
-			<xs:enumeration value="Vector"/>
-			<xs:enumeration value="Histogram"/>
-			<xs:enumeration value="Matrix"/>
-			<xs:enumeration value="Array"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="ComparisonOperators">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Equal"/>
-			<xs:enumeration value="NotEqual"/>
-			<xs:enumeration value="LessThan"/>
-			<xs:enumeration value="LessThanEqual"/>
-			<xs:enumeration value="GreaterThan"/>
-			<xs:enumeration value="GreaterThanEqual"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:complexType name="MultiPoint">
-		<xs:complexContent>
-			<xs:extension base="GeometricShape">
-				<xs:sequence/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:complexType name="ReferencedCalculation">
-		<xs:sequence/>
-		<xs:attribute name="cagridId" type="xs:integer" use="required"/>
-		<xs:attribute name="uniqueIdentifier" type="xs:string" use="required"/>
-	</xs:complexType>
-	<xs:complexType name="SpatialCoordinate" abstract="true">
-		<xs:sequence/>
-		<xs:attribute name="cagridId" type="xs:integer" use="required"/>
-		<xs:attribute name="coordinateIndex" type="xs:integer" use="required"/>
-	</xs:complexType>
-	<xs:complexType name="ReferencedAnnotation">
-		<xs:sequence>
-			<xs:element name="annotationRole" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="AnnotationRole" type="AnnotationRole" minOccurs="0"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-		<xs:attribute name="cagridId" type="xs:integer" use="required"/>
-		<xs:attribute name="referencedAnnotationUID" type="xs:string" use="required"/>
-	</xs:complexType>
-	<xs:complexType name="Annotation" abstract="true">
-		<xs:sequence>
-			<xs:element name="calculationCollection" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="Calculation" type="Calculation" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="inferenceCollection" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="Inference" type="Inference" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="user" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="User" type="User" minOccurs="0"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="equipment" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="Equipment" type="Equipment" minOccurs="0"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="anatomicEntityCollection" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="AnatomicEntity" type="AnatomicEntity" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="imagingObservationCollection" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="ImagingObservation" type="ImagingObservation" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="aimStatus" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="AimStatus" type="AimStatus" minOccurs="0"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-		<xs:attribute name="cagridId" type="xs:integer" use="required"/>
-		<xs:attribute name="aimVersion" type="xs:string" use="required"/>
-		<xs:attribute name="comment" type="xs:string" use="optional"/>
-		<xs:attribute name="dateTime" type="xs:dateTime" use="required"/>
-		<xs:attribute name="name" type="xs:string" use="required"/>
-		<xs:attribute name="uniqueIdentifier" type="xs:string" use="required"/>
-		<xs:attribute name="codeValue" type="xs:string" use="required"/>
-		<xs:attribute name="codeMeaning" type="xs:string" use="required"/>
-		<xs:attribute name="codingSchemeDesignator" type="xs:string" use="required"/>
-		<xs:attribute name="codingSchemeVersion" type="xs:string" use="optional"/>
-		<xs:attribute name="precedentReferencedAnnotationUID" type="xs:string" use="optional"/>
-	</xs:complexType>
-	<xs:complexType name="Numerical">
+	
+	
+	<!--<xs:complexType name="Numerical">
 		<xs:complexContent>
 			<xs:extension base="CharacteristicQuantification">
 				<xs:sequence/>
@@ -246,7 +135,14 @@
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
-	</xs:complexType>
+	</xs:complexType>-->
+    <xs:complexType name="MultiPoint">
+        <xs:complexContent>
+            <xs:extension base="GeometricShape">
+                <xs:sequence/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
 	<xs:complexType name="Point">
 		<xs:complexContent>
 			<xs:extension base="GeometricShape">
@@ -292,32 +188,8 @@
 		<xs:attribute name="includeFlag" type="xs:boolean" use="required"/>
 		<xs:attribute name="shapeIdentifier" type="xs:integer" use="required"/>
 	</xs:complexType>
-	<xs:complexType name="Scale">
-		<xs:complexContent>
-			<xs:extension base="CharacteristicQuantification">
-				<xs:sequence/>
-				<xs:attribute name="comment" type="xs:string" use="optional"/>
-				<xs:attribute name="description" type="xs:string" use="optional"/>
-				<xs:attribute name="value" type="xs:string" use="required"/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:complexType name="Segmentation">
-		<xs:sequence>
-			<xs:element name="imagingObservation" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="ImagingObservation" type="ImagingObservation" minOccurs="0"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-		<xs:attribute name="cagridId" type="xs:integer" use="required"/>
-		<xs:attribute name="sopInstanceUID" type="xs:string" use="required"/>
-		<xs:attribute name="sopClassUID" type="xs:string" use="required"/>
-		<xs:attribute name="referencedSopInstanceUID" type="xs:string" use="required"/>
-		<xs:attribute name="segmentNumber" type="xs:integer" use="required"/>
-	</xs:complexType>
+	
+	
 	<xs:complexType name="Polyline">
 		<xs:complexContent>
 			<xs:extension base="GeometricShape">
@@ -325,135 +197,10 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="AimStatus">
-		<xs:sequence/>
-		<xs:attribute name="cagridId" type="xs:integer" use="required"/>
-		<xs:attribute name="annotationVersion" type="xs:double" use="required"/>
-		<xs:attribute name="codeValue" type="xs:string" use="required"/>
-		<xs:attribute name="codeMeaning" type="xs:string" use="required"/>
-		<xs:attribute name="codingSchemeDesignator" type="xs:string" use="required"/>
-		<xs:attribute name="codingSchemeVersion" type="xs:string" use="optional"/>
-		<xs:attribute name="authorizedBy" type="xs:string" use="optional"/>
-	</xs:complexType>
-	<xs:complexType name="Quantile">
-		<xs:complexContent>
-			<xs:extension base="CharacteristicQuantification">
-				<xs:sequence/>
-				<xs:attribute name="bin" type="xs:integer" use="required"/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:complexType name="CharacteristicQuantification" abstract="true">
-		<xs:sequence/>
-		<xs:attribute name="cagridId" type="xs:integer" use="required"/>
-		<xs:attribute name="name" type="xs:string" use="required"/>
-		<xs:attribute name="annotatorConfidence" type="xs:double" use="optional"/>
-	</xs:complexType>
-	<xs:complexType name="AnnotationRole">
-		<xs:sequence/>
-		<xs:attribute name="cagridId" type="xs:integer" use="required"/>
-		<xs:attribute name="codeValue" type="xs:string" use="required"/>
-		<xs:attribute name="codeMeaning" type="xs:string" use="required"/>
-		<xs:attribute name="codingSchemeDesignator" type="xs:string" use="required"/>
-		<xs:attribute name="codingSchemeVersion" type="xs:string" use="optional"/>
-		<xs:attribute name="roleSequenceNumber" type="xs:integer" use="required"/>
-	</xs:complexType>
-	<xs:complexType name="Calculation">
-		<xs:sequence>
-			<xs:element name="referencedCalculationCollection" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="ReferencedCalculation" type="ReferencedCalculation" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="calculationResultCollection" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="CalculationResult" type="CalculationResult" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="referencedGeometricShapeCollection" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="ReferencedGeometricShape" type="ReferencedGeometricShape" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-		<xs:attribute name="cagridId" type="xs:integer" use="required"/>
-		<xs:attribute name="uid" type="xs:string" use="required"/>
-		<xs:attribute name="description" type="xs:string" use="required"/>
-		<xs:attribute name="mathML" type="xs:string" use="optional"/>
-		<xs:attribute name="codeValue" type="xs:string" use="required"/>
-		<xs:attribute name="codeMeaning" type="xs:string" use="required"/>
-		<xs:attribute name="codingSchemeDesignator" type="xs:string" use="required"/>
-		<xs:attribute name="codingSchemeVersion" type="xs:string" use="optional"/>
-		<xs:attribute name="algorithmName" type="xs:string" use="optional"/>
-		<xs:attribute name="algorithmVersion" type="xs:string" use="optional"/>
-	</xs:complexType>
-	<xs:complexType name="Interval">
-		<xs:complexContent>
-			<xs:extension base="CharacteristicQuantification">
-				<xs:sequence/>
-				<xs:attribute name="minValue" type="xs:double" use="required"/>
-				<xs:attribute name="maxValue" type="xs:double" use="required"/>
-				<xs:attribute name="minOperator" type="ComparisonOperators" use="required"/>
-				<xs:attribute name="ucumString" type="xs:string" use="required"/>
-				<xs:attribute name="maxOperator" type="ComparisonOperators" use="required"/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:complexType name="ImagingObservation">
-		<xs:sequence>
-			<xs:element name="imagingObservationCharacteristicCollection" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="ImagingObservationCharacteristic" type="ImagingObservationCharacteristic" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="referencedGeometricShape" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="ReferencedGeometricShape" type="ReferencedGeometricShape" minOccurs="0"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-		<xs:attribute name="cagridId" type="xs:integer" use="required"/>
-		<xs:attribute name="codeValue" type="xs:string" use="required"/>
-		<xs:attribute name="codeMeaning" type="xs:string" use="required"/>
-		<xs:attribute name="codingSchemeDesignator" type="xs:string" use="required"/>
-		<xs:attribute name="codingSchemeVersion" type="xs:string" use="optional"/>
-		<xs:attribute name="comment" type="xs:string" use="optional"/>
-		<xs:attribute name="annotatorConfidence" type="xs:double" use="optional"/>
-		<xs:attribute name="isPresent" type="xs:boolean" use="optional"/>
-		<xs:attribute name="label" type="xs:string" use="required"/>
-	</xs:complexType>
-	<xs:complexType name="User">
-		<xs:sequence/>
-		<xs:attribute name="cagridId" type="xs:integer" use="required"/>
-		<xs:attribute name="name" type="xs:string" use="required"/>
-		<xs:attribute name="loginName" type="xs:string" use="required"/>
-		<xs:attribute name="roleInTrial" type="xs:string" use="optional"/>
-		<xs:attribute name="numberWithinRoleOfClinicalTrial" type="xs:integer" use="optional"/>
-	</xs:complexType>
-	<xs:complexType name="ImageSeries">
-		<xs:sequence>
-			<xs:element name="imageCollection">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="Image" type="Image" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-		<xs:attribute name="cagridId" type="xs:integer" use="required"/>
-		<xs:attribute name="instanceUID" type="xs:string" use="required"/>
-	</xs:complexType>
-	<xs:complexType name="ImagingObservationCharacteristic">
+	
+	
+	
+	<!--<xs:complexType name="ImagingObservationCharacteristic">
 		<xs:sequence>
 			<xs:element name="characteristicQuantificationCollection" minOccurs="0">
 				<xs:complexType>
@@ -478,7 +225,7 @@
 		<xs:attribute name="manufacturerName" type="xs:string" use="required"/>
 		<xs:attribute name="manufacturerModelName" type="xs:string" use="optional"/>
 		<xs:attribute name="softwareVersion" type="xs:string" use="optional"/>
-	</xs:complexType>
+	</xs:complexType>-->
 	<xs:complexType name="Circle">
 		<xs:complexContent>
 			<xs:extension base="GeometricShape">
@@ -497,7 +244,12 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="NonQuantifiable">
+    <xs:complexType name="SpatialCoordinate" abstract="true">
+        <xs:sequence/>
+        <xs:attribute name="cagridId" type="xs:integer" use="required"/>
+        <xs:attribute name="coordinateIndex" type="xs:integer" use="required"/>
+    </xs:complexType>
+	<!--<xs:complexType name="NonQuantifiable">
 		<xs:complexContent>
 			<xs:extension base="CharacteristicQuantification">
 				<xs:sequence/>
@@ -507,29 +259,8 @@
 				<xs:attribute name="codingSchemeVersion" type="xs:string" use="optional"/>
 			</xs:extension>
 		</xs:complexContent>
-	</xs:complexType>
-	<xs:complexType name="CalculationResult">
-		<xs:sequence>
-			<xs:element name="calculationDataCollection" minOccurs="0">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="CalculationData" type="CalculationData" minOccurs="0" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="dimensionCollection">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="Dimension" type="Dimension" maxOccurs="unbounded"/>
-					</xs:sequence>
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-		<xs:attribute name="cagridId" type="xs:integer" use="required"/>
-		<xs:attribute name="type" type="CalculationResultIdentifier" use="required"/>
-		<xs:attribute name="numberOfDimensions" type="xs:integer" use="required"/>
-		<xs:attribute name="unitOfMeasure" type="xs:string" use="required"/>
-	</xs:complexType>
+	</xs:complexType>-->
+	
 	<xs:complexType name="Ellipse">
 		<xs:complexContent>
 			<xs:extension base="GeometricShape">
@@ -537,7 +268,7 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="Person">
+	<!--<xs:complexType name="Person">
 		<xs:sequence/>
 		<xs:attribute name="cagridId" type="xs:integer" use="required"/>
 		<xs:attribute name="name" type="xs:string" use="required"/>
@@ -619,7 +350,7 @@
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
-	</xs:complexType>
+	</xs:complexType>-->
 	<xs:complexType name="TwoDimensionSpatialCoordinate">
 		<xs:complexContent>
 			<xs:extension base="SpatialCoordinate">

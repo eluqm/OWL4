@@ -1,0 +1,510 @@
+<rdf:RDF
+    xmlns:dtype="http://www.srdc.com.tr/ontmalizer#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+  <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#TwoDimensionSpatialCoordinate">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#y"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#referencedFrameNumber"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:ObjectProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#SpatialCoordinate"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#imageReferenceUID"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#x"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#y"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#referencedFrameNumber"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#imageReferenceUID"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#x"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#TextAnnotation">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#textJustify"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#Anon_1"/>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#multiPoint"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#font"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#font"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#fontOpacity"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#fontOpacity"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#multiPoint"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#cagridId"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#fontColor"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#cagridId"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#fontSize"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#fontColor"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#fontSize"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#fontStyle"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#fontEffect"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#fontStyle"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#fontEffect"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#text"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#text"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#textJustify"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#Anon_2">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >2147483647</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#SpatialCoordinate"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:minCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#SpatialCoordinate"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:ObjectProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#SpatialCoordinate"/>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#SpatialCoordinate"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#Anon"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#MultiPoint">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#GeometricShape"/>
+    </rdfs:subClassOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:Class>
+  <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#Ellipse">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#GeometricShape"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#Point">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#GeometricShape"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#GeometricShape">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#lineStyle"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#lineOpacity"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#shapeIdentifier"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#lineThickness"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#lineOpacity"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#lineColor"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#lineColor"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#shapeIdentifier"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#cagridId"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#cagridId"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#includeFlag"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#lineThickness"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#Anon_2"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#spatialCoordinateCollection"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#lineStyle"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#spatialCoordinateCollection"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#includeFlag"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#Circle">
+    <rdfs:subClassOf rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#GeometricShape"/>
+  </owl:Class>
+  <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#Anon_1">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:maxCardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#MultiPoint"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#MultiPoint"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#MultiPoint"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#Anon"/>
+  </owl:Class>
+  <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#ThreeDimensionSpatialCoordinate">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#y"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#z"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#y"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#x"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:ObjectProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#SpatialCoordinate"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#frameOfReferenceUID"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#x"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#z"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#frameOfReferenceUID"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#Polyline">
+    <rdfs:subClassOf rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#GeometricShape"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#SpatialCoordinate">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:about="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#coordinateIndex"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#coordinateIndex"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#cagridId"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty rdf:resource="gme://caCORE.caCORE/3.2/edu.northwestern.radiology.AIM#cagridId"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </owl:ObjectProperty>
+</rdf:RDF>

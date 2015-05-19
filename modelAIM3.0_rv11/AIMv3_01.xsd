@@ -567,7 +567,7 @@
 	</xs:complexType>
 	<xs:complexType name="Point">
 		<xs:complexContent>
-			<xs:extension base="aim:GeometricShape">
+			<xs:extension base="GeometricShape">
 				<xs:sequence/>
 			</xs:extension>
 		</xs:complexContent>

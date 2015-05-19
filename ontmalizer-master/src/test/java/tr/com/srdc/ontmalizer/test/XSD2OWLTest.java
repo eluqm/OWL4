@@ -30,7 +30,7 @@ public class XSD2OWLTest {
 		// This part prints the ontology to the specified file.
 		FileOutputStream ont;
 		try {
-			File f = new File("/Users/edson/OWL4/modelAIM_v3/AIM_v3.owl");
+			File f = new File("/Users/edson/OWL4/modelAIM_v3/AIM_v32.owl");
 			f.getParentFile().mkdirs();
 			ont = new FileOutputStream(f);
 			mapping.writeOntology(ont, "RDF/XML-ABBREV");
