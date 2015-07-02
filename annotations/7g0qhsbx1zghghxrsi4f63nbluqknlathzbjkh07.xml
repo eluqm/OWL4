@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><ImageAnnotationCollection xmlns="gme://caCORE.caCORE/4.4/edu.northwestern.radiology.AIM" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" aimVersion="AIMv4_0" xsi:schemaLocation="gme://caCORE.caCORE/4.4/edu.northwestern.radiology.AIM AIM_v4_rv44_XML.xsd">
+<uniqueIdentifier root="7g0qhsbx1zghghxrsi4f63nbluqknlathzbjkh07"/>
+<dateTime value="2014-09-26T16:23:51"/>
+<user>
+<name value="aeifler"/>
+<loginName value="aeifler"/>
+<roleInTrial/>
+</user>
+<equipment>
+<manufacturerName value="GE MEDICAL SYSTEMS"/>
+<manufacturerModelName value=""/>
+<softwareVersion value="08MW39.4"/>
+</equipment>
+<person>
+<name value="GL-1-160-282690^^^^"/>
+<id value="282690718934961252169836576250028676785"/>
+<birthDate value="1935-08-09T00:00:00"/>
+<sex value="F"/>
+<ethnicGroup/>
+</person>
+<imageAnnotations>
+<ImageAnnotation>
+<uniqueIdentifier root="2oh12e71iyh7zgxiigp9081h4t1ifio7clg6fait"/>
+<typeCode code="RECIST" codeSystem="Tumor assessment" codeSystemName="Tumor assessment"/>
+<dateTime value="2014-09-26T16:23:51"/>
+<name value="Liver1"/>
+<comment value="CT / LIVER/RENAL DELAYS / 42"/>
+<imagingPhysicalEntityCollection>
+<ImagingPhysicalEntity>
+<uniqueIdentifier root="ypbfzabr9gp6tdyoczlleurnxff7m10allgu26de"/>
+<typeCode code="RID58" codeSystem="liver" codeSystemName="RadLex" codeSystemVersion=""/>
+<typeCode code="RID77" codeSystem="Couinaud hepatic segment 1" codeSystemName="RadLex.3.10" codeSystemVersion=""/>
+<annotatorConfidence value="0.0"/>
+<label value="Location"/>
+</ImagingPhysicalEntity>
+</imagingPhysicalEntityCollection>
+<calculationEntityCollection>
+<CalculationEntity>
+<uniqueIdentifier root="c4sjm8zm4bp4uxs3rcet4zqtlfhotq63bd45k025"/>
+<typeCode code="LineLength" codeSystem="LineLength" codeSystemName="private"/>
+<description value="LineLength"/>
+<mathML/>
+<calculationResultCollection>
+<CalculationResult type="Scalar" xsi:type="ExtendedCalculationResult">
+<unitOfMeasure value="linear"/>
+<dataType code="" codeSystem="" codeSystemName="" codeSystemVersion=""/>
+<dimensionCollection>
+<Dimension>
+<index value="0"/>
+<size value="0"/>
+<label value="Dimension Label"/>
+</Dimension>
+</dimensionCollection>
+<calculationDataCollection>
+<CalculationData>
+<value value="6.9660907452768415"/>
+<coordinateCollection>
+<Coordinate>
+<dimensionIndex value="0"/>
+<position value="0"/>
+</Coordinate>
+</coordinateCollection>
+</CalculationData>
+</calculationDataCollection>
+</CalculationResult>
+</calculationResultCollection>
+<algorithm>
+<name value="LineLength"/>
+<type code="" codeSystem="" codeSystemName="" codeSystemVersion=""/>
+<version value="1.0"/>
+</algorithm>
+</CalculationEntity>
+</calculationEntityCollection>
+<imagingObservationEntityCollection>
+<ImagingObservationEntity>
+<uniqueIdentifier root="gsxii1fa4a9geqlmemrxij2jchtybggtt0uh760r"/>
+<typeCode code="S81" codeSystem="Lesion Baseline Evaluation" codeSystemName="RECIST-AMS" codeSystemVersion=""/>
+<annotatorConfidence value="0.0"/>
+<label value="Lesion"/>
+<comment/>
+<imagingObservationCharacteristicCollection>
+<ImagingObservationCharacteristic>
+<typeCode code="S71" codeSystem="Target Lesion" codeSystemName="RECIST-AMS" codeSystemVersion=""/>
+<typeCode code="S77" codeSystem="Present Lesion" codeSystemName="RECIST-AMS" codeSystemVersion=""/>
+<annotatorConfidence value="0.0"/>
+<label value="Type"/>
+<comment/>
+</ImagingObservationCharacteristic>
+</imagingObservationCharacteristicCollection>
+</ImagingObservationEntity>
+</imagingObservationEntityCollection>
+<markupEntityCollection>
+<MarkupEntity xsi:type="TwoDimensionMultiPoint">
+<uniqueIdentifier root="ii9co8jdn614f250agmf6ml0uzinhy0cvskggfwr"/>
+<shapeIdentifier value="1"/>
+<includeFlag value="true"/>
+<lineColor value=""/>
+<lineOpacity value=""/>
+<lineStyle value=""/>
+<lineThickness value=""/>
+<imageReferenceUid root="1.2.826.0.1.3680043.8.420.10481985156686507755542560529731265154"/>
+<referencedFrameNumber value="42"/>
+<twoDimensionSpatialCoordinateCollection>
+<TwoDimensionSpatialCoordinate>
+<coordinateIndex value="0"/>
+<x value="195.26186291739893"/>
+<y value="205.15992970123023"/>
+</TwoDimensionSpatialCoordinate>
+<TwoDimensionSpatialCoordinate>
+<coordinateIndex value="1"/>
+<x value="234.85413005272406"/>
+<y value="278.0456942003515"/>
+</TwoDimensionSpatialCoordinate>
+</twoDimensionSpatialCoordinateCollection>
+</MarkupEntity>
+</markupEntityCollection>
+<imageAnnotationStatementCollection>
+<ImageAnnotationStatement xsi:type="ImagingPhysicalEntityHasTwoDimensionGeometricShapeEntityStatement">
+<subjectUniqueIdentifier root="1"/>
+<objectUniqueIdentifier root="hke1a9lcc83ep9pssk7pqrculjopzwld0q94sntz"/>
+</ImageAnnotationStatement>
+<ImageAnnotationStatement xsi:type="ImagingPhysicalEntityHasCalculationEntityStatement">
+<subjectUniqueIdentifier root="c4sjm8zm4bp4uxs3rcet4zqtlfhotq63bd45k025"/>
+<objectUniqueIdentifier root="hke1a9lcc83ep9pssk7pqrculjopzwld0q94sntz"/>
+</ImageAnnotationStatement>
+</imageAnnotationStatementCollection>
+<imageReferenceEntityCollection>
+<ImageReferenceEntity xsi:type="DicomImageReferenceEntity">
+<uniqueIdentifier root="vl92fn8svs5ldr74gwdcgttqo3gc8jgbja68lm5m"/>
+<imageStudy>
+<instanceUid root="1.2.826.0.1.3680043.8.420.7646119816147624012369506994626798638"/>
+<startDate value="2009-08-06T08:44:11"/>
+<startTime value="08:44:11"/>
+<imageSeries>
+<instanceUid root="1.2.826.0.1.3680043.8.420.33916638344951294610451026103339661487"/>
+<modality code="" codeSystem="" codeSystemName="" codeSystemVersion=""/>
+<imageCollection>
+<Image>
+<sopClassUid root=""/>
+<sopInstanceUid root="1.2.826.0.1.3680043.8.420.10481985156686507755542560529731265154"/>
+</Image>
+</imageCollection>
+</imageSeries>
+</imageStudy>
+</ImageReferenceEntity>
+</imageReferenceEntityCollection>
+</ImageAnnotation>
+</imageAnnotations>
+</ImageAnnotationCollection>

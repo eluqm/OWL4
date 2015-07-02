@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><ImageAnnotationCollection xmlns="gme://caCORE.caCORE/4.4/edu.northwestern.radiology.AIM" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" aimVersion="AIMv4_0" xsi:schemaLocation="gme://caCORE.caCORE/4.4/edu.northwestern.radiology.AIM AIM_v4_rv44_XML.xsd">
+<uniqueIdentifier root="gkb8r42y5wov3hcnapyngcrodjdztpey9jfq2w6z"/>
+<dateTime value="2014-10-14T18:00:03"/>
+<user>
+<name value="aeifler"/>
+<loginName value="aeifler"/>
+<roleInTrial/>
+</user>
+<equipment>
+<manufacturerName value="GE MEDICAL SYSTEMS"/>
+<manufacturerModelName value=""/>
+<softwareVersion value="LightSpeedApps308I.2_H3.1M5"/>
+</equipment>
+<person>
+<name value="NM-1-327-279385^^^^"/>
+<id value="279385568008764896777874259378535344476"/>
+<birthDate value="1969-01-20T00:00:00"/>
+<sex value="F"/>
+<ethnicGroup/>
+</person>
+<imageAnnotations>
+<ImageAnnotation>
+<uniqueIdentifier root="uf91sxkr4rttxrgwlwi0c91py1qd7tau8zhxyb88"/>
+<typeCode code="RECIST" codeSystem="Tumor assessment" codeSystemName="Tumor assessment"/>
+<dateTime value="2014-10-14T18:00:03"/>
+<name value="Liver1(1)"/>
+<comment value="CT / ARTERIAL/VENOUSPASE@70SEC / 143"/>
+<calculationEntityCollection>
+<CalculationEntity>
+<uniqueIdentifier root="oeoisbimg3vltfmc9nuv3rmuo3p5q279dgdqhem6"/>
+<typeCode code="LineLength" codeSystem="LineLength" codeSystemName="private"/>
+<description value="LineLength"/>
+<mathML/>
+<calculationResultCollection>
+<CalculationResult type="Scalar" xsi:type="ExtendedCalculationResult">
+<unitOfMeasure value="linear"/>
+<dataType code="" codeSystem="" codeSystemName="" codeSystemVersion=""/>
+<dimensionCollection>
+<Dimension>
+<index value="0"/>
+<size value="0"/>
+<label value="Dimension Label"/>
+</Dimension>
+</dimensionCollection>
+<calculationDataCollection>
+<CalculationData>
+<value value="7.62425126546525"/>
+<coordinateCollection>
+<Coordinate>
+<dimensionIndex value="0"/>
+<position value="0"/>
+</Coordinate>
+</coordinateCollection>
+</CalculationData>
+</calculationDataCollection>
+</CalculationResult>
+</calculationResultCollection>
+<algorithm>
+<name value="LineLength"/>
+<type code="" codeSystem="" codeSystemName="" codeSystemVersion=""/>
+<version value="1.0"/>
+</algorithm>
+</CalculationEntity>
+</calculationEntityCollection>
+<markupEntityCollection>
+<MarkupEntity xsi:type="TwoDimensionMultiPoint">
+<uniqueIdentifier root="cmd2anep2p38uy0ntseoqyrylqhjsv6bq4g9ed0r"/>
+<shapeIdentifier value="1"/>
+<includeFlag value="true"/>
+<lineColor value=""/>
+<lineOpacity value=""/>
+<lineStyle value=""/>
+<lineThickness value=""/>
+<imageReferenceUid root="1.2.826.0.1.3680043.8.420.62034645079167806310214836439224250735"/>
+<referencedFrameNumber value="143"/>
+<twoDimensionSpatialCoordinateCollection>
+<TwoDimensionSpatialCoordinate>
+<coordinateIndex value="0"/>
+<x value="152.54190585533868"/>
+<y value="190.45694603903559"/>
+</TwoDimensionSpatialCoordinate>
+<TwoDimensionSpatialCoordinate>
+<coordinateIndex value="1"/>
+<x value="193.10218140068886"/>
+<y value="279.2192881745121"/>
+</TwoDimensionSpatialCoordinate>
+</twoDimensionSpatialCoordinateCollection>
+</MarkupEntity>
+</markupEntityCollection>
+<imageAnnotationStatementCollection>
+<ImageAnnotationStatement xsi:type="ImagingPhysicalEntityHasTwoDimensionGeometricShapeEntityStatement">
+<subjectUniqueIdentifier root="1"/>
+<objectUniqueIdentifier root="zynartongbtep25sgqqtje32pau73d30k5biv2ag"/>
+</ImageAnnotationStatement>
+<ImageAnnotationStatement xsi:type="ImagingPhysicalEntityHasCalculationEntityStatement">
+<subjectUniqueIdentifier root="oeoisbimg3vltfmc9nuv3rmuo3p5q279dgdqhem6"/>
+<objectUniqueIdentifier root="zynartongbtep25sgqqtje32pau73d30k5biv2ag"/>
+</ImageAnnotationStatement>
+</imageAnnotationStatementCollection>
+<imageReferenceEntityCollection>
+<ImageReferenceEntity xsi:type="DicomImageReferenceEntity">
+<uniqueIdentifier root="fipqhfxy8040kx3ln6vfzhzv2xgk7ok2xht3yn9i"/>
+<imageStudy>
+<instanceUid root="1.2.826.0.1.3680043.8.420.12100721103684854993713207742471734624"/>
+<startDate value="2007-03-15T15:58:16"/>
+<startTime value="15:58:16"/>
+<imageSeries>
+<instanceUid root="1.2.826.0.1.3680043.8.420.29582296063392673336424425151886972615"/>
+<modality code="" codeSystem="" codeSystemName="" codeSystemVersion=""/>
+<imageCollection>
+<Image>
+<sopClassUid root=""/>
+<sopInstanceUid root="1.2.826.0.1.3680043.8.420.62034645079167806310214836439224250735"/>
+</Image>
+</imageCollection>
+</imageSeries>
+</imageStudy>
+</ImageReferenceEntity>
+</imageReferenceEntityCollection>
+</ImageAnnotation>
+</imageAnnotations>
+</ImageAnnotationCollection>
