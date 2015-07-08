@@ -1,5 +1,5 @@
 
-package mapXMLtoRDFAIM4;
+//package mapXMLtoRDFAIM4;
 
 import de.datenwissen.util.groovyrdf.jena.JenaRdfBuilder
 import groovy.io.FileType
@@ -10,8 +10,24 @@ def greet() { "Hello ${name}" }
 }
 */
 def list=[]
+//def so= System.properties['os.name']
+def pathLinux="/home/edson/Documentos/OWL4/OWL4/annotations"
+def pathmac="/Users/edson/OWL4/annotations"
+def dir
+if (System.properties['os.name'].toLowerCase().contains('linux')) {
+	println "it's linux"
+	dir = new File(pathLinux)
+} else {
+	if (System.properties['os.name'].toLowerCase().contains('mac')) {
+		println "it's mac"
+		dir = new File(pathmac)
+} 	else {
+	}
 
-def dir = new File("/Users/edson/OWL4/annotations")
+	println "it's  Windows"
+}
+
+
 dir.eachFileRecurse(FileType.FILES) {
 				file->list << file
 	}
@@ -31,7 +47,7 @@ list.each {
 }
 println num
 
-def aimfile2 = new XmlSlurper().parse(new File("/Users/edson/OWL4/annotations/12yo41am1275kqwxswcvxifmasy4l04bvwe92mvu.xml"))
+def aimfile2 = new XmlSlurper().parse(new File(pathLinux+"/12yo41am1275kqwxswcvxifmasy4l04bvwe92mvu.xml"))
 if(aimfile2.empty){println "problema,,,"}
 println aimfile2.person
 
