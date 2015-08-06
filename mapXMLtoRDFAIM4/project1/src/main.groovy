@@ -100,7 +100,11 @@ else
 		println it.name()
 	}
 	
-
+	
+	InputXML2.'**'.findAll {it.name() == 'imageAnnotations'}.each {
+		
+		println it.name()
+	}
 		
 	
 	//assert InputXML2.person.name.text() == 'VAG-1-385-319433^^^^'
