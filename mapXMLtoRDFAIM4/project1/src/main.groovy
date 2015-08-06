@@ -10,7 +10,6 @@ def greet() { "Hello ${name}" }
 }
 */
 def list=[]
-//def so= System.properties['os.name']
 def pathLinux="/home/edson/Documentos/OWL4/OWL4/annotations"
 def pathmac="/Users/edson/OWL4/annotations"
 def dir
@@ -23,37 +22,62 @@ if (System.properties['os.name'].toLowerCase().contains('linux')) {
 		dir = new File(pathmac)
 } 	else {
 	}
-
 	println "it's  Windows"
 }
-
 
 dir.eachFileRecurse(FileType.FILES) {
 				file->list << file
 	}
+
 def num=0
 def aimfile
+StringBuilder sb = new StringBuilder()
+BufferedReader br
+def InputXML2
+// read number of patients and annotations
+Set setNumberPatients = new HashSet();
 list.each {
 	if(it.name.endsWith('.xml'))
-	{
-		//println it.path
-		aimfile = new XmlSlurper().parse(new File(it.path.toString()+""))
-		if(aimfile.empty){
-			println "problema al abrir el documento"
+	{   num++
+		println it.path
+		br = new BufferedReader(new InputStreamReader(new FileInputStream(it.path)));
+		while ((line = br.readLine()) !=null) {
+			sb.append(line);
+		}
+		
+		println "sb.toString() = " + sb.toString()
+		
+		InputXML2= new XmlSlurper().parseText(sb.toString())
+		
+		//def mas
+		setNumberPatients.putAt(InputXML2.person.name.'@value')
+		//println mas
+		
+		/*if(!inputFile.exists())
+		{
+			//Display an alert if the file is not found.
+			alert.showInfoMessage("Input File 'DATASHEET.xml' not found!");
+		}
+		else
+		{
 			
 		}
+		*/
+		
+		
+		sb.setLength(0)
 	}
-		//aimfile.person.each {
-		//	println "${it.@name}"
-		//}
-	}
-	
+}
 
-//def alert = com.eviware.soapui.support.UISupport;
+println num
+setNumberPatients.putAt('RB-1-792-293068^^^^')
+println setNumberPatients
+println setNumberPatients.size()
+	
+/*
 //Define a file pointer for groovy to handle the file operations.
-def inputFile = new File("/home/edson/Documentos/OWL4/OWL4/annotations/12yo41am1275kqwxswcvxifmasy4l04bvwe92mvu.xml")
-String adds="/home/edson/Documentos/OWL4/OWL4/annotations/12yo41am1275kqwxswcvxifmasy4l04bvwe92mvu.xml"
-//String file = "C:\\Documents and Settings\\user\\Desktop\\create.xml";
+def inputFile = new File("/Users/edson/OWL4/annotations/12yo41am1275kqwxswcvxifmasy4l04bvwe92mvu.xml")
+String adds="/Users/edson/OWL4/annotations/12yo41am1275kqwxswcvxifmasy4l04bvwe92mvu.xml"
 String line = "";
 StringBuilder sb = new StringBuilder();
 BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(adds)));
@@ -97,23 +121,23 @@ else
 		
 	}
 	InputXML2.children().each {
-		println it.name()
+		println it.text()
 	}
 	
 	
-	InputXML2.'**'.findAll {it.name() == 'imageAnnotations'}.each {
+	InputXML2.'**'.findAll {it.name() == 'imageAnnotations'}.each{
 		
-		println it.name()
+		println it
+		
 	}
+	def mas
+	 mas= InputXML2.imageAnnotations.ImageAnnotation.uniqueIdentifier.'@root'
+	 println mas
 		
 	
 	//assert InputXML2.person.name.text() == 'VAG-1-385-319433^^^^'
 	
-	def mapp=[:]
-	mapp=InputXML2.children()
-	println mapp
-	
-}
+}*/
 
 
 def text = '''
@@ -155,6 +179,12 @@ def temp=pers.depthFirst().findAll{it.name()}
 if(temp != null){	
 	print(temp)
 }
+
+aimfile = new XmlSlurper().parse(new File(it.path.toString()+""))
+		if(aimfile.empty){
+			//println "problema al abrir el documento"
+			
+		}
 */
 
 

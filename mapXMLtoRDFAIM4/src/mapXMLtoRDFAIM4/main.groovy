@@ -22,7 +22,9 @@ list.each {
 	{
 		println it.path
 		aimfile = new XmlSlurper().parse(new File(it.path.toString()))
-		if(aimfile.empty){println "problema,,,"}
+		if(aimfile.empty){
+			println "problema,,,"
+			}
 		aimfile.person.each {
 			println "${it.@name}"
 		}
@@ -32,7 +34,9 @@ list.each {
 println num
 
 def aimfile2 = new XmlSlurper().parse(new File("/Users/edson/OWL4/annotations/12yo41am1275kqwxswcvxifmasy4l04bvwe92mvu.xml"))
-if(aimfile2.empty){println "problema,,,"}
+if(aimfile2.empty){
+	//println "problema,,,"
+	}
 println aimfile2.person
 
 def text = '''
