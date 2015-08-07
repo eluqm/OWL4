@@ -34,8 +34,11 @@ def aimfile
 StringBuilder sb = new StringBuilder()
 BufferedReader br
 def InputXML2
+String temp
 // read number of patients and annotations
-Set setNumberPatients = new HashSet();
+def setNumberPatients = new HashSet();
+def listID
+Map <String,List<String>> setNumberPatients2 = new HashMap<String,List<String>>();
 list.each {
 	if(it.name.endsWith('.xml'))
 	{   num++
@@ -45,13 +48,19 @@ list.each {
 			sb.append(line);
 		}
 		
-		println "sb.toString() = " + sb.toString()
+		//println "sb.toString() = " + sb.toString()
 		
 		InputXML2= new XmlSlurper().parseText(sb.toString())
 		
-		//def mas
-		setNumberPatients.putAt(InputXML2.person.name.'@value')
-		//println mas
+		
+		temp=InputXML2.person.name.'@value'
+		temp2=InputXML2.uniqueIdentifier.'@root'
+		//in = new ArrayList<String>()
+		in.add(temp2)
+		if(setNumberPatients2.put(temp,temp2) == false){println 'se encontro duplicado'
+			//setNumberPatients.add
+		}
+		
 		
 		/*if(!inputFile.exists())
 		{
@@ -70,7 +79,6 @@ list.each {
 }
 
 println num
-setNumberPatients.putAt('RB-1-792-293068^^^^')
 println setNumberPatients
 println setNumberPatients.size()
 	
