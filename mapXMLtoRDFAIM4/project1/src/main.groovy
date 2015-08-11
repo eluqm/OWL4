@@ -35,14 +35,16 @@ StringBuilder sb = new StringBuilder()
 BufferedReader br
 def InputXML2
 String temp
+
 // read number of patients and annotations
 def setNumberPatients = new HashSet();
 def listID
-Map <String,List<String>> setNumberPatients2 = new HashMap<String,List<String>>();
+def setNumberPatients2 = new HashMap<String,List<String>>();
+
 list.each {
 	if(it.name.endsWith('.xml'))
 	{   num++
-		println it.path
+		
 		br = new BufferedReader(new InputStreamReader(new FileInputStream(it.path)));
 		while ((line = br.readLine()) !=null) {
 			sb.append(line);
@@ -51,16 +53,18 @@ list.each {
 		//println "sb.toString() = " + sb.toString()
 		
 		InputXML2= new XmlSlurper().parseText(sb.toString())
-		
-		
 		temp=InputXML2.person.name.'@value'
 		temp2=InputXML2.uniqueIdentifier.'@root'
-		//in = new ArrayList<String>()
-		in.add(temp2)
-		if(setNumberPatients2.put(temp,temp2) == false){println 'se encontro duplicado'
-			//setNumberPatients.add
-		}
 		
+		def found = setNumberPatients2.find { key, value -> key == temp }
+		
+		if(found != null ){
+				setNumberPatients2[temp].add(temp2)
+		}else{
+		def ins= new ArrayList<String>()
+		ins.add(temp2)
+		setNumberPatients2.put(temp,ins)
+		}
 		
 		/*if(!inputFile.exists())
 		{
@@ -79,8 +83,9 @@ list.each {
 }
 
 println num
-println setNumberPatients
-println setNumberPatients.size()
+setNumberPatients2.each{ k, v -> println "${k}:${v}" }
+println setNumberPatients2.size()
+
 	
 /*
 //Define a file pointer for groovy to handle the file operations.
@@ -168,7 +173,7 @@ def text = '''
 def list2 = new XmlSlurper().parseText(text)
 
 assert list2 instanceof groovy.util.slurpersupport.GPathResult
-println list2.car[2]
+//println list2.car[2]
 
 
 /*/Users/edson/OWL4/annotations/12yo41am1275kqwxswcvxifmasy4l04bvwe92mvu.xml*/
