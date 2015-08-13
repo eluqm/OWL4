@@ -4,6 +4,11 @@
 import de.datenwissen.util.groovyrdf.jena.JenaRdfBuilder
 import groovy.io.FileType
 
+
+import de.datenwissen.util.groovyrdf.core.RdfData;
+import de.datenwissen.util.groovyrdf.core.RdfDataFormat;
+import de.datenwissen.util.groovyrdf.core.RdfNamespace;
+import de.datenwissen.util.groovyrdf.core.RdfBuilder;
 /*class HelloWorld {
 def name
 def greet() { "Hello ${name}" }
@@ -86,7 +91,10 @@ println num
 setNumberPatients2.each{ k, v -> println "${k}:${v}" }
 println setNumberPatients2.size()
 
-	
+def vocab = new RdfNamespace("http://example.com/vocab/")
+vocab.anything == "http://example.com/vocab/anything"
+rdfBuilder = new JenaRdfBuilder ()
+
 /*
 //Define a file pointer for groovy to handle the file operations.
 def inputFile = new File("/Users/edson/OWL4/annotations/12yo41am1275kqwxswcvxifmasy4l04bvwe92mvu.xml")
@@ -153,26 +161,7 @@ else
 }*/
 
 
-def text = '''
-    <records>
-    <car name='HSV Maloo' make='Holden' year='2006'>
-      <country>Australia</country>
-      <record type='speed'>Production Pickup Truck with speed of 271kph</record>
-    </car>
-    <car name='P50' make='Peel' year='1962'>
-      <country>Isle of Man</country>
-      <record type='size'>Smallest Street-Legal Car at 99cm wide and 59 kg in weight</record>
-    </car>
-    <car name='Royale' make='Bugatti' year='1931'>
-      <country>France</country>
-      <record type='price'>Most Valuable Car at $15 million</record>
-    </car>
-  </records>
-'''
 
-def list2 = new XmlSlurper().parseText(text)
-
-assert list2 instanceof groovy.util.slurpersupport.GPathResult
 //println list2.car[2]
 
 
