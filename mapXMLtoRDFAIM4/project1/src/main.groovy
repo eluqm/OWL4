@@ -93,7 +93,8 @@ println setNumberPatients2.size()
 
 def vocab = new RdfNamespace("http://example.com/vocab/")
 vocab.anything == "http://example.com/vocab/anything"
-rdfBuilder = new JenaRdfBuilder ()
+def rdfBuilder = new JenaRdfBuilder()
+println vocab.anything
 
 /*
 //Define a file pointer for groovy to handle the file operations.
