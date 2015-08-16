@@ -1,19 +1,18 @@
 
 //package mapXMLtoRDFAIM4;
 
+import org.codehaus.groovy.control.customizers.ImportCustomizer.Import;
+
 import de.datenwissen.util.groovyrdf.jena.JenaRdfBuilder
 import groovy.io.FileType
-
-
 import de.datenwissen.util.groovyrdf.core.RdfData;
 import de.datenwissen.util.groovyrdf.core.RdfDataFormat;
 import de.datenwissen.util.groovyrdf.core.RdfNamespace;
 import de.datenwissen.util.groovyrdf.core.RdfBuilder;
-/*class HelloWorld {
-def name
-def greet() { "Hello ${name}" }
-}
-*/
+//import com.hp.hlp.jena.rdf.model.Model;
+
+
+
 def list=[]
 def pathLinux="/home/edson/Documentos/OWL4/OWL4/annotations"
 def pathmac="/Users/edson/OWL4/annotations"
@@ -71,18 +70,7 @@ list.each {
 		setNumberPatients2.put(temp,ins)
 		}
 		
-		/*if(!inputFile.exists())
-		{
-			//Display an alert if the file is not found.
-			alert.showInfoMessage("Input File 'DATASHEET.xml' not found!");
-		}
-		else
-		{
-			
-		}
-		*/
-		
-		
+				
 		sb.setLength(0)
 	}
 }
