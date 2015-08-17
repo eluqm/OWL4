@@ -1,15 +1,17 @@
 
 //package mapXMLtoRDFAIM4;
-
+//import org.apache.jena.rdf.model.ModelFactory;
 import org.codehaus.groovy.control.customizers.ImportCustomizer.Import;
 
 import de.datenwissen.util.groovyrdf.jena.JenaRdfBuilder
+import de.datenwissen.util.groovyrdf.jena.JenaRdfLoader
 import groovy.io.FileType
 import de.datenwissen.util.groovyrdf.core.RdfData;
 import de.datenwissen.util.groovyrdf.core.RdfDataFormat;
 import de.datenwissen.util.groovyrdf.core.RdfNamespace;
 import de.datenwissen.util.groovyrdf.core.RdfBuilder;
-//import com.hp.hlp.jena.rdf.model.Model;
+
+
 
 
 
@@ -81,102 +83,32 @@ println setNumberPatients2.size()
 
 def vocab = new RdfNamespace("http://example.com/vocab/")
 vocab.anything == "http://example.com/vocab/anything"
-def rdfBuilder = new JenaRdfBuilder()
+
+
+
+
+//def m= ModelFactory.createDefaultModel();
 println vocab.anything
 
-/*
-//Define a file pointer for groovy to handle the file operations.
-def inputFile = new File("/Users/edson/OWL4/annotations/12yo41am1275kqwxswcvxifmasy4l04bvwe92mvu.xml")
-String adds="/Users/edson/OWL4/annotations/12yo41am1275kqwxswcvxifmasy4l04bvwe92mvu.xml"
-String line = "";
-StringBuilder sb = new StringBuilder();
-BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(adds)));
-while ((line = br.readLine()) !=null) {
-	sb.append(line);
-}
-println "sb.toString() = " + sb.toString()
-
-if(!inputFile.exists())
-{
-	//Display an alert if the file is not found.
-	alert.showInfoMessage("Input File 'DATASHEET.xml' not found!");
-}
-else
-{
-	//Read and parse XML file and store it into a variable
-	def InputXML = new XmlParser().parseText(inputFile.text)
-	def InputXML2 = new XmlSlurper().parseText(sb.toString())
-	assert InputXML2 instanceof groovy.util.slurpersupport.GPathResult
-	//Find/ Filter XML nodes based on a condition
-	//def InputRow = InputXML.Employee.findAll{lkklkl
-	//	it.Age.text().toInteger() > 19;
-		//We are finding all XML nodes where the age > 19
-	//}
-	//InputRow.each{
-			//Display the value of name node from the filtered record
-	//		log.info(it.Name.text());
-	//	}
-	//println InputXML.name[0].@value
-	InputXML.children().each { 
-		def mapval=[:]
-		mapval= it.attributes()
-		println mapval
-		println mapval.size()
-		}
-	
-	println InputXML.name.size()
-	if(InputXML2.empty){
-		println "problema al abrir el documento"
-		//println InputXML2.
-		
-	}
-	InputXML2.children().each {
-		println it.text()
-	}
-	
-	
-	InputXML2.'**'.findAll {it.name() == 'imageAnnotations'}.each{
-		
-		println it
-		
-	}
-	def mas
-	 mas= InputXML2.imageAnnotations.ImageAnnotation.uniqueIdentifier.'@root'
-	 println mas
-		
-	
-	//assert InputXML2.person.name.text() == 'VAG-1-385-319433^^^^'
-	
-}*/
-
-
-
-//println list2.car[2]
-
-
-/*/Users/edson/OWL4/annotations/12yo41am1275kqwxswcvxifmasy4l04bvwe92mvu.xml*/
-
-
-
-
-
-/*
-def helloWorld = new HelloWorld()
-helloWorld.name = "Groovy"
-def pers=new XmlSlurper().parse(new File("/Users/edson/OWL4/modelAIM_v4_rv48/owl4_1.xsd"))
 def rdfBuilder = new JenaRdfBuilder()
+RdfData rdfData = rdfBuilder {
+	"http://example.com/resource/alice" {
+	  "http://example.com/vocab/name" "Alice"
+	}
+  }
+  
+def names = ["Alice", "Julia"]
 
-def temp=pers.depthFirst().findAll{it.name()}
-if(temp != null){	
-	print(temp)
+RdfData rdfData2 = rdfBuilder {
+  "http://example.com/resource/alice" {
+     a "http://example.com/vocab/Person"
+    "http://example.com/vocab/name" names
+  }
 }
+def rdfLoader = new JenaRdfLoader()
 
-aimfile = new XmlSlurper().parse(new File(it.path.toString()+""))
-		if(aimfile.empty){
-			//println "problema al abrir el documento"
-			
-		}
-*/
+RdfData rdfData3 = rdfLoader.load('http://purl.org/dc/elements/1.1/type')
+println rdfData2
 
 
 
