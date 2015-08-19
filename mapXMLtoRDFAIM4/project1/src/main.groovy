@@ -1,6 +1,8 @@
 
 //package mapXMLtoRDFAIM4;
 //import org.apache.jena.rdf.model.ModelFactory;
+@Grab('com.github.albaker:GroovySparql:0.9.0')
+//@Grab(group='org.codehaus.groovy.modules.http-builder',module='http-builder', version='0.5.0')
 import org.codehaus.groovy.control.customizers.ImportCustomizer.Import;
 
 import de.datenwissen.util.groovyrdf.jena.JenaRdfBuilder
@@ -10,7 +12,12 @@ import de.datenwissen.util.groovyrdf.core.RdfData;
 import de.datenwissen.util.groovyrdf.core.RdfDataFormat;
 import de.datenwissen.util.groovyrdf.core.RdfNamespace;
 import de.datenwissen.util.groovyrdf.core.RdfBuilder;
+import org.apache.jena.rdf.model.*;
 
+
+
+
+import groovy.sparql.*
 
 
 
@@ -107,8 +114,55 @@ RdfData rdfData2 = rdfBuilder {
 }
 def rdfLoader = new JenaRdfLoader()
 
-RdfData rdfData3 = rdfLoader.load('http://purl.org/dc/elements/1.1/type')
-println rdfData2
+
+/** SPARQL 1.0 or 1.1 endpoint
+ ******************************/
+def sparql = new Sparql(endpoint:"http://dbpedia.org/sparql", user:"user", pass:"pass")
+
+def query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 4"
+
+// sparql result variables projected into the closure delegate
+sparql.each query, {
+	println "${s} : ${p} : ${o}"
+}
+
+def builder = new RDFBuilder()
+        //[xml:"RDF/XML", xmlabbrev:"RDF/XML-ABBREV", ntriple:"N-TRIPLE", n3:"N3", turtle:"TURTLE"]
+        def output = builder.model {
+            defaultNamespace "urn:test"
+            namespace ns1:"urn:test1"
+            subject("#joe") {
+                predicate "ns1:name":"joe"
+            }
+
+        }
+
+        println output
+		
+// rdf/xml form
+		BufferedOutputStream out
+		PipedInputStream pipeInput
+		pipeInput = new PipedInputStream();
+		reader = new BufferedReader(new InputStreamReader(pipeInput));
+		out = new BufferedOutputStream(new PipedOutputStream(pipeInput));
+		
+	
+		def builder2 = new RDFBuilder(out)
+			//[xml:"RDF/XML", xmlabbrev:"RDF/XML-ABBREV", ntriple:"N-TRIPLE", n3:"N3", turtle:"TURTLE"]
+			def output2 = builder2.xml {
+				defaultNamespace "urn:test"
+				namespace ns1:"urn:test1"
+				subject("#joe") {
+				   predicate "ns1:name":"joe"
+				}
+				
+			}
+			String s=null
+			while ((s=reader.readLine())!=null){println s}
+			
+
+//RdfData rdfData3 = rdfLoader.load('http://dbpedia.org/page/Grateful_Dead')
+//println rdfData2
 
 
 
