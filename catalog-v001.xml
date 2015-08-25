@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1435181539082" name="duplicate:http://www.owl-ontologies.com/Ontology1311106921.owl" uri="AIM.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1435181539082" name="duplicate:http://www.owl-ontologies.com/Ontology1311106921.owl" uri="AIM4.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1435181539082" name="http://www.srdc.com.tr/ontmalizer/instance" uri="ontmalizer-master/target/test-classes/output/test-instance.rdf"/>
-        <uri id="Automatically generated entry, Timestamp=1435181539082" name="shadowed:http://www.owl-ontologies.com/Ontology1311106921.owl" uri="modelAIM_v4_rv48/AIM4.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1435181539082" name="shadowed:http://www.srdc.com.tr/ontmalizer/instance" uri="ontmalizer-master/src/test/resources/output/test-instance.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1440101716881" name="duplicate:http://www.owl-ontologies.com/Ontology1311106921.owl" uri="AIM.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1440101716881" name="duplicate:http://www.owl-ontologies.com/Ontology1311106921.owl" uri="AIM4.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1440101716881" name="http://www.srdc.com.tr/ontmalizer/instance" uri="ontmalizer-master/target/test-classes/output/test-instance.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1440101716881" name="shadowed:http://www.owl-ontologies.com/Ontology1311106921.owl" uri="modelAIM_v4_rv48/AIM4.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1440101716881" name="shadowed:http://www.srdc.com.tr/ontmalizer/instance" uri="ontmalizer-master/src/test/resources/output/test-instance.rdf"/>
     </group>
 </catalog>
