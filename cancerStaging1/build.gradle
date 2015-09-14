@@ -1,0 +1,19 @@
+apply plugin:'java'
+apply plugin: 'eclipse'
+
+repositories{
+
+}
+
+
+eclipse {
+classpath {
+downloadSources=true
+}
+}
+
+dependencies{
+
+compile 'net.sourceforge.owlapi:owlapi-api:3.5.1'
+
+}
