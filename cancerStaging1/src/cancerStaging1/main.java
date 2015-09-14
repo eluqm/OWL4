@@ -49,10 +49,31 @@ public class main {
         //System.out.println("Hello, World!");
         
         // loading the ontology
-        File file = new File("/home/edson/Documentos/OWL4/OWL4/AIM4.owl"); 
+		String pathlinux = "/home/edson/Documentos/OWL4/OWL4"; 
+        File file=null; 
         
         // file to save ontology + individuals
-        File fileformated = new File("/home/edson/Documentos/OWL4/OWL4/AIM4ind.owl");
+        String pathmac="/Users/edson/OWL4";
+        File fileformated=null;
+       // File fileformated = new File("/home/edson/Documentos/OWL4/OWL4/AIM4ind.owl");
+        
+        if (System.getProperty("os.name").toLowerCase().contains("linux")){
+			
+        	file = new File(pathlinux + "/AIM4.owl");
+        	fileformated = new File( pathlinux + "/AIM4ind.owl");
+        } else {
+			if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+			
+				file = new File(pathmac + "/AIM4.owl");
+	        	fileformated = new File( pathmac + "AIM4ind.owl");
+			} 	
+			
+		}
+        
+        
+        
+        
+        
         
         OWLOntologyManager m = OWLManager.createOWLOntologyManager();
         OWLOntology o = m.loadOntologyFromOntologyDocument(file);
@@ -111,11 +132,15 @@ public class main {
 	        parserAIMFILES par= new parserAIMFILES();
 			par.readAnnotationsFiles();
 			par.fillAnnotationsClass();
-			List ao=(List) par.getLs();
+			List<AnnotationsAIM4> ao=(List<AnnotationsAIM4>) par.getLs();
 	        
 	        //creating person individuals 
 			SetIndividuals individuals = new SetIndividuals();
 			individuals.personIndividuals(m,o,ao,fileformated);
+			individuals.imageannotationscollectIndividuals(m, o, ao, fileformated);
+			individuals.annotationIndividuals(m, o, ao, fileformated);
+			
+			
 			
 			reasoner.getKB().realize();
 			reasoner.getKB().printClassTree();
@@ -123,17 +148,32 @@ public class main {
 			System.out.println("terminooo");
         
 			
+			par.printAnnotations();
 			
-			
-			
-			
-			
+			String namepat="GL-1-160-282690^^^^";
+			//System.out.println(ao.size());
+			for (AnnotationsAIM4 element : ao) {
+				//System.out.println(element.getPerson().getName());
+				if( element.getPerson().getName().equals(namepat) )
+				{
+					System.out.println(element.getUid());
+				for(Annotation	ann: (List<Annotation>)element.getImageAnnotations())
+				{
+					for(CalculationEntity anncal:(List<CalculationEntity>)ann.getCalculationEntityCollection())
+					{
+						List<CalculationData> li=(List<CalculationData>) ((List<calculationResult>)anncal.getCalculationResultCollection()).get(0).getCalculationDataCollection();
+						System.out.println(li.get(0).getValue());
+					}
+				}
+				}
+				
+			}
 			//AnnotationsAIM4 as = new AnnotationsAIM4();
 			
-			List<ImagingPhysicalEntity> lill=((List<ImagingPhysicalEntity>)((List<Annotation>)((AnnotationsAIM4) ao.get(0)).getImageAnnotations()).get(0).getImagingPhysicalEntityCollection());
+			//List<ImagingPhysicalEntity> lill=((List<ImagingPhysicalEntity>)((List<Annotation>)((AnnotationsAIM4) ao.get(0)).getImageAnnotations()).get(0).getImagingPhysicalEntityCollection());
 			
-			List<HashMap<String,String> > lill2=(List<HashMap<String, String>>) lill.get(0).getTypeCode();
-			System.out.println(lill2.size());
+			//List<HashMap<String,String> > lill2=(List<HashMap<String, String>>) lill.get(0).getTypeCode();
+			//System.out.println(lill2.size());
 			
 			//par.printAnnotations();
 			//System.out.println(par.getSetNumberPatients2());
@@ -146,6 +186,5 @@ public class main {
     }
 
 }
-
 
 

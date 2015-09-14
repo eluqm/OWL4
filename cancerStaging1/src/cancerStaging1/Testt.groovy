@@ -64,6 +64,26 @@ class Person
 	}
 }
 
+class CalculationData
+{
+	def value
+	
+}
+class calculationResult
+{
+	//def dimensionCollection = new ArrayList<Dimension>
+	def dataType = new ArrayList<HashMap <String,String>>()
+	String unitOfMeasure
+	def calculationDataCollection = new ArrayList<CalculationData>()
+	
+}
+class CalculationEntity 
+{	String uniqueIdentifier
+	def typeCode = new ArrayList<HashMap <String,String>>()
+	String description
+	def calculationResultCollection = new ArrayList<calculationResult>()
+}
+
 class ImagingPhysicalEntity
 {	// uniqueIdentifier from abstract class Entity
 	String uniqueIdentifier
@@ -72,36 +92,47 @@ class ImagingPhysicalEntity
 	def annotatorConfidence
 	String label
 }
-interface AnnotationEntity {
+abstract class AnnotationEntity {
 
-	Date dateTime;
+
+	// uniqueIdentifier from entity
+	String uniqueIdentifier
+	
+	String dateTime;
 
 	String name;
 
 	String typeCode;
 
 	String comment;
+	
+	//templateUid
+	//precedentPre....
 }
 //CD  = String
 
-class Annotation implements AnnotationEntity{
 
-	// uniqueIdentifier from AnnotationCollection abstrac class -> ImageAnnotationCollection
-	String uniqueIdentifier
+// imageAnnotation
+class Annotation extends AnnotationEntity{
+
+	
 	
 	//list of imagingPhysicalEntity
 	def imagingPhysicalEntityCollection=new ArrayList<ImagingPhysicalEntity>()
 	
 	//list of calculationEntity
-	def calculationEntityCollection=[]
+	def calculationEntityCollection= new ArrayList<CalculationEntity>()
 }
 
+
+// acts  as imageAnnotationCollection
 class AnnotationsAIM4
 {
 	String Uid
+	
 	Person person
 	
-	//  imageAnnotationCollection= collection of Annotation
+	//  imageannotations
 	def imageAnnotations=new ArrayList<Annotation>()
 
 }
@@ -159,7 +190,10 @@ class parserAIMFILES
 		z.setUid(tempp);
 		// get Person data
 		def per = new Person()
-		per.setName((String)(y.person.name.'@value'))
+		String names = y.person.name.'@value'
+		names=names.replaceAll("\\^","") 
+		//println names
+		per.setName(names)
 		per.setId((String)y.person.id.'@value')
 		per.setSex((String)y.person.sex.'@value')
 		// add 
@@ -222,22 +256,116 @@ class parserAIMFILES
 		
 		
 	}
+	void fillcalculationData(Object y,calculationResult z)
+	{
+		// iterate over CalculationData
+		y.children().each {node ->
+		def calc = new CalculationData()
+		calc.value = node.value.'@value'
+		//def map2=new ArrayList<HashMap<String,String>>()
+			
+			//calc.uniqueIdentifier=node.uniqueIdentifier.'@root'
+			
+			
+			//calc.unitOfMeasure=node.unitOfMeasure.'@value'
+			
+			 //node.dataType.each{typ->
+				/* You can use toInteger() over the GPathResult object */
+			//	 map2.add(typ.attributes())
+			//	}
+			//if(node.name()=='calculationDataCollection'){fillcalculationData(node,calc)}
+			
+		//calc.dataType = map2
+		z.calculationDataCollection.add(calc)
+		println calc.value
+		}
+		
+	}
+	void fillCalculationResult(Object y,CalculationEntity z)
+	{
+		// iterate over CalculationResults
+		println 'zzzzzz'
+		y.children().each {node ->
+		def calc = new calculationResult()
+		def map2=new ArrayList<HashMap<String,String>>()
+		println node.name()	
+			//calc.uniqueIdentifier=node.uniqueIdentifier.'@root'
+			
+			
+			calc.unitOfMeasure=node.unitOfMeasure.'@value'
+			println calc.unitOfMeasure
+			 
+			node.dataType.each{typ->
+				/* You can use toInteger() over the GPathResult object */
+				 map2.add(typ.attributes())
+				}
+			fillcalculationData(node.calculationDataCollection,calc)
+			
+		calc.dataType = map2
+		//println calc.dataType
+		z.calculationResultCollection.add(calc)
+		println calc.dataType
+		}
+	}
+	void fillcalculationEntity(Object y, Annotation z)
+	{
+		//<typeCode code="...." codeSystem="...." codeSystemName="...."/>
+		//def map = new ArrayList<ArrayList<HashMap<String,String>>>()
+		println 'entro a ' 
+		// iterate over CalculationEntitys
+		y.children().each {node ->
+			println node.name()
+			def calc = new CalculationEntity()
+			def map2=new ArrayList<HashMap<String,String>>()
+			
+			calc.uniqueIdentifier=node.uniqueIdentifier.'@root'
+			
+			
+			calc.description=node.description.'@value'
+			
+			 node.typeCode.each{typ->
+				/* You can use toInteger() over the GPathResult object */
+				 map2.add(typ.attributes())
+				}
+			fillCalculationResult(node.calculationResultCollection,calc)
+			
+		calc.typeCode = map2
+		z.calculationEntityCollection.add(calc)
+		println calc.typeCode
+		}
+		//println map
+		
+		
+	}
 	void fillAnnotations(Object y, AnnotationsAIM4 z)
 	{
-		//println y.person.name.'@value'
-		//println y.uniqueIdentifier.'@root'
-		z.Uid = y.uniqueIdentifier.'@root'
 		
-		//def anno = new Annotation()
-		//z.imageAnnotations.add(anno)
+		//z.Uid = y.uniqueIdentifier.'@root'
+		//println y.uniqueIdentifier.'@root'
+		String uiddat=null
+		
+		
 		//iterate by each annotation
 		y.imageAnnotations.children().each {node ->
 			def anno = new Annotation()
+			
+			
+			anno.setUniqueIdentifier((String)node.uniqueIdentifier.'@root')
+			
+			anno.setDateTime((String)node.dateTime."@value")
+			anno.setName((String)node.name."@value")
+			anno.setComment((String)node.comment."@value")
+			
+			
 			node.children().each {node2 ->
+				
+				
 				//if (node2.name()=="imageAnnotationStatementCollection"){fillAnnotationsStatement(node2)}
-				//println 'entro a fillhysicalEntityCollection'
-				if (node2.name()=="imagingPhysicalEntityCollection"){fillimagingPhysicalEntity(node2,anno)}
-				println anno.getImagingPhysicalEntityCollection().size()
+				
+				//if (node2.name()=="imagingPhysicalEntityCollection"){fillimagingPhysicalEntity(node2,anno)}
+				if(node2.name()=='calculationEntityCollection'){fillcalculationEntity(node2,anno)}
+				
+			
 			}
 			
 			z.getImageAnnotations().add(anno)
@@ -267,7 +395,8 @@ class parserAIMFILES
 				InputXML2= new XmlSlurper().parseText(sb.toString())
 				temp=InputXML2.person.name.'@value'
 				temp2=InputXML2.uniqueIdentifier.'@root'
-				
+				// add uid of annotationcollection
+				ann.setUid((String)InputXML2.uniqueIdentifier.'@root')
 				// add person from AIM.xml annotation
 				fillPerson(InputXML2,ann);
 				
@@ -312,4 +441,3 @@ class parserAIMFILES
 }
 
 	
-
