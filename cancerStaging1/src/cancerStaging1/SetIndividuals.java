@@ -114,7 +114,7 @@ public class SetIndividuals {
 	{
 		OWLDataFactory factory = m.getOWLDataFactory();
 		OWLClass cls = m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#ImageAnnotationCollection"));
-		System.out.println("que fue de las propiedades"+cls.getObjectPropertiesInSignature());
+		System.out.println("que fue de las propiedades"+cls.getSuperClasses(o));
 		// iterate over all patient annotation 
 		for (AnnotationsAIM4 element : ao) {
 			

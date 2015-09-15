@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1441777386720" name="http://www.owl-ontologies.com/Ontology1375951364.owl" uri="Radlex_3.9.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1441777386720" name="http://www.owl-ontologies.com/Ontology1415135201.owl" uri="Radlex_3.12.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1441777386720" name="duplicate:http://www.semanticweb.org/stardog/reasoning" uri="stardogreasoninginf.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1441777386720" name="duplicate:http://www.semanticweb.org/stardog/reasoning" uri="stardogreasoning.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1442244099291" name="http://www.owl-ontologies.com/Ontology1375951364.owl" uri="Radlex_3.9.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1442244099291" name="http://www.owl-ontologies.com/Ontology1415135201.owl" uri="Radlex_3.12.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1442244099291" name="duplicate:http://www.semanticweb.org/stardog/reasoning" uri="stardogreasoninginf.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1442244099291" name="duplicate:http://www.semanticweb.org/stardog/reasoning" uri="stardogreasoning.owl"/>
     </group>
 </catalog>
