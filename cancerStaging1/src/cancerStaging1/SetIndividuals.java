@@ -2,7 +2,9 @@ package cancerStaging1;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.semanticweb.owlapi.model.AddAxiom;
 import org.semanticweb.owlapi.model.IRI;
@@ -11,8 +13,10 @@ import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLDatatype;
+import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
+import org.semanticweb.owlapi.model.OWLObjectProperty;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyFormat;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
@@ -77,7 +81,7 @@ public class SetIndividuals {
 			for(Annotation ann: elements)
 			{
 				
-				System.out.println("UID DE ANOOTATONS"+ann.getUniqueIdentifier());
+				//System.out.println("UID DE ANOOTATONS"+ann.getUniqueIdentifier());
 				OWLNamedIndividual ind = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+ann.getUniqueIdentifier().toString()));
 				OWLAxiom axiom = factory.getOWLClassAssertionAxiom(cls,ind);
 				AddAxiom addAxion = new AddAxiom(o, axiom);
@@ -110,22 +114,51 @@ public class SetIndividuals {
 				m.saveOntology(o,format,IRI.create(fileformated.toURI()));
 		
 	}
-	void imageannotationscollectIndividuals(OWLOntologyManager m,OWLOntology o,List<AnnotationsAIM4> ao,File fileformated)
+	void imageannotationscollectIndividuals(OWLOntologyManager m,OWLOntology o,List<AnnotationsAIM4> ao,File fileformated) throws OWLOntologyStorageException
 	{
+		String IRIontology = o.getOntologyID().getOntologyIRI().toString();
 		OWLDataFactory factory = m.getOWLDataFactory();
 		OWLClass cls = m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#ImageAnnotationCollection"));
-		System.out.println("que fue de las propiedades"+cls.getSuperClasses(o));
-		// iterate over all patient annotation 
+		// best yet ?...  list<objectProperty> ??
+	    //Objectproperty from class
+		OWLObjectProperty hasImageAnnotations = factory.getOWLObjectProperty(IRI
+                .create(IRIontology + "#hasImageAnnotations"));
+		OWLObjectProperty hasPerson = factory.getOWLObjectProperty(IRI
+                .create(IRIontology + "#hasPerson"));
+		
+		List<Annotation> elements;
+		Set<OWLAxiom> axioms = new HashSet<OWLAxiom>();
+		
+		OWLIndividual perannotation;
 		for (AnnotationsAIM4 element : ao) {
 			
+		   //create imageannotationCollection individual
+		    OWLIndividual ind = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+element.getUid()));
+		    //set axiom 
+		    axioms.add(factory.getOWLClassAssertionAxiom(cls,ind));
+		    OWLIndividual indannotation;
+		    // set objectproperty hasPerson domain: class imageAnnotationCollection range: Person 1-> 0...1
+		    perannotation=factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+element.getPerson().getName().toString()));
+		    axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasPerson,ind,perannotation));
+		    
+		    // set objectproperty hasImageAnnotation domain: class imageAnnotationCollection range: ImageAnnotation 1 -> 1...*
+		    
+		    // get list of imageannotation from imageannotationcollection
+		    elements = (List<Annotation>) element.getImageAnnotations();
+		    //iterate over all annotations
+		    for(Annotation an: elements) {
+		    	indannotation=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
+		    	
+		    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasImageAnnotations,ind,indannotation));
+		    }
 		   
-		    OWLNamedIndividual ind = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+element.getUid()));
-			OWLAxiom axiom = factory.getOWLClassAssertionAxiom(cls,ind);
-			AddAxiom addAxion = new AddAxiom(o, axiom);
-			m.applyChange(addAxion);
 		
 		}
 		
+		 
+			
+			m.addAxioms(o, axioms);
+			axioms.clear();
 		
 		
 	}

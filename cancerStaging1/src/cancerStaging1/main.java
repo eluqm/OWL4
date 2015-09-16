@@ -35,6 +35,8 @@ import org.semanticweb.owlapi.util.DefaultPrefixManager;
 import org.semanticweb.owlapi.util.HashCode;
 import org.semanticweb.owlapi.vocab.OWL2Datatype;
 
+import cancerStaging1.parserAIMFILES;
+
 import com.clarkparsia.modularity.PelletIncremantalReasonerFactory;
 import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
 import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
@@ -85,8 +87,9 @@ public class main {
 	        // getting all axioms    
 	        Set<OWLAxiom> axSet= o.getAxioms();
  
-			System.out.println(o.getLogicalAxiomCount());
-			System.out.println("termino carga onto");
+			//System.out.println(o.getLogicalAxiomCount());
+			//System.out.println("termino carga onto");
+			System.out.println("++++++++++++++++++++");
 			
 			// Get Thing
 			//OWLClass clazz = o.getOWLThing();
@@ -105,20 +108,7 @@ public class main {
 			// print tree class
 			//reasoner.getKB().printClassTree();
 			
-			NodeSet<OWLNamedIndividual> instances;
-			for (OWLClass c : o.getClassesInSignature()) {
-		       instances = reasoner.getInstances(c, true);
-		        System.out.println(c.getIRI().getFragment());
-		        if (c.getIRI().getFragment().equals("Person")){
-
-		            for (OWLNamedIndividual i : instances.getFlattened()) {
-		                System.out.println(i.getIRI().getFragment()); 
-
-		        }}
-		        
-		       
-
-		    }
+			
 			//IRI documentIRI = IRI.create(inputOntology);
 			System.out.println("Ontology Loaded...");
 			
@@ -126,7 +116,7 @@ public class main {
 	        System.out.println("Document IRI: " + o.getOntologyID().getOntologyIRI());
 	        System.out.println("Format      : "+ m.getOntologyFormat(o)); 
 	        OWLOntologyFormat format = m.getOntologyFormat(o);
-	        
+	        System.out.println("++++++++++++++++++++");
 	        // parsing all annotation files
 	        
 	        parserAIMFILES par= new parserAIMFILES();
@@ -140,10 +130,25 @@ public class main {
 			individuals.imageannotationscollectIndividuals(m, o, ao, fileformated);
 			individuals.annotationIndividuals(m, o, ao, fileformated);
 			
+			NodeSet<OWLNamedIndividual> instances;
+			for (OWLClass c : o.getClassesInSignature()) {
+		       instances = reasoner.getInstances(c, true);
+		       //System.out.println(c.getIRI().getFragment());
+		        if (c.getIRI().getFragment().equals("Person")){
+		        	System.out.println("person clas...");
+		            for (OWLNamedIndividual i : instances.getFlattened()) {
+		                System.out.println(i.getIRI().getFragment()); 
+
+		        }}
+		        
+		       
+
+		    }
 			
 			
-			reasoner.getKB().realize();
-			reasoner.getKB().printClassTree();
+			
+			//reasoner.getKB().realize();
+			//reasoner.getKB().printClassTree();
 			//m.saveOntology(o,format,IRI.create(fileformated.toURI()));
 			System.out.println("terminooo");
         
@@ -156,13 +161,13 @@ public class main {
 				//System.out.println(element.getPerson().getName());
 				if( element.getPerson().getName().equals(namepat) )
 				{
-					System.out.println(element.getUid());
+					//System.out.println(element.getUid());
 				for(Annotation	ann: (List<Annotation>)element.getImageAnnotations())
 				{
 					for(CalculationEntity anncal:(List<CalculationEntity>)ann.getCalculationEntityCollection())
 					{
 						List<CalculationData> li=(List<CalculationData>) ((List<calculationResult>)anncal.getCalculationResultCollection()).get(0).getCalculationDataCollection();
-						System.out.println(li.get(0).getValue());
+						//System.out.println(li.get(0).getValue());
 					}
 				}
 				}

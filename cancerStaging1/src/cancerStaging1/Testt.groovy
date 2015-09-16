@@ -206,7 +206,7 @@ class parserAIMFILES
 	{
 		
 		y.children().each {node ->
-		println node.name()
+		//println node.name()
 		
 		}
 	}
@@ -219,7 +219,7 @@ class parserAIMFILES
 		y.children().each {node ->
 		def imaginPhy = new ImagingPhysicalEntity()
 		def map2=new ArrayList<HashMap<String,String>>()
-			println 'entro a ...'+node.name()
+			//println 'entro a ...'+node.name()
 			imaginPhy.uniqueIdentifier=node.uniqueIdentifier.'@root'
 			def typeCode = new HashMap<String,String>()
 			imaginPhy.annotatorConfidence= node.annotatorConfidence.'@value'
@@ -247,11 +247,11 @@ class parserAIMFILES
 				}
 				//TypeCode.add(temp)
 			}*/
-			println map2
+			//println map2
 		z.imagingPhysicalEntityCollection.add(imaginPhy)
 		map.add(map2)
 		}
-		println map
+		//println map
 		
 		
 		
@@ -277,23 +277,23 @@ class parserAIMFILES
 			
 		//calc.dataType = map2
 		z.calculationDataCollection.add(calc)
-		println calc.value
+		//println calc.value
 		}
 		
 	}
 	void fillCalculationResult(Object y,CalculationEntity z)
 	{
 		// iterate over CalculationResults
-		println 'zzzzzz'
+		//println 'zzzzzz'
 		y.children().each {node ->
 		def calc = new calculationResult()
 		def map2=new ArrayList<HashMap<String,String>>()
-		println node.name()	
+		//println node.name()	
 			//calc.uniqueIdentifier=node.uniqueIdentifier.'@root'
 			
 			
 			calc.unitOfMeasure=node.unitOfMeasure.'@value'
-			println calc.unitOfMeasure
+			//println calc.unitOfMeasure
 			 
 			node.dataType.each{typ->
 				/* You can use toInteger() over the GPathResult object */
@@ -304,17 +304,17 @@ class parserAIMFILES
 		calc.dataType = map2
 		//println calc.dataType
 		z.calculationResultCollection.add(calc)
-		println calc.dataType
+		//println calc.dataType
 		}
 	}
 	void fillcalculationEntity(Object y, Annotation z)
 	{
 		//<typeCode code="...." codeSystem="...." codeSystemName="...."/>
 		//def map = new ArrayList<ArrayList<HashMap<String,String>>>()
-		println 'entro a ' 
+		//println 'entro a ' 
 		// iterate over CalculationEntitys
 		y.children().each {node ->
-			println node.name()
+			//println node.name()
 			def calc = new CalculationEntity()
 			def map2=new ArrayList<HashMap<String,String>>()
 			
@@ -331,7 +331,7 @@ class parserAIMFILES
 			
 		calc.typeCode = map2
 		z.calculationEntityCollection.add(calc)
-		println calc.typeCode
+		//println calc.typeCode
 		}
 		//println map
 		
