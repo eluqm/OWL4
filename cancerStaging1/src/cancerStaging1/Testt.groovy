@@ -1,3 +1,7 @@
+/** CD datatype is considered a string into parser and ontology is literal
+
+*/
+
 package cancerStaging1
 
 import groovy.io.FileType
@@ -24,19 +28,43 @@ class Testt {
 		//println a.ls.size()
 		//println a.ls[0].Uid
 		//println a.ls[0].person.name
-		//a.printAnnotations()
-		
-		
-		
+		//a.printAnnotations()		
 	}
 
 }
 
-class annotationCollection
+trait markupEntity {
+		
+		// uniqueIdentifier from entity
+		String uniqueIdentifier
+
+	}
+trait geometricShapeEntity 
+{
+	String shapeIdentifier
+	boolean includeFlag
+	String lineColor 
+	String lineOpacity 
+	String lineStyle 
+	String lineThickness
+	
+	
+}
+
+
+//@Mixin([markupEntity,geometricShapeEntity])
+class twoDimensionGeometricShapeEntity implements markupEntity, geometricShapeEntity
+{
+	//type
+	String imageReferenceUid 
+	String referencedFrameNumber 
+}
+
+/*class annotationCollection
 {
 	int idUI
 	String namePatient
-}
+}*/
 class Location {
 	String street
 	String city
@@ -115,17 +143,17 @@ abstract class AnnotationEntity {
 // imageAnnotation
 class Annotation extends AnnotationEntity{
 
-	
-	
-	//list of imagingPhysicalEntity
+	//list of markupEntities
+	def markupEntityCollection = new ArrayList<markupEntity>()
+	//list of imagingPhysicalEntities
 	def imagingPhysicalEntityCollection=new ArrayList<ImagingPhysicalEntity>()
 	
-	//list of calculationEntity
+	//list of calculationEntities
 	def calculationEntityCollection= new ArrayList<CalculationEntity>()
 }
 
 
-// acts  as imageAnnotationCollection
+// acts  as imageAnnotationCollection=rootclass
 class AnnotationsAIM4
 {
 	String Uid
@@ -337,6 +365,11 @@ class parserAIMFILES
 		
 		
 	}
+	void fillmarkupEntity(Object y,AnnotationsAIM4 z)
+	{
+		//def twoDimensionGeometricShapeEntitys = new twoDimensionGeometricShapeEntity(imageReferenceUid: __, )
+		
+	}
 	void fillAnnotations(Object y, AnnotationsAIM4 z)
 	{
 		
@@ -364,6 +397,7 @@ class parserAIMFILES
 				
 				//if (node2.name()=="imagingPhysicalEntityCollection"){fillimagingPhysicalEntity(node2,anno)}
 				if(node2.name()=='calculationEntityCollection'){fillcalculationEntity(node2,anno)}
+				if(node2.name()=='markupEntityCollection'){fillmarkupEntity(node2.anno)}
 				
 			
 			}

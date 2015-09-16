@@ -86,7 +86,7 @@ public class SetIndividuals {
 				OWLAxiom axiom = factory.getOWLClassAssertionAxiom(cls,ind);
 				AddAxiom addAxion = new AddAxiom(o, axiom);
 				m.applyChange(addAxion);
-				
+				//add data properties
 				PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
 				OWLDataProperty hasname = factory.getOWLDataProperty("name", pm);
 				OWLDatatype literalDatatype = factory
