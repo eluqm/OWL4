@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1440101716881" name="duplicate:http://www.owl-ontologies.com/Ontology1311106921.owl" uri="AIM.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1440101716881" name="duplicate:http://www.owl-ontologies.com/Ontology1311106921.owl" uri="AIM4.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1440101716881" name="http://www.srdc.com.tr/ontmalizer/instance" uri="ontmalizer-master/target/test-classes/output/test-instance.rdf"/>
-        <uri id="Automatically generated entry, Timestamp=1440101716881" name="shadowed:http://www.owl-ontologies.com/Ontology1311106921.owl" uri="modelAIM_v4_rv48/AIM4.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1440101716881" name="shadowed:http://www.srdc.com.tr/ontmalizer/instance" uri="ontmalizer-master/src/test/resources/output/test-instance.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1442376970628" name="duplicate:http://www.owl-ontologies.com/Ontology1311106921.owl" uri="AIM.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1442376970628" name="duplicate:http://www.owl-ontologies.com/Ontology1311106921.owl" uri="AIM4.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1442376970628" name="http://www.owl-ontologies.com/Ontology1375951364.owl" uri="cancerStaging1/RadLex_OWL/Radlex_3.9.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1442376970628" name="http://www.owl-ontologies.com/Ontology1415135201.owl" uri="cancerStaging1/RadLex_OWL/Radlex_3.12.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1442376970628" name="duplicate:http://www.semanticweb.org/stardog/reasoning" uri="cancerStaging1/RadLex_OWL/stardogreasoning.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1442376970628" name="duplicate:http://www.semanticweb.org/stardog/reasoning" uri="cancerStaging1/RadLex_OWL/stardogreasoninginf.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1442376970628" name="shadowed:http://www.owl-ontologies.com/Ontology1311106921.owl" uri="modelAIM_v4_rv48/AIM4.owl"/>
     </group>
 </catalog>
