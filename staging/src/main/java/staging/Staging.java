@@ -54,7 +54,7 @@ public class Staging {
         //System.out.println("Hello, World!");
         
         // loading the ontology
-		String pathlinux = "/home/edson/Documentos/OWL4/OWL4"; 
+		String pathlinux = "/home/edson/Documentos/OWL4"; 
         File file=null; 
         
         // file to save ontology + individuals

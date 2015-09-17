@@ -167,7 +167,7 @@ class parserAIMFILES
 {
 	
 	def list=[]
-	def pathLinux="/home/edson/Documentos/OWL4/OWL4/annotations"
+	def pathLinux="/home/edson/Documentos/OWL4/annotations"
 	def pathmac="/Users/edson/OWL4/annotations"
 	def dir
 	def num=0
