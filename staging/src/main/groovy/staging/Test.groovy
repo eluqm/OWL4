@@ -63,6 +63,11 @@ class twoDSCCollection
 	String coordinateIndex
 	String x
 	String y
+	@Override
+	public String toString()
+	{
+		return "ClassPojo [coordinateIndex = "+coordinateIndex+" x ="+ x +" y= "+ y+"]+"
+	}
 }
 //@Mixin([markupEntity,geometricShapeEntity])
 class twoDimensionGeometricShapeEntity extends geometricShapeEntity
@@ -390,7 +395,27 @@ class parserAIMFILES
 	
 	void fillTDSCCollection(Object y,twoDimensionType z)
 	{
-		println "implementing ..... "
+		y.children().each {node ->
+			def coord = new twoDSCCollection(coordinateIndex : node.coordinateIndex.'@value', x:node.x.'@value',y:node.y.'@value')
+			//coord. = node.coordinateIndex.'@value'
+			//def map2=new ArrayList<HashMap<String,String>>()
+				
+				//calc.uniqueIdentifier=node.uniqueIdentifier.'@root'
+				
+				
+				//calc.unitOfMeasure=node.unitOfMeasure.'@value'
+				
+				 //node.dataType.each{typ->
+					/* You can use toInteger() over the GPathResult object */
+				//	 map2.add(typ.attributes())
+				//	}
+				//if(node.name()=='calculationDataCollection'){fillcalculationData(node,calc)}
+				
+			//calc.dataType = map2
+			println coord
+			z.twoDspatialCoordinateCollection.add(coord)
+			//println calc.value
+			}
 	}
 	void fillmarkupEntity(Object y,Annotation z)
 	{
@@ -459,6 +484,7 @@ class parserAIMFILES
 				//if (node2.name()=="imagingPhysicalEntityCollection"){fillimagingPhysicalEntity(node2,anno)}
 				if(node2.name()=='calculationEntityCollection'){fillcalculationEntity(node2,anno)}
 				if(node2.name()=='markupEntityCollection'){fillmarkupEntity(node2,anno)}
+				//def tre = new DicomImageReferencedE()
 				
 			
 			}
