@@ -30,13 +30,14 @@ class Test {
 
 }
 
-trait markupEntity {
+class markupEntity {
 		
 		// uniqueIdentifier from entity
 		String uniqueIdentifier
+		//void setuniqueIdentifier(String str)
 
 	}
-trait geometricShapeEntity 
+class geometricShapeEntity extends markupEntity
 {
 	String shapeIdentifier
 	boolean includeFlag
@@ -44,6 +45,14 @@ trait geometricShapeEntity
 	String lineOpacity 
 	String lineStyle 
 	String lineThickness
+
+
+
+	//@Override
+	//public void setuniqueIdentifier(String str) {
+	//	uniqueIdentifier=str
+		// TODO Auto-generated method stub
+		
 	
 	
 }
@@ -55,7 +64,7 @@ class twoDSCCollection
 	String y
 }
 //@Mixin([markupEntity,geometricShapeEntity])
-class twoDimensionGeometricShapeEntity implements markupEntity, geometricShapeEntity
+class twoDimensionGeometricShapeEntity extends geometricShapeEntity
 {
 	//type
 	String imageReferenceUid 
