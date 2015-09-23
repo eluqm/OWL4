@@ -21,6 +21,7 @@ class Test {
 		a.readAnnotationsFiles();
 		println 'paso2'
 		a.fillAnnotationsClass();
+		println 'paso3'
 		//println a.ls.size()
 		//println a.ls[0].Uid
 		//println a.ls[0].person.name
@@ -47,15 +48,30 @@ trait geometricShapeEntity
 	
 }
 
-
+class twoDSCCollection
+{
+	String coordinateIndex
+	String x
+	String y
+}
 //@Mixin([markupEntity,geometricShapeEntity])
 class twoDimensionGeometricShapeEntity implements markupEntity, geometricShapeEntity
 {
 	//type
 	String imageReferenceUid 
-	String referencedFrameNumber 
+	String referencedFrameNumber
+	def twoDspatialCoordinateCollection = new ArrayList<twoDSCCollection>()
 }
 
+class twoDimensionType extends twoDimensionGeometricShapeEntity
+{
+	String type
+	@Override
+	public String toString()
+	{
+		return "ClassPojo [type = "+type+", imagereferenceuid = "+imageReferenceUid+", referencedFramedNumber = "+referencedFrameNumber+", identifierEntity = "+uniqueIdentifier+"]";
+	}
+}
 /*class annotationCollection
 {
 	int idUI
@@ -361,11 +377,50 @@ class parserAIMFILES
 		
 		
 	}
-	void fillmarkupEntity(Object y,AnnotationsAIM4 z)
+	
+	void fillTDSCCollection(Object y,twoDimensionType z)
+	{
+		println "implementing ..... "
+	}
+	void fillmarkupEntity(Object y,Annotation z)
 	{
 		//def twoDimensionGeometricShapeEntitys = new twoDimensionGeometricShapeEntity(imageReferenceUid: __, )
+		// iterate over markupEntities
 		
-	}
+		y.children().each {node ->
+			
+			def markTYPE 
+			if(node.'@xsi:type'.text()=='TwoDimensionMultiPoint'){
+				
+				markTYPE =  new twoDimensionType(uniqueIdentifier:node.uniqueIdentifier.'@root', imageReferenceUid:node.imageReferenceUid.'@root', referencedFrameNumber:node.referencedFrameNumber.'@value',type:node.'@xsi:type'.text())
+				
+				fillTDSCCollection(node.twoDimensionSpatialCoordinateCollection,markTYPE)
+				println markTYPE
+			}
+			
+			
+			//  treDimenionmultipoin ....implementation
+			/*
+			def map2=new ArrayList<HashMap<String,String>>()
+			
+			//mark.uniqueIdentifier=node.uniqueIdentifier.'@root'
+			
+			
+			mark.description=node.description.'@value'
+			
+			 node.typeCode.each{typ->
+				/* You can use toInteger() over the GPathResult object */
+		/*		 map2.add(typ.attributes())
+				}
+			fillCalculationResult(node.calculationResultCollection,mark)
+			
+		mark.typeCode = map2
+		z.calculationEntityCollection.add(mark)*/
+		z.markupEntityCollection.add(markTYPE)
+		}
+		
+	
+		}
 	void fillAnnotations(Object y, AnnotationsAIM4 z)
 	{
 		
@@ -393,7 +448,7 @@ class parserAIMFILES
 				
 				//if (node2.name()=="imagingPhysicalEntityCollection"){fillimagingPhysicalEntity(node2,anno)}
 				if(node2.name()=='calculationEntityCollection'){fillcalculationEntity(node2,anno)}
-				//if(node2.name()=='markupEntityCollection'){fillmarkupEntity(node2.anno)}
+				if(node2.name()=='markupEntityCollection'){fillmarkupEntity(node2,anno)}
 				
 			
 			}

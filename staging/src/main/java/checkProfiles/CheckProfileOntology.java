@@ -17,7 +17,7 @@ public class CheckProfileOntology {
 	private OWLOntology loadOntology() throws OWLOntologyCreationException {
     	
 		// Get hold of an ontology manager
-		String pathlinux = "/home/edson/Documentos/OWL4/OWL4"; 
+		String pathlinux = "/home/edson/Documentos/OWL4/cancerStaging1/RadLex_OWL"; 
         //File file=null; 
         
         // file to save ontology + individuals
