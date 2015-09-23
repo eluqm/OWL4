@@ -34,6 +34,7 @@ class markupEntity {
 		
 		// uniqueIdentifier from entity
 		String uniqueIdentifier
+		//void .....
 		//void setuniqueIdentifier(String str)
 
 	}
