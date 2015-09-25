@@ -1,5 +1,6 @@
 package staging;
 
+import java.beans.IntrospectionException;
 import java.io.File;
 
 import org.codehaus.groovy.*;
@@ -38,9 +39,9 @@ import org.semanticweb.owlapi.vocab.OWL2Datatype;
 
 
 
+
+
 import com.clarkparsia.modularity.PelletIncremantalReasonerFactory;
-
-
 import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
 import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
 //import com.clarkparsia.protege.plugin.pellet.PelletReasonerFactory;
@@ -50,7 +51,7 @@ import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
 
 
 public class Staging {
-	public static void main(String[] args) throws OWLOntologyCreationException, OWLOntologyStorageException {
+	public static void main(String[] args) throws OWLOntologyCreationException, OWLOntologyStorageException, IntrospectionException {
         //System.out.println("Hello, World!");
         
         // loading the ontology
@@ -129,9 +130,23 @@ public class Staging {
 	        
 	        //creating person individuals 
 			SetIndividuals individuals = new SetIndividuals();
-			individuals.personIndividuals(m,o,ao,fileformated);
+			try {
+				individuals.markupIndividuals(m, o, ao, fileformated);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			individuals.imageannotationscollectIndividuals(m, o, ao, fileformated);
+			individuals.personIndividuals(m,o,ao,fileformated);
 			individuals.annotationIndividuals(m, o, ao, fileformated);
+			
 			
 			NodeSet<OWLNamedIndividual> instances;
 			for (OWLClass c : o.getClassesInSignature()) {
