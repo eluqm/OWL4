@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.StringBuilder;
+import java.text.SimpleDateFormat
+import java.util.Formatter.DateTime
 
 import org.omg.CORBA.TypeCode;
 
@@ -284,7 +286,12 @@ class parserAIMFILES
 	{
 		y.children().each {node ->
 			
-			def coord = new twoDSCCollection(coordinateIndex : node.coordinateIndex.'@value', x:node.x.'@value',y:node.y.'@value')
+			String xx=node.x.'@value'
+			String yy=node.y.'@value'
+			String ind=node.coordinateIndex.'@value'
+			
+			def coord = new twoDSCCollection(coordinateIndex : Integer.parseInt(ind), x:Float.parseFloat(xx),y:Float.parseFloat(yy))
+			
 			z.twoDspatialCoordinateCollection.add(coord)
 			
 		}
@@ -296,9 +303,14 @@ class parserAIMFILES
 		y.children().each {node ->
 
 			def markTYPE
+			String imageref=node.imageReferenceUid.'@root'
+			String referenframe = node.referencedFrameNumber.'@value'
 			if(node.'@xsi:type'.text()=='TwoDimensionMultiPoint'){
 
-				markTYPE =  new twoDimensionType(uniqueIdentifier:node.uniqueIdentifier.'@root', imageReferenceUid:node.imageReferenceUid.'@root', referencedFrameNumber:node.referencedFrameNumber.'@value',type:node.'@xsi:type'.text())
+				markTYPE =  new twoDimensionType(uniqueIdentifier:(String)node.uniqueIdentifier.'@root', 
+					imageReferenceUid:imageref, 
+					referencedFrameNumber:Integer.parseInt(referenframe),
+					type:(String)node.'@xsi:type'.text())
 
 				fillTDSCCollection(node.twoDimensionSpatialCoordinateCollection,markTYPE)
 				//println markTYPE
@@ -322,8 +334,14 @@ class parserAIMFILES
 
 
 			anno.setUniqueIdentifier((String)node.uniqueIdentifier.'@root')
-
-			anno.setDateTime((String)node.dateTime."@value")
+			String dt=node.dateTime."@value"
+			//println dt
+			//dt=repairDate(dt);
+			def formats = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+			Date dates=formats.parse(dt)
+			println "formats .... : "+ dates.format("yyyy-MM-dd'T'HH:mm:ss");
+			anno.dateTime=dates
+			
 			anno.setName((String)node.name."@value")
 			anno.setComment((String)node.comment."@value")
 
@@ -396,7 +414,16 @@ class parserAIMFILES
 
 
 	}
-
+	def repairDate={ dat->
+		println dat
+		String result
+		def str=dat.split("T");
+		println str
+		for(String st : str){result=result+" "+st}
+		println result
+		return result.substring(4,result.length());
+		
+	}
 
 	void printAnnotations()
 	{

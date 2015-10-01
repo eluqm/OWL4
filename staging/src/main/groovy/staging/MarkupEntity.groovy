@@ -32,9 +32,9 @@ String lineThickness
 
 class twoDSCCollection
 {
-String coordinateIndex
-String x
-String y
+int coordinateIndex
+float x
+float y
 @Override
 public String toString()
 {
@@ -46,7 +46,7 @@ class twoDimensionGeometricShapeEntity extends geometricShapeEntity
 {
 //type
 String imageReferenceUid
-String referencedFrameNumber
+int referencedFrameNumber
 def twoDspatialCoordinateCollection = new ArrayList<twoDSCCollection>()
 }
 

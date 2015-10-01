@@ -129,7 +129,7 @@ public class Staging {
 			List<AnnotationsAIM4> ao=(List<AnnotationsAIM4>) par.getLs();
 	        
 	        //creating person individuals 
-			SetIndividuals individuals = new SetIndividuals();
+			SetIndividuals individuals = new SetIndividuals(m);
 			try {
 				individuals.markupIndividuals(m, o, ao, fileformated);
 			} catch (ClassNotFoundException e) {
@@ -168,8 +168,9 @@ public class Staging {
 			//reasoner.getKB().realize();
 			//reasoner.getKB().printClassTree();
 			//m.saveOntology(o,format,IRI.create(fileformated.toURI()));
-			System.out.println("terminooo");
-        
+			if(reasoner.isConsistent()){
+			System.out.println("terminooo y es consistente la ontologia");
+			}
 			
 			par.printAnnotations();
 			

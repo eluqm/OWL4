@@ -5,7 +5,10 @@ import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.io.File;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -39,6 +42,28 @@ import uk.ac.manchester.cs.owl.owlapi.OWLLiteralImplBoolean;
 
 public class SetIndividuals {
 	
+	HashMap<Class, OWLDatatype> typess = new HashMap<Class,OWLDatatype>();
+	SetIndividuals(OWLOntologyManager m)
+	{
+		OWLDataFactory factory = m.getOWLDataFactory();
+		OWLDatatype booleans = factory
+				.getBooleanOWLDatatype();
+		OWLDatatype flo= factory.getFloatOWLDatatype();
+		OWLDatatype literalDatatype = factory
+                .getOWLDatatype(IRI.create("http://www.w3.org/2001/XMLSchema#string"));
+		OWLDatatype integers = factory
+				.getIntegerOWLDatatype();
+		OWLDatatype datess = factory
+				.getOWLDatatype(IRI.create("http://www.w3.org/2001/XMLSchema#dateTime"));
+		//OWLDa;
+		typess.put(boolean.class, booleans);
+		typess.put(Float.class, flo);
+		typess.put(String.class, literalDatatype);
+		typess.put(Integer.class,integers);
+		typess.put(Boolean.class, factory.getBooleanOWLDatatype());
+		typess.put(java.util.Date.class, datess);
+		
+	}
 	
 	void personIndividuals(OWLOntologyManager m,OWLOntology o,List<AnnotationsAIM4> ao,File fileformated) throws OWLOntologyStorageException
 	{
@@ -58,27 +83,12 @@ public class SetIndividuals {
 		
 		
 		
-		/*PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString());
-		OWLDataProperty hasAge = factory.getOWLDataProperty("age", pm);
-		OWLDatatype integerDatatype = factory
-                .getOWLDatatype(OWL2Datatype.XSD_INT.getIRI());
 		
-		*/
-		
-        // Create a typed literal. We type the literal "51" with the datatype
-        //OWLLiteral literal = factory.getOWLLiteral("51", integerDatatype);
-        
-        // Create the property assertion and add it to the ontology
-        //OWLAxiom ax = factory.getOWLDataPropertyAssertionAxiom(hasAge, ind,
-        //        literal);
-        //m.addAxiom(o, ax);
-		
-		//m.applyChange(addAxion);
 		OWLOntologyFormat format = m.getOntologyFormat(o);
 		
 		m.saveOntology(o,format,IRI.create(fileformated.toURI()));
 		
-		//m.saveOntology(o, );
+		
 		
 	}
 	// create individuals of annotation class
@@ -237,9 +247,7 @@ public class SetIndividuals {
 					cls=m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#"+markindv.getType()));
 					
 					PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
-					OWLDatatype literalDatatype = factory
-			                .getOWLDatatype(OWL2Datatype.RDFS_LITERAL.getIRI());
-					OWLDatatype booleans = factory.getBooleanOWLDatatype();
+					
 					OWLDataProperty hasproperty;
 					OWLLiteral literal; 
 					
@@ -250,7 +258,7 @@ public class SetIndividuals {
 					OWLNamedIndividual ind = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+markindv.getUniqueIdentifier()));
 					axioms.add(factory.getOWLClassAssertionAxiom(cls,ind));
 					
-					Boolean tem=new Boolean("true");
+					//Boolean tem=new Boolean("true");
 					
 					BeanInfo beanInfo = Introspector.getBeanInfo(markindv.getClass());
 					
@@ -266,7 +274,9 @@ public class SetIndividuals {
 								{
 									//creating ... dataProperty into ontology
 									hasproperty = factory.getOWLDataProperty(propertyName, pm);
-									literal=(value.getClass() == tem.getClass())?factory.getOWLLiteral(value.toString(),booleans):factory.getOWLLiteral((String)value,literalDatatype);;
+									//literal=(value.getClass() == tem.getClass())?factory.getOWLLiteral(value.toString(),booleans):factory.getOWLLiteral((String)value,literalDatatype);;
+									
+									literal=factory.getOWLLiteral(value.toString(),typess.get(value.getClass()));
 									axioms.add(factory.getOWLDataPropertyAssertionAxiom(hasproperty,ind,literal));
 								
 								}
@@ -356,20 +366,16 @@ public class SetIndividuals {
 		
 		PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
 		
-		OWLDatatype literalDatatype = factory
-                .getOWLDatatype(OWL2Datatype.RDFS_LITERAL.getIRI());
-		OWLDatatype booleans = factory
-				.getBooleanOWLDatatype();
 		
 		OWLDataProperty hasproperty;
 		OWLLiteral literal; 
 		
 		axioms.add(factory.getOWLClassAssertionAxiom(cls,ind));
 		
-		Boolean tem=new Boolean("true");
+		
 		
 		BeanInfo beanInfo = Introspector.getBeanInfo(markindv.getClass());
-		
+		//System.out.printf("typo de datos %s",flo.getClass().toString());
 		// set all dataProperties of markupentity individuals 
 		for (PropertyDescriptor propertyDesc : beanInfo.getPropertyDescriptors()) {
 		    // get the name of class property
@@ -380,9 +386,17 @@ public class SetIndividuals {
 				if(value != null ){
 					if(!propertyName.equals("class") && !propertyName.equals("metaClass") && !propertyName.endsWith("Collection"))
 					{
-						//creating ... dataProperty into ontology
+						//creating ... dataProperty ontology
 						hasproperty = factory.getOWLDataProperty(propertyName, pm);
-						literal=(value.getClass() == tem.getClass())?factory.getOWLLiteral(value.toString(),booleans):factory.getOWLLiteral((String)value,literalDatatype);;
+						if(value.getClass()== java.util.Date.class){
+							SimpleDateFormat formats = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+							
+							literal=factory.getOWLLiteral(formats.format(value),typess.get(value.getClass()));
+						}
+						else{
+							
+						literal=factory.getOWLLiteral(value.toString(),typess.get(value.getClass()));
+						}
 						axioms.add(factory.getOWLDataPropertyAssertionAxiom(hasproperty,ind,literal));
 					
 					}

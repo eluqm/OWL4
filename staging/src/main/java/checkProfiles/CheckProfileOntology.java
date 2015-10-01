@@ -17,7 +17,7 @@ public class CheckProfileOntology {
 	private OWLOntology loadOntology() throws OWLOntologyCreationException {
     	
 		// Get hold of an ontology manager
-		String pathlinux = "/home/edson/Documentos/OWL4/cancerStaging1/RadLex_OWL"; 
+		String pathlinux = "/home/edson/Documentos/OWL4"; 
         //File file=null; 
         
         // file to save ontology + individuals
@@ -27,7 +27,7 @@ public class CheckProfileOntology {
         
         if (System.getProperty("os.name").toLowerCase().contains("linux")){
 			
-        	file = new File(pathlinux + "/Radlex_3.9.owl");
+        	file = new File(pathlinux + "/SustenAgroOntology.rdf");
         	//fileformated = new File( pathlinux + "/AIM4ind.owl");
         } else {
 			if (System.getProperty("os.name").toLowerCase().contains("mac")) {
@@ -63,7 +63,7 @@ public class CheckProfileOntology {
 		} else {
 			System.out.println("NO");
 			for (OWLProfileViolation v : reportDL.getViolations()) {
-				//System.out.println(v.toString() + "\n\n");
+				System.out.println(v.toString() + "\n\n");
 			}
 		}
 		

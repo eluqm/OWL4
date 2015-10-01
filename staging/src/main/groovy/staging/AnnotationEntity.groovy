@@ -6,7 +6,7 @@ abstract class AnnotationEntity {
 		// uniqueIdentifier from entity
 		String uniqueIdentifier
 		
-		String dateTime;
+		Date dateTime;
 	
 		String name;
 	
