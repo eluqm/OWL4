@@ -25,6 +25,7 @@ abstract class AnnotationEntity {
 	
 		//list of markupEntities
 		def markupEntityCollection = new ArrayList<MarkupEntity>()
+		
 		//list of imagingPhysicalEntities
 		def imagingPhysicalEntityCollection=new ArrayList<ImagingPhysicalEntity>()
 		
