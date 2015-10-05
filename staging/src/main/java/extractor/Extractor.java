@@ -53,26 +53,28 @@ public class Extractor {
 	  // Get hold of an ontology manager
 			String pathlinux = "/home/edson/Documentos/OWL4/cancerStaging1/RadLex_OWL"; 
 	        //File file=null; 
-	        
+	        String listofterm="";
 	        // file to save ontology + individuals
-	        String pathmac="/Users/edson/OWL4/cancerStaging1/RadLex_OWL";
+	        String pathmac="/Users/edson/OWL4";
 	        //File fileformated=null;
 	       // File fileformated = new File("/home/edson/Documentos/OWL4/OWL4/AIM4ind.owl");
 	        
 	        if (System.getProperty("os.name").toLowerCase().contains("linux")){
 				
-	        	file = pathlinux + "/Radlex_3.9.owl";
+	        	file = pathlinux + "/Radlex_3.121.owl";
 	        	fileformated = pathlinux + "/moduleRadlex.owl";
+	        	listofterm="/home/edson/Documentos/";
 	        } else {
 				if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 				
-					file = pathmac + "/Radlex_3.9.owl";
-		        	fileformated = pathmac + "AIM4ind.owl";
+					file = pathmac + "/owlapi.xrdf";
+		        	fileformated = pathmac + "/moduleRadlex.owl";
+		        	listofterm="/Users/edson/OWL4/";
 				} 	
 				
 			}
 	        System.out.println("!!! se paso...");
-    extract(file,"/home/edson/Documentos/OWL4/listofterm.txt", fileformated, "https://edson/luque/moduleRadlex.owl");
+    extract(file,listofterm+"listofterm.txt", fileformated, "https://edson/luque/moduleRadlex.owl");
   }
 
   /**
@@ -112,11 +114,14 @@ public class Extractor {
       System.out.println("Extracting terms from "+ listPath);
       File iriFile = new File(listPath);
       Set<IRI> strippedIRIs = getIRIs(iriFile, "strip ");
+      
+      System.out.println("sali de getIRIS:"+strippedIRIs.toString());
       stripAxioms(source, strippedIRIs);
 
       Set<IRI> includedIRIs = getIRIs(iriFile);
       Set<OWLEntity> entities = getEntities(source, includedIRIs);
-
+      System.out.println("sali de getEntities");
+      System.out.println(entities.toString());
       File extractedFile = new File(targetPath);
       IRI extractedIRI = IRI.create(targetIRI);
       OWLOntology extracted = extractModule(source, entities, extractedIRI);
@@ -155,14 +160,16 @@ public class Extractor {
    * @return the list of the IRIs found
    */
   public static Set<IRI> getIRIs(File file, String prefix) throws FileNotFoundException {
+	  System.out.println("entre a get...IRIS");
     Set<IRI> iris = new HashSet<IRI>();
     Scanner scanner = new Scanner(file);
     while (scanner.hasNextLine()) {
       String line = scanner.nextLine().trim();
       if(!line.startsWith(prefix + "http")) { continue; }
       String suffix = line.substring(prefix.length());
+      System.out.println(suffix);
       String iri = suffix.substring(0, Math.min(suffix.length(), suffix.indexOf(" ")));
-      //System.out.println("<"+ iri +">");
+      System.out.println("<"+ iri +">");
       iris.add(IRI.create(iri));
     }
     return iris;
@@ -217,7 +224,7 @@ public class Extractor {
       Set<OWLEntity> entities, IRI iri) throws OWLOntologyCreationException {
     SyntacticLocalityModuleExtractor extractor =
       new SyntacticLocalityModuleExtractor(
-        ontology.getOWLOntologyManager(), ontology, ModuleType.STAR);
+        ontology.getOWLOntologyManager(), ontology, ModuleType.TOP);
     return extractor.extractAsOntology(entities, iri);
   }
 
