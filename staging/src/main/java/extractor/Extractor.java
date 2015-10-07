@@ -51,7 +51,7 @@ public class Extractor {
 	  String file="";
 	  String fileformated="";
 	  // Get hold of an ontology manager
-			String pathlinux = "/home/edson/Documentos/OWL4/cancerStaging1/RadLex_OWL"; 
+			String pathlinux = "/home/edson/Downloads"; 
 	        //File file=null; 
 	        String listofterm="";
 	        // file to save ontology + individuals
@@ -61,9 +61,9 @@ public class Extractor {
 	        
 	        if (System.getProperty("os.name").toLowerCase().contains("linux")){
 				
-	        	file = pathlinux + "/Radlex_3.121.owl";
+	        	file = pathlinux + "/owlapi.xrdf";
 	        	fileformated = pathlinux + "/moduleRadlex.owl";
-	        	listofterm="/home/edson/Documentos/";
+	        	listofterm="/home/edson/Documentos/OWL4/";
 	        } else {
 				if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 				
@@ -204,10 +204,10 @@ public class Extractor {
     Set<OWLSubAnnotationPropertyOfAxiom> axioms = ontology.getAxioms(AxiomType.SUB_ANNOTATION_PROPERTY_OF);
     ontology.getOWLOntologyManager().removeAxioms(ontology, axioms);
     Set<OWLNamedIndividual> individuals = ontology.getIndividualsInSignature(true);
-    for (OWLNamedIndividual individual: individuals) {
+   /* for (OWLNamedIndividual individual: individuals) {
       Set<OWLIndividualAxiom> axioms2 = ontology.getAxioms(individual);
       ontology.getOWLOntologyManager().removeAxioms(ontology, axioms2);
-    }
+    }*/
   }
 
   /**
@@ -263,7 +263,7 @@ public class Extractor {
     OWLEntityRemover remover = new OWLEntityRemover(manager, Collections.singleton(ontology));
     for(IRI iri: iris) {
       OWLClass cls = df.getOWLClass(iri);
-      //System.out.println("Remove: " + cls);
+      System.out.println("Remove: " + cls);
       cls.accept(remover);
     }
     manager.applyChanges(remover.getChanges());

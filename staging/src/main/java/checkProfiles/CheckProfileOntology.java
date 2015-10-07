@@ -2,12 +2,16 @@ package checkProfiles;
 
 import java.io.File;
 
+import javax.swing.text.BadLocationException;
+
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.UnknownOWLOntologyException;
 import org.semanticweb.owlapi.profiles.OWL2DLProfile;
+import org.semanticweb.owlapi.profiles.OWL2ELProfile;
+import org.semanticweb.owlapi.profiles.OWL2QLProfile;
 import org.semanticweb.owlapi.profiles.OWLProfileReport;
 import org.semanticweb.owlapi.profiles.OWLProfileViolation;
 
@@ -17,7 +21,7 @@ public class CheckProfileOntology {
 	private OWLOntology loadOntology() throws OWLOntologyCreationException {
     	
 		// Get hold of an ontology manager
-		String pathlinux = "/home/edson/Documentos/OWL4"; 
+		String pathlinux = "/home/edson/Downloads"; 
         //File file=null; 
         
         // file to save ontology + individuals
@@ -27,7 +31,7 @@ public class CheckProfileOntology {
         
         if (System.getProperty("os.name").toLowerCase().contains("linux")){
 			
-        	file = new File(pathlinux + "/SustenAgroOntology.rdf");
+        	file = new File(pathlinux + "/owlapi.xrdf");
         	//fileformated = new File( pathlinux + "/AIM4ind.owl");
         } else {
 			if (System.getProperty("os.name").toLowerCase().contains("mac")) {
@@ -69,11 +73,48 @@ public class CheckProfileOntology {
 		
 	}
 	
-	public static void main(String [] args) throws OWLOntologyCreationException
+	private void checkProfileEL () throws BadLocationException, OWLOntologyCreationException {
+		OWLOntology ontology= this.loadOntology();
+		OWL2ELProfile profileEL = new OWL2ELProfile();
+		OWLProfileReport reportEL = profileEL.checkOntology(ontology);
+		
+		//areaEL.setText("");
+		//StyleContext sc = StyleContext.getDefaultStyleContext(); 
+	    //AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, java.awt.Color.BLACK);
+		//StyledDocument doc = areaEL.getStyledDocument();
+		
+		if (reportEL.isInProfile()) {
+			System.out.println("YES");
+		} else {
+			System.out.println("NO");
+			for (OWLProfileViolation v : reportEL.getViolations()) {
+				//System.out.println(v.toString() + "\n\n");
+			}
+		}
+	}
+    
+    private void checkProfileQL () throws BadLocationException, OWLOntologyCreationException {
+    	OWLOntology ontology= this.loadOntology();
+    	OWL2QLProfile profileQL = new OWL2QLProfile();
+		OWLProfileReport reportQL = profileQL.checkOntology(ontology);
+		
+		if (reportQL.isInProfile()) {
+			System.out.println("YES");
+		} else {
+			System.out.println("NO");
+			for (OWLProfileViolation v : reportQL.getViolations()) {
+				//System.out.println(v.toString() + "\n\n");
+			}
+		}
+	}
+	
+	public static void main(String [] args) throws OWLOntologyCreationException, BadLocationException
 	{
 		CheckProfileOntology check = new CheckProfileOntology();
 		//check.loadOntology();
 		check.checkProfileDL();
+		//check.checkProfileEL();
+		//check.checkProfileQL();
 		
 		
 	}
