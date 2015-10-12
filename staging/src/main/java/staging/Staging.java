@@ -146,7 +146,7 @@ public class Staging {
 			individuals.imageannotationscollectIndividuals(m, o, ao, fileformated);
 			individuals.personIndividuals(m,o,ao,fileformated);
 			individuals.annotationIndividuals(m, o, ao, fileformated);
-			
+			individuals.imagingphysicalentityIndividuals(m, o, ao, fileformated);
 			
 			NodeSet<OWLNamedIndividual> instances;
 			for (OWLClass c : o.getClassesInSignature()) {

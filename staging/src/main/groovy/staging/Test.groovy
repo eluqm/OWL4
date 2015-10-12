@@ -67,8 +67,8 @@ class ImagingPhysicalEntity
 {	// uniqueIdentifier from abstract class Entity
 	String uniqueIdentifier
 	//Coded entry data used to describe or capture an imaging physical entity = map string:string [0...n]
-	def typeCode = new ArrayList<HashMap <String,String>>()
-	def annotatorConfidence
+	def typeCode = new ArrayList<ArrayList<HashMap <String,String>>>()
+	String annotatorConfidence
 	String label
 }
 
@@ -158,6 +158,7 @@ class parserAIMFILES
 	void fillimagingPhysicalEntity(Object y, Annotation z)
 	{
 		//z.imagingPhysicalEntityCollection
+		//println "entreeeeeeeee"
 		def map = new ArrayList<ArrayList<HashMap<String,String>>>()
 
 
@@ -166,7 +167,7 @@ class parserAIMFILES
 			def map2=new ArrayList<HashMap<String,String>>()
 			//println 'entro a ...'+node.name()
 			imaginPhy.uniqueIdentifier=node.uniqueIdentifier.'@root'
-			def typeCode = new HashMap<String,String>()
+			//def typeCode = new HashMap<String,String>()
 			imaginPhy.annotatorConfidence= node.annotatorConfidence.'@value'
 			imaginPhy.label=node.label.'@value'
 
@@ -177,23 +178,10 @@ class parserAIMFILES
 				// att2= typ.code.name()
 			}
 
-			/*if (node.typeCode.name() == 'typeCode')
-			 {
-			 println 'encontro ....' + node.typeCode.'@codeSystem'
-			 def temp = new HashMap<String,String>()
-			 node.each  { node2 ->
-			 //temp.put(node2.code.name(),node2.code.'@code') 
-			 println node2.'@codeSystem'
-			 println 'node node'
-			 //temp.put(node2.codeSystem.name(),node2.codeSystem.'@codeSystem')
-			 //temp.put(node2.codeSystemName.name(),node2.codeSystemName.'@codeSystemName')
-			 //temp.put(node2.odeSystemVersion.name(),node2.odeSystemVersion.'@odeSystemVersion')
-			 }
-			 //TypeCode.add(temp)
-			 }*/
-			//println map2
-			z.imagingPhysicalEntityCollection.add(imaginPhy)
 			map.add(map2)
+			imaginPhy.typeCode=map
+			z.imagingPhysicalEntityCollection.add(imaginPhy)
+			//println imaginPhy.toString()
 		}
 		//println map
 
@@ -351,7 +339,7 @@ class parserAIMFILES
 
 				//if (node2.name()=="imageAnnotationStatementCollection"){fillAnnotationsStatement(node2)}
 
-				//if (node2.name()=="imagingPhysicalEntityCollection"){fillimagingPhysicalEntity(node2,anno)}
+				if (node2.name()=="imagingPhysicalEntityCollection"){fillimagingPhysicalEntity(node2,anno)}
 				if(node2.name()=='calculationEntityCollection'){fillcalculationEntity(node2,anno)}
 				if(node2.name()=='markupEntityCollection'){fillmarkupEntity(node2,anno)}
 				//def tre = new DicomImageReferencedE()

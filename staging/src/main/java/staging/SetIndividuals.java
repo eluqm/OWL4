@@ -62,6 +62,7 @@ public class SetIndividuals {
 		typess.put(Integer.class,integers);
 		typess.put(Boolean.class, factory.getBooleanOWLDatatype());
 		typess.put(java.util.Date.class, datess);
+		//typess.put(java.util.ArrayList.class, );
 		
 	}
 	
@@ -383,11 +384,13 @@ public class SetIndividuals {
 		    try {
 		    	//get value of property
 				Object value = propertyDesc.getReadMethod().invoke(markindv);
+				//System.out.println(value.toString() + " " + typess.get(value.getClass()));
 				if(value != null ){
 					if(!propertyName.equals("class") && !propertyName.equals("metaClass") && !propertyName.endsWith("Collection"))
 					{
 						//creating ... dataProperty ontology
 						hasproperty = factory.getOWLDataProperty(propertyName, pm);
+						System.out.println(" "+ value.getClass());
 						if(value.getClass()== java.util.Date.class){
 							SimpleDateFormat formats = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 							
@@ -411,6 +414,46 @@ public class SetIndividuals {
 				e.printStackTrace();
 			}
 		}
+		
+		
+	}
+	
+	void imagingphysicalentityIndividuals(OWLOntologyManager m,OWLOntology o,List<AnnotationsAIM4> ao,File fileformated)
+	{
+		String IRIontology = o.getOntologyID().getOntologyIRI().toString();
+		OWLDataFactory factory = m.getOWLDataFactory();
+		OWLClass cls ;
+		Set<OWLAxiom> axioms = new HashSet<OWLAxiom>();
+		// iterate over all patient annotation 
+				for (AnnotationsAIM4 element : ao) {
+					List<Annotation> elements= (List<Annotation>) element.getImageAnnotations();
+					for(Annotation ann: elements)
+					{
+						
+						//List<ImagingPhysicalEntity> markelements= 
+						for(ImagingPhysicalEntity collectt :(List<ImagingPhysicalEntity>) ann.getImagingPhysicalEntityCollection())
+						{
+							cls=m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#ImagingPhysicalEntity"));
+							
+							
+							OWLNamedIndividual ind = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+collectt.getUniqueIdentifier()));
+											
+							//pds: the individual is adding in the follow method
+							try {
+								setDataProperties(collectt, cls, axioms, factory, o, ind);
+							} catch (IllegalAccessException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IntrospectionException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+											
+						}
+					
+					
+					}
+				}
 		
 		
 	}

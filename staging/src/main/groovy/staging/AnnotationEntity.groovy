@@ -31,4 +31,7 @@ abstract class AnnotationEntity {
 		
 		//list of calculationEntities
 		def calculationEntityCollection= new ArrayList<CalculationEntity>()
+		
+		//list of imagingObservationEntities
+		def imagingObservationEntityCollection = new ArrayList<ImagingObservationEntity>()
 	}
