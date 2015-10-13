@@ -67,9 +67,14 @@ class ImagingPhysicalEntity
 {	// uniqueIdentifier from abstract class Entity
 	String uniqueIdentifier
 	//Coded entry data used to describe or capture an imaging physical entity = map string:string [0...n]
-	def typeCode = new ArrayList<ArrayList<HashMap <String,String>>>()
-	String annotatorConfidence
+	ArrayList<HashMap<String,String>> typeCode = new ArrayList<HashMap <String,String>>()
+	Float annotatorConfidence
 	String label
+	@Override
+	public String toString()
+	{
+		return "ClassPojo [id = "+uniqueIdentifier+", \ntypecode = "+typeCode+", annotatorConfidence = "+annotatorConfidence+", label = "+label+"]";
+	}
 }
 
 // acts  as imageAnnotationCollection=rootclass
@@ -159,7 +164,7 @@ class parserAIMFILES
 	{
 		//z.imagingPhysicalEntityCollection
 		//println "entreeeeeeeee"
-		def map = new ArrayList<ArrayList<HashMap<String,String>>>()
+		//def map = new ArrayList<ArrayList<HashMap<String,String>>>()
 
 
 		y.children().each {node ->
@@ -168,7 +173,7 @@ class parserAIMFILES
 			//println 'entro a ...'+node.name()
 			imaginPhy.uniqueIdentifier=node.uniqueIdentifier.'@root'
 			//def typeCode = new HashMap<String,String>()
-			imaginPhy.annotatorConfidence= node.annotatorConfidence.'@value'
+			imaginPhy.annotatorConfidence= Float.parseFloat((String)node.annotatorConfidence.'@value')
 			imaginPhy.label=node.label.'@value'
 
 			node.typeCode.each{typ->
@@ -178,8 +183,8 @@ class parserAIMFILES
 				// att2= typ.code.name()
 			}
 
-			map.add(map2)
-			imaginPhy.typeCode=map
+			//map.add(map2)
+			imaginPhy.typeCode=map2
 			z.imagingPhysicalEntityCollection.add(imaginPhy)
 			//println imaginPhy.toString()
 		}
@@ -188,6 +193,38 @@ class parserAIMFILES
 
 
 	}
+	void fillimagingObservationEntity(Object y, Annotation Z)
+	{
+		println "---------------"
+		y.children().each {node ->
+			def imaginObs = new ImagingObservationEntity()
+			def map2=new ArrayList<HashMap<String,String>>()
+			//println 'entro a ...'+node.name()
+			imaginObs.uniqueIdentifier=node.uniqueIdentifier.'@root'
+			//def typeCode = new HashMap<String,String>()
+			imaginObs.annotatorConfidence= Float.parseFloat((String)node.annotatorConfidence.'@value');
+			println node.label.'@value'
+			imaginObs.label=node.label.'@value'
+			
+
+			node.typeCode.each{typ->
+				/* You can use toInteger() over the GPathResult object */
+				map2.add(typ.attributes())
+				// att1= typ.'@code'
+				// att2= typ.code.name()
+			}
+
+			//map.add(map2)
+			imaginObs.typeCode=map2
+			//println imaginObs
+			println "---------------"
+			Z.imagingObservationEntityCollection.add(imaginObs)
+			println imaginObs.toString()
+		}
+		
+	}
+	
+	
 	void fillcalculationData(Object y,calculationResult z)
 	{
 		// iterate over CalculationData
@@ -342,6 +379,7 @@ class parserAIMFILES
 				if (node2.name()=="imagingPhysicalEntityCollection"){fillimagingPhysicalEntity(node2,anno)}
 				if(node2.name()=='calculationEntityCollection'){fillcalculationEntity(node2,anno)}
 				if(node2.name()=='markupEntityCollection'){fillmarkupEntity(node2,anno)}
+				if(node2.name()=='imagingObservationEntityCollection'){fillimagingObservationEntity(node2,anno)}
 				//def tre = new DicomImageReferencedE()
 
 

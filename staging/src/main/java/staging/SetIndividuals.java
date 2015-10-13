@@ -62,7 +62,7 @@ public class SetIndividuals {
 		typess.put(Integer.class,integers);
 		typess.put(Boolean.class, factory.getBooleanOWLDatatype());
 		typess.put(java.util.Date.class, datess);
-		//typess.put(java.util.ArrayList.class, );
+		typess.put(java.util.ArrayList.class, literalDatatype);
 		
 	}
 	
@@ -99,9 +99,17 @@ public class SetIndividuals {
 		OWLDataFactory factory = m.getOWLDataFactory();
 		OWLClass cls = m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#ImageAnnotation"));
 		
+		//	object properties from annotationEntity hasObservationEntity
+		OWLObjectProperty hasPhysical= factory.getOWLObjectProperty(IRI.create(IRIontology + "#hasPhysicalEntity"));
+		// object properties from annotationEntity hasPhysicalENtity
+		OWLObjectProperty hasmObservation  = factory.getOWLObjectProperty(IRI.create(IRIontology + "#hasImagingObservation"));
 		// object properties from annotationEntity hasmarkup
 		OWLObjectProperty hasmarkup = factory.getOWLObjectProperty(IRI.create(IRIontology + "#hasMarkupEntity"));
+		
 		List<MarkupEntity> markelements;
+		List<ImagingObservationEntity> obs;
+		List<ImagingPhysicalEntity> phys;
+		
 		OWLIndividual indannotation;
 		Set<OWLAxiom> axioms = new HashSet<OWLAxiom>();
 		
@@ -138,12 +146,24 @@ public class SetIndividuals {
 		        // set objectproperty hasmarkupentity domain: class imageAnnotation range: markupEntity 1 -> 1...*
 			    // get list of markupentity from markupentitycollection
 			    markelements = (List<MarkupEntity>) ann.getMarkupEntityCollection();
+			    obs = (List<ImagingObservationEntity>)ann.getImagingObservationEntityCollection();
+			    phys = (List<ImagingPhysicalEntity>)ann.getImagingPhysicalEntityCollection();
 			    //iterate over all markupentities from an annotation
 			    
 			    for(MarkupEntity an: markelements) {
 			    	indannotation=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
 			    	
 			    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasmarkup,ind,indannotation));
+			    }
+			    for(ImagingObservationEntity an: obs) {
+			    	indannotation=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
+			    	
+			    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasmObservation,ind,indannotation));
+			    }
+			    for(ImagingPhysicalEntity an: phys) {
+			    	indannotation=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
+			    	
+			    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasPhysical,ind,indannotation));
 			    }
 		        
 		        
@@ -364,7 +384,7 @@ public class SetIndividuals {
 
 	void setDataProperties(Object markindv,OWLClass cls,Set<OWLAxiom> axioms,OWLDataFactory factory,OWLOntology o,OWLNamedIndividual ind) throws IntrospectionException, IllegalAccessException
 	{
-		
+		//System.out.println("*****************************+++");
 		PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
 		
 		
@@ -384,22 +404,35 @@ public class SetIndividuals {
 		    try {
 		    	//get value of property
 				Object value = propertyDesc.getReadMethod().invoke(markindv);
-				//System.out.println(value.toString() + " " + typess.get(value.getClass()));
+				
 				if(value != null ){
-					if(!propertyName.equals("class") && !propertyName.equals("metaClass") && !propertyName.endsWith("Collection"))
+					
+					//System.out.println(propertyName+" :"+value + " :" + typess.get(value.getClass()));
+					if(propertyName.equals("typeCode"))
+					{	hasproperty = factory.getOWLDataProperty(propertyName, pm);						
+						for(HashMap<String,String>values:(ArrayList<HashMap<String, String>>) value)
+						{
+							//System.out.println(values.toString());
+							literal=factory.getOWLLiteral(values.toString(),typess.get(value.getClass()));
+							axioms.add(factory.getOWLDataPropertyAssertionAxiom(hasproperty,ind,literal));
+						}
+						
+					}
+					if(!propertyName.equals("class") && !propertyName.equals("metaClass") && !propertyName.endsWith("Collection") && !propertyName.equals("typeCode"))
 					{
 						//creating ... dataProperty ontology
 						hasproperty = factory.getOWLDataProperty(propertyName, pm);
-						System.out.println(" "+ value.getClass());
+						//System.out.println(" "+ value.getClass());
+						
 						if(value.getClass()== java.util.Date.class){
 							SimpleDateFormat formats = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 							
 							literal=factory.getOWLLiteral(formats.format(value),typess.get(value.getClass()));
 						}
 						else{
-							
-						literal=factory.getOWLLiteral(value.toString(),typess.get(value.getClass()));
+							literal=factory.getOWLLiteral(value.toString(),typess.get(value.getClass()));
 						}
+						
 						axioms.add(factory.getOWLDataPropertyAssertionAxiom(hasproperty,ind,literal));
 					
 					}
@@ -418,7 +451,8 @@ public class SetIndividuals {
 		
 	}
 	
-	void imagingphysicalentityIndividuals(OWLOntologyManager m,OWLOntology o,List<AnnotationsAIM4> ao,File fileformated)
+	@SuppressWarnings("unchecked")
+	void imagingphysicalentityIndividuals(OWLOntologyManager m,OWLOntology o,List<AnnotationsAIM4> ao,File fileformated) throws OWLOntologyStorageException
 	{
 		String IRIontology = o.getOntologyID().getOntologyIRI().toString();
 		OWLDataFactory factory = m.getOWLDataFactory();
@@ -433,13 +467,14 @@ public class SetIndividuals {
 						//List<ImagingPhysicalEntity> markelements= 
 						for(ImagingPhysicalEntity collectt :(List<ImagingPhysicalEntity>) ann.getImagingPhysicalEntityCollection())
 						{
+							//System.out.println(collectt);
 							cls=m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#ImagingPhysicalEntity"));
-							
 							
 							OWLNamedIndividual ind = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+collectt.getUniqueIdentifier()));
 											
 							//pds: the individual is adding in the follow method
 							try {
+							//	System.out.println("entre aca");
 								setDataProperties(collectt, cls, axioms, factory, o, ind);
 							} catch (IllegalAccessException e) {
 								// TODO Auto-generated catch block
@@ -454,9 +489,58 @@ public class SetIndividuals {
 					
 					}
 				}
-		
+				
+				m.addAxioms(o, axioms);
+				axioms.clear();
+				//OWLOntologyFormat format = m.getOntologyFormat(o);
+				//m.saveOntology(o,format,IRI.create(fileformated.toURI()));
 		
 	}
+	
+	
+	void imagingObservationentityIndividuals(OWLOntologyManager m,OWLOntology o,List<AnnotationsAIM4> ao,File fileformated)
+	{
+		//String IRIontology = o.getOntologyID().getOntologyIRI().toString();
+		OWLDataFactory factory = m.getOWLDataFactory();
+		OWLClass cls ;
+		Set<OWLAxiom> axioms = new HashSet<OWLAxiom>();
+		// iterate over all patient annotation 
+				for (AnnotationsAIM4 element : ao) {
+					List<Annotation> elements= (List<Annotation>) element.getImageAnnotations();
+					for(Annotation ann: elements)
+					{
+						
+						//List<ImagingPhysicalEntity> markelements= 
+						for(ImagingObservationEntity collectt :(List<ImagingObservationEntity>) ann.getImagingObservationEntityCollection())
+						{
+							System.out.println(collectt);
+							cls=m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#ImagingObservationEntity"));
+							
+							OWLNamedIndividual ind = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+collectt.getUniqueIdentifier()));
+											
+							//pds: the individual is adding in the follow method
+							try {
+							//	System.out.println("entre aca");
+								setDataProperties(collectt, cls, axioms, factory, o, ind);
+							} catch (IllegalAccessException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IntrospectionException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+											
+						}
+					
+					
+					}
+				}
+				
+				m.addAxioms(o, axioms);
+				axioms.clear();
+		
+	}
+	
 	
 
 }
