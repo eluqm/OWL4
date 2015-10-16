@@ -74,9 +74,36 @@ public class Extractor {
 				
 			}
 	        System.out.println("!!! se paso...");
-    extract(file,listofterm+"listofterm.txt", fileformated, "https://edson/luque/moduleRadlex.owl");
+    //extract(file,listofterm+"listofterm.txt", fileformated, "https://edson/luque/moduleRadlex.owl");
+    
+    double x=153.930;
+	double x1=126.884;
+	double y=242.456;
+	double y2=305.414;
+	double resp=5.754;
+	double spacin = Extractor.calculateLineLength(x,x1,y,y2,resp);
+	double resps=Extractor.calculateLineLength2(x,x1,y,y2,resp);
+	System.out.println(spacin);
+	System.out.println( resps);
+	System.out.println( resps*spacin);
   }
-
+  public static double calculateLineLength(Double x,Double  x1,Double y ,Double y2,Double resp) {
+		double result = 0.0D;
+		
+			double length = Math.abs(x - x1);
+			double width = Math.abs( y-y2 );
+			return ((10.0)*(resp))/Math.sqrt(length * length + width * width);
+			
+  }
+  public static double calculateLineLength2(Double x,Double  x1,Double y ,Double y2,Double resp) {
+		double result = 0.0D;
+		
+			double length = Math.abs(x - x1);
+			double width = Math.abs( y-y2 );
+			return Math.sqrt(length * length + width * width);
+			
+}
+  
   /**
    * Given a source ontology and a file with a list of IRIs,
    * extract those IRIs as a module from the source ontology,

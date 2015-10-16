@@ -17,17 +17,39 @@ import groovy.util.slurpersupport.NodeChildren;
 
 class Test {
 	static void main(String[] args) {
-		def a= new parserAIMFILES();
-		println 'pasoo'
-		a.readAnnotationsFiles();
-		println 'paso2'
-		a.fillAnnotationsClass();
-		println 'paso3'
+		//def a= new parserAIMFILES();
+		//println 'pasoo'
+		//a.readAnnotationsFiles();
+		//println 'paso2'
+		//a.fillAnnotationsClass();
+		//println 'paso3'
 		//println a.ls.size()
 		//println a.ls[0].Uid
 		//println a.ls[0].person.name
 		//a.printAnnotations()
+		Double spd= new Double("12312312312.13123123");
+		println spd;
+		double x=195.261
+		double x1=234.854
+		double y=205.159
+		double y2=278.045
+		double resp=6.966
+		double spacin = calculateLineLength(x,x1,y,y2,resp);
+		println spacin;
 	}
+	
+	public double calculateLineLength(Double x,Double  x1,Double y ,Double y2,Double resp) {
+		double result = 0.0D;
+		
+			double length = Math.abs(x - x1);
+			double width = Math.abs( y-y2 );
+			return ((10.0)(resp))/Math.sqrt(length * length + width * width);
+		
+	}
+	
+	
+	
+	//spacin;
 
 }
 
@@ -230,21 +252,8 @@ class parserAIMFILES
 		// iterate over CalculationData
 		y.children().each {node ->
 			def calc = new CalculationData()
-			calc.value = node.value.'@value'
-			//def map2=new ArrayList<HashMap<String,String>>()
-
-			//calc.uniqueIdentifier=node.uniqueIdentifier.'@root'
-
-
-			//calc.unitOfMeasure=node.unitOfMeasure.'@value'
-
-			//node.dataType.each{typ->
-			/* You can use toInteger() over the GPathResult object */
-			//	 map2.add(typ.attributes())
-			//	}
-			//if(node.name()=='calculationDataCollection'){fillcalculationData(node,calc)}
-
-			//calc.dataType = map2
+			calc.value =Double.parseDouble((String) node.value.'@value')
+			
 			z.calculationDataCollection.add(calc)
 			//println calc.value
 		}

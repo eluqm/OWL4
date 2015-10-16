@@ -3,7 +3,7 @@ package staging
 
 class CalculationData
 {
-	def value
+	double value
 	
 }
 class calculationResult

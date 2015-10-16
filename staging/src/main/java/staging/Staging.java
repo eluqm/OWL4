@@ -6,6 +6,7 @@ import java.io.File;
 import org.codehaus.groovy.*;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -41,10 +42,17 @@ import org.semanticweb.owlapi.vocab.OWL2Datatype;
 
 
 
+
+
+
 import com.clarkparsia.modularity.PelletIncremantalReasonerFactory;
 import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
 import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
 //import com.clarkparsia.protege.plugin.pellet.PelletReasonerFactory;
+
+
+
+import extractor.Extractor;
 
 //import uk.ac.manchester.cs.owl.owlapi.OWLOntologyBuilderImpl;
 
@@ -128,6 +136,65 @@ public class Staging {
 			par.fillAnnotationsClass();
 			List<AnnotationsAIM4> ao=(List<AnnotationsAIM4>) par.getLs();
 	        
+			for(AnnotationsAIM4 ab:ao)
+			{
+				for(Annotation a:(List<Annotation>) ab.getImageAnnotations())
+				{
+					List<Double> xs= new ArrayList<Double>() ;
+					List<Double> ys= new ArrayList<Double>();
+					
+					double resp=0;
+					
+					for(CalculationEntity aa:(List<CalculationEntity>) a.getCalculationEntityCollection())
+					{
+						
+						
+						for(calculationResult aaa:(List<calculationResult>) aa.getCalculationResultCollection())
+						{
+							
+							for(CalculationData aaaa:(List<CalculationData>) aaa.getCalculationDataCollection())
+							{
+								resp=(double) aaaa.getValue();
+								
+							}
+							
+						}
+						
+						
+						/*
+						
+						for(MarkupEntity bb:(List<MarkupEntity>) aa.getMarkupEntityCollection())
+						{
+							bb.;
+							
+						}*/
+						
+					}
+					for(twoDimensionGeometricShapeEntity mark:(List<twoDimensionGeometricShapeEntity>)a.getMarkupEntityCollection())
+					{
+						for(twoDSCCollection corrd:	(List<twoDSCCollection>)mark.getTwoDspatialCoordinateCollection())
+						{
+							xs.add((double) corrd.getX());
+							ys.add((double) corrd.getY());
+							
+						}
+					}
+					
+					double spacin = Extractor.calculateLineLength(xs.get(0),xs.get(1),ys.get(0),ys.get(1),resp);
+					double resps=Extractor.calculateLineLength2(xs.get(0),xs.get(1),ys.get(0),ys.get(1),resp);
+					System.out.println("possible pixelspacing :"+spacin);
+					System.out.println("distancia en pixeles :"+ resps);
+					System.out.println("valor en cm :" + resps*spacin);
+					System.out.println("valor en cm real :" + resp);
+					System.out.println("____________________");
+					xs.clear();
+					ys.clear();
+					
+				}
+				
+			}
+		  
+			
 	        //creating person individuals 
 			SetIndividuals individuals = new SetIndividuals(m);
 			try {
