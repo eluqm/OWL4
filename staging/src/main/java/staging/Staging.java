@@ -45,10 +45,12 @@ import org.semanticweb.owlapi.vocab.OWL2Datatype;
 
 
 
+
 import com.clarkparsia.modularity.PelletIncremantalReasonerFactory;
 import com.clarkparsia.pellet.owlapiv3.PelletReasoner;
 import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
 //import com.clarkparsia.protege.plugin.pellet.PelletReasonerFactory;
+
 
 
 
@@ -59,7 +61,7 @@ import extractor.Extractor;
 
 
 public class Staging {
-	public static void main(String[] args) throws OWLOntologyCreationException, OWLOntologyStorageException, IntrospectionException {
+	public static void main(String[] args) throws OWLOntologyCreationException, OWLOntologyStorageException, IntrospectionException, IllegalAccessException {
         //System.out.println("Hello, World!");
         
         // loading the ontology
@@ -149,7 +151,7 @@ public class Staging {
 					{
 						
 						
-						for(calculationResult aaa:(List<calculationResult>) aa.getCalculationResultCollection())
+						for(ExtendedCalculationResult aaa:(List<ExtendedCalculationResult>) aa.getCalculationResultCollection())
 						{
 							
 							for(CalculationData aaaa:(List<CalculationData>) aaa.getCalculationDataCollection())
@@ -182,11 +184,11 @@ public class Staging {
 					
 					double spacin = Extractor.calculateLineLength(xs.get(0),xs.get(1),ys.get(0),ys.get(1),resp);
 					double resps=Extractor.calculateLineLength2(xs.get(0),xs.get(1),ys.get(0),ys.get(1),resp);
-					System.out.println("possible pixelspacing :"+spacin);
+					/*System.out.println("possible pixelspacing :"+spacin);
 					System.out.println("distancia en pixeles :"+ resps);
 					System.out.println("valor en cm :" + resps*spacin);
 					System.out.println("valor en cm real :" + resp);
-					System.out.println("____________________");
+					System.out.println("____________________");*/
 					xs.clear();
 					ys.clear();
 					
@@ -210,6 +212,7 @@ public class Staging {
 				e.printStackTrace();
 			}
 			
+			individuals.calculationEntityCollection(m, o, ao, fileformated);
 			individuals.imagingObservationentityIndividuals(m, o, ao, fileformated);
 			individuals.imagingphysicalentityIndividuals(m, o, ao, fileformated);
 			individuals.imageannotationscollectIndividuals(m, o, ao, fileformated);
@@ -254,7 +257,7 @@ public class Staging {
 				{
 					for(CalculationEntity anncal:(List<CalculationEntity>)ann.getCalculationEntityCollection())
 					{
-						List<CalculationData> li=(List<CalculationData>) ((List<calculationResult>)anncal.getCalculationResultCollection()).get(0).getCalculationDataCollection();
+						//List<CalculationData> li=(List<CalculationData>) ((List<calculationResult>)anncal.getCalculationResultCollection()).get(0).getCalculationDataCollection();
 						//System.out.println(li.get(0).getValue());
 					}
 				}

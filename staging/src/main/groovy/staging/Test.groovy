@@ -217,7 +217,7 @@ class parserAIMFILES
 	}
 	void fillimagingObservationEntity(Object y, Annotation Z)
 	{
-		println "---------------"
+		//println "---------------"
 		y.children().each {node ->
 			def imaginObs = new ImagingObservationEntity()
 			def map2=new ArrayList<HashMap<String,String>>()
@@ -225,7 +225,7 @@ class parserAIMFILES
 			imaginObs.uniqueIdentifier=node.uniqueIdentifier.'@root'
 			//def typeCode = new HashMap<String,String>()
 			imaginObs.annotatorConfidence= Float.parseFloat((String)node.annotatorConfidence.'@value');
-			println node.label.'@value'
+			//println node.label.'@value'
 			imaginObs.label=node.label.'@value'
 			
 
@@ -239,50 +239,65 @@ class parserAIMFILES
 			//map.add(map2)
 			imaginObs.typeCode=map2
 			//println imaginObs
-			println "---------------"
+			//println "---------------"
 			Z.imagingObservationEntityCollection.add(imaginObs)
-			println imaginObs.toString()
+			//println imaginObs.toString()
 		}
 		
 	}
 	
+	void fillCalculationAlgorithm(Object y,CalculationEntity z)
+	{
+		y.each{node ->
+			def algg = new algorithm()
+			algg.name =node.name.'@value'
+			println node.name.'@value'
+			algg.version = Float.parseFloat((String) node.version.'@value')
+			
+			z.algoCollection.add(algg)
+			
+		}
+		
+	}
 	
-	void fillcalculationData(Object y,calculationResult z)
+	void fillcalculationData(Object y,ExtendedCalculationResult z)
 	{
 		// iterate over CalculationData
 		y.children().each {node ->
 			def calc = new CalculationData()
-			calc.value =Double.parseDouble((String) node.value.'@value')
+			calc.value =Float.parseFloat((String) node.value.'@value')
 			
-			z.calculationDataCollection.add(calc)
-			//println calc.value
+				z.calculationDataCollection.add(calc)
+			
+			
+			
 		}
 
 	}
 	void fillCalculationResult(Object y,CalculationEntity z)
 	{
-		// iterate over CalculationResults
-		//println 'zzzzzz'
+		
 		y.children().each {node ->
-			def calc = new calculationResult()
-			def map2=new ArrayList<HashMap<String,String>>()
-			//println node.name()
-			//calc.uniqueIdentifier=node.uniqueIdentifier.'@root'
-
-
-			calc.unitOfMeasure=node.unitOfMeasure.'@value'
-			//println calc.unitOfMeasure
-
-			node.dataType.each{typ->
-				/* You can use toInteger() over the GPathResult object */
-				map2.add(typ.attributes())
-			}
-			fillcalculationData(node.calculationDataCollection,calc)
-
-			calc.dataType = map2
-			//println calc.dataType
+			def calc
+			if(node.'@xsi:type'.text()=='ExtendedCalculationResult'){
+				
+								calc =  new ExtendedCalculationResult();
+								def map2=new ArrayList<HashMap<String,String>>()
+								calc.unitOfMeasure=node.unitOfMeasure.'@value'
+								//println node.unitOfMeasure.'@value'
+								node.dataType.each{typ->
+									/* You can use toInteger() over the GPathResult object */
+									map2.add(typ.attributes())
+								}
+								println "pasando "
+								fillcalculationData(node.calculationDataCollection,calc)
+								println "pasando fillcalculation"
+								//println markTYPE
+								calc.dataType = map2
+								}
+			
 			z.calculationResultCollection.add(calc)
-			//println calc.dataType
+			
 		}
 	}
 	void fillcalculationEntity(Object y, Annotation z)
@@ -291,6 +306,7 @@ class parserAIMFILES
 		//def map = new ArrayList<ArrayList<HashMap<String,String>>>()
 		//println 'entro a '
 		// iterate over CalculationEntitys
+		
 		y.children().each {node ->
 			//println node.name()
 			def calc = new CalculationEntity()
@@ -305,8 +321,11 @@ class parserAIMFILES
 				/* You can use toInteger() over the GPathResult object */
 				map2.add(typ.attributes())
 			}
+			//println node.calculationResultCollection.toString()
 			fillCalculationResult(node.calculationResultCollection,calc)
-
+			//println node.algorithm
+			fillCalculationAlgorithm(node.algorithm,calc)
+			println "pasando fillcalculation"
 			calc.typeCode = map2
 			z.calculationEntityCollection.add(calc)
 			//println calc.typeCode
@@ -373,7 +392,7 @@ class parserAIMFILES
 			//dt=repairDate(dt);
 			def formats = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 			Date dates=formats.parse(dt)
-			println "formats .... : "+ dates.format("yyyy-MM-dd'T'HH:mm:ss");
+			//println "formats .... : "+ dates.format("yyyy-MM-dd'T'HH:mm:ss");
 			anno.dateTime=dates
 			
 			anno.setName((String)node.name."@value")
@@ -464,7 +483,7 @@ class parserAIMFILES
 	{
 		println num
 		setNumberPatients2.each{ k, v -> println "${k}:${v}" }
-		println setNumberPatients2.size()
+		//println setNumberPatients2.size()
 
 
 	}
