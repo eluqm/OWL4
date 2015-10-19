@@ -283,6 +283,7 @@ class parserAIMFILES
 				
 								calc =  new ExtendedCalculationResult();
 								def map2=new ArrayList<HashMap<String,String>>()
+								calc.type=node.'@xsi:type'.text()
 								calc.unitOfMeasure=node.unitOfMeasure.'@value'
 								//println node.unitOfMeasure.'@value'
 								node.dataType.each{typ->

@@ -559,9 +559,8 @@ public class SetIndividuals {
 		Set<OWLAxiom> axioms = new HashSet<OWLAxiom>();
 		
 		
-		OWLObjectProperty hasCalculationResult = factory.getOWLObjectProperty(IRI
-                .create(IRIontology + "#hasCalculationResult"));
-		OWLIndividual calculationresultind;
+		
+		//OWLIndividual calculationresultind;
 		// iterate over all patient annotation 
 		for (AnnotationsAIM4 element : ao) {
 			List<Annotation> elements= (List<Annotation>) element.getImageAnnotations();
@@ -610,7 +609,7 @@ public class SetIndividuals {
 								}
 								if(propertyName.endsWith("Collection"))
 								{	
-									calculationResultIndividuals(m,o,calcindv);
+									calculationResultIndividuals(m,o,(List<calculationResult>)calcindv.getCalculationResultCollection(),calcindv.getUniqueIdentifier(),calcindv);
 									//algorithmIndividuals(m, o, calcindv,calcindv.getType());
 								}
 							
@@ -623,6 +622,130 @@ public class SetIndividuals {
 							e.printStackTrace();
 						}
 					}
+			       
+					
+					/**
+					 * adding OBjectproperties , 
+					 * 
+					 * */
+					
+									    
+				/*    if(calcindv.getType().equals("TwoDimensionMultiPoint"))
+					{	
+						twoDimensionType tempp= (twoDimensionType) calcindv; 
+						for(twoDSCCollection collectt :(List<twoDSCCollection>)tempp.getTwoDspatialCoordinateCollection())
+						{
+							SpatialCoordinateind=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+calcindv.getUniqueIdentifier()+collectt.getCoordinateIndex()));
+					    	
+					    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasSpatialCoordinate,ind,SpatialCoordinateind));
+											
+						}
+					}*/
+				    
+				    				
+					
+				}
+				
+				
+				
+				
+				}
+			}
+		m.addAxioms(o, axioms);
+		axioms.clear();
+	}
+	
+	void calculationResultIndividuals(OWLOntologyManager m,OWLOntology o,List<calculationResult> ao,String uniqueid,CalculationEntity inv) throws IntrospectionException, IllegalAccessException
+	{
+		String IRIontology = o.getOntologyID().getOntologyIRI().toString();
+		OWLDataFactory factory = m.getOWLDataFactory();
+		OWLClass cls ;
+		Set<OWLAxiom> axioms = new HashSet<OWLAxiom>();
+		OWLObjectProperty hasCalculationResult = factory.getOWLObjectProperty(IRI
+                .create(IRIontology + "#hasCalculationResult"));
+		OWLIndividual SpatialCoordinateind;
+		for (calculationResult element : ao) {
+			OWLDataProperty hasproperty;
+			OWLLiteral literal;
+			ExtendedCalculationResult extend;
+			//System.out.println(element.getType().toString());
+					if(element.getType().equals("ExtendedCalculationResult"))
+					{
+						extend=(ExtendedCalculationResult) element;
+						cls=m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#ExtendedCalculationResult"));
+						
+						PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
+						OWLNamedIndividual ind = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+uniqueid+extend.getType()));
+						axioms.add(factory.getOWLClassAssertionAxiom(cls,ind));
+
+						//Boolean tem=new Boolean("true");
+						
+						BeanInfo beanInfo = Introspector.getBeanInfo(extend.getClass());
+						
+						// set all dataProperties of markupentity individuals 
+						for (PropertyDescriptor propertyDesc : beanInfo.getPropertyDescriptors()) {
+						    // get the name of class property
+							String propertyName = propertyDesc.getName();
+						    try {
+						    	//get value of property
+								Object value = propertyDesc.getReadMethod().invoke(extend);
+								if(value != null ){
+									if(!propertyName.equals("class") && !propertyName.equals("metaClass") && !propertyName.endsWith("Collection"))
+									{
+										//creating ... dataProperty into ontology
+										hasproperty = factory.getOWLDataProperty(propertyName, pm);
+																				
+										literal=factory.getOWLLiteral(value.toString(),typess.get(value.getClass()));
+										axioms.add(factory.getOWLDataPropertyAssertionAxiom(hasproperty,ind,literal));
+									
+									}
+									if(propertyName.endsWith("Collection"))
+									{	
+										calculationData(m,o,extend,uniqueid+extend.getType(),axioms,ind);
+										//algorithmIndividuals(m, o, calcindv,calcindv.getType());
+									}
+								
+									}
+						    } catch (IllegalArgumentException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (InvocationTargetException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						    
+						    
+						    
+						    
+						   
+							
+						    
+						    
+						}
+						 /**
+						 * adding OBjectproperties , 
+						 * 
+						 * */
+						
+										    
+					    	
+							//twoDimensionType tempp= (twoDimensionType) calcindv; 
+							
+								SpatialCoordinateind=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+inv.getUniqueIdentifier()));
+						    	
+						    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasCalculationResult,SpatialCoordinateind,ind));
+												
+							
+					
+					
+					
+					}
+					
+						 
+								
+										
+		}		
+					
 			       
 					
 					/**
@@ -645,21 +768,28 @@ public class SetIndividuals {
 				    
 				    	*/			
 					
-				}
-				
-				
-				
-				
-				}
-			}
 		m.addAxioms(o, axioms);
 		axioms.clear();
 	}
 	
-	void calculationResultIndividuals(OWLOntologyManager m,OWLOntology o,CalculationEntity ao)
+	void calculationData(OWLOntologyManager m,OWLOntology o,ExtendedCalculationResult a,String uniq,Set<OWLAxiom> axioms,OWLNamedIndividual ind)
 	{
-		
+		OWLDataFactory factory = m.getOWLDataFactory();
+		OWLDataProperty hasproperty;
+		OWLLiteral literal;
+		PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
+		OWLDatatype flo= factory.getFloatOWLDatatype();
+		for(CalculationData ao: (List<CalculationData>)a.getCalculationDataCollection())
+		{
+			
+			hasproperty = factory.getOWLDataProperty("value", pm);
+			literal=factory.getOWLLiteral(Float.toString(ao.getValue()),flo);
+			axioms.add(factory.getOWLDataPropertyAssertionAxiom(hasproperty,ind,literal));
+			
+		}
 		
 	}
-
+	
+	
+	
 }

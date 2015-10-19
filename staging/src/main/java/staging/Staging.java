@@ -69,19 +69,19 @@ public class Staging {
         File file=null; 
         
         // file to save ontology + individuals
-        String pathmac="/Users/edson/OWL4";
+        String pathmac="/Users/edson/OWL4/owl4versions";
         File fileformated=null;
        // File fileformated = new File("/home/edson/Documentos/OWL4/OWL4/AIM4ind.owl");
         
         if (System.getProperty("os.name").toLowerCase().contains("linux")){
 			
         	file = new File(pathlinux + "/AIM4.owl");
-        	fileformated = new File( pathlinux + "/AIM4ind.owl");
+        	fileformated = new File( pathlinux + "/AIM4ind2.owl");
         } else {
 			if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 			
 				file = new File(pathmac + "/AIM4.owl");
-	        	fileformated = new File( pathmac + "/AIM4ind.owl");
+	        	fileformated = new File( pathmac + "/AIM4ind2.owl");
 			} 	
 			
 		}
