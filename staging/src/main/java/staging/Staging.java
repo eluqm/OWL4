@@ -88,7 +88,7 @@ public class Staging {
         
         
         
-        System.out.println("empezando el codigo");
+        System.out.println("empezando el codigo++");
         
         
         OWLOntologyManager m = OWLManager.createOWLOntologyManager();
@@ -114,6 +114,7 @@ public class Staging {
 			
 			// prepare ontology and reasoner 
 	        PelletReasonerFactory reasonerFactory = PelletReasonerFactory.getInstance();
+	        System.out.println("2 ++++++++++++++++++++");
 			PelletReasoner reasoner = reasonerFactory.createReasoner(o); 
 			
 			//OWLReasoner reasoner2 = reasonerfac.

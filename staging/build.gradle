@@ -22,6 +22,8 @@ repositories {
 
 dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+	compile group: 'com.sun.xml',name:'relaxngDatatype', version:'1.0'
+
 	//compile "org.codehaus.groovy:groovy-all:2.3.10"
 	compile localGroovy()
 	//compile "org.codehaus.groovy:groovy-sources:2.3.10"
