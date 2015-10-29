@@ -76,12 +76,12 @@ public class Staging {
         if (System.getProperty("os.name").toLowerCase().contains("linux")){
 			
         	file = new File(pathlinux + "/AIM4.owl");
-        	fileformated = new File( pathlinux + "/AIM4ind2.owl");
+        	fileformated = new File( pathlinux + "/AIM4ind3.owl");
         } else {
 			if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 			
 				file = new File(pathmac + "/AIM4.owl");
-	        	fileformated = new File( pathmac + "/AIM4ind2.owl");
+	        	fileformated = new File( pathmac + "/AIM4ind3.owl");
 			} 	
 			
 		}
