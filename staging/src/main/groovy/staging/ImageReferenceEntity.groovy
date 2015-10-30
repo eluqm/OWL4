@@ -46,11 +46,12 @@ public class Image {
  * @version 1.0
  * @created 05-sep-2015 02:09:57 p.m.
  */
-abstract class ImageReferenceEntity {
+class ImageReferenceEntity {
 
 	// from Entity
 	String imageAnnotation;
-
+	String type;
+	String uniqueIdentifier;
 	
 }//end ImageReferenceEntity
 

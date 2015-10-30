@@ -35,4 +35,7 @@ abstract class AnnotationEntity {
 		//list of imagingObservationEntities
 		def imagingObservationEntityCollection = new ArrayList<ImagingObservationEntity>()
 		
+		//list of imageReferencedCollection
+		def imagereferencedCollection = new ArrayList<ImageReferenceEntity>()
+		
 	}

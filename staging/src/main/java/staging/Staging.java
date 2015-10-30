@@ -212,7 +212,7 @@ public class Staging {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+			individuals.imageReferencedIndividuals(m,o,ao,fileformated);
 			individuals.calculationEntityCollection(m, o, ao, fileformated);
 			individuals.imagingObservationentityIndividuals(m, o, ao, fileformated);
 			individuals.imagingphysicalentityIndividuals(m, o, ao, fileformated);

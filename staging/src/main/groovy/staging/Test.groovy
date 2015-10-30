@@ -374,6 +374,79 @@ class parserAIMFILES
 
 
 	}
+	
+	
+	void fillimageReferenceEntity(Object y,Annotation z)
+	{
+		y.children().each {node ->
+			
+						//def markTYPE
+						//String imageref=node.imageReferenceUid.'@root'
+						//String referenframe = node.referencedFrameNumber.'@value'
+			ImageReferenceEntity reff
+						if(node.'@xsi:type'.text()=='DicomImageReferenceEntity'){
+							
+							reff =  new DicomImageReferencedE(uniqueIdentifier:(String)node.uniqueIdentifier.'@root',
+								type:(String)node.'@xsi:type'.text())
+			
+							fillImageStudy(node.imageStudy,reff)
+							//println markTYPE
+						}
+						
+						z.imagereferencedCollection.add(reff)
+					}
+		
+	}
+	void fillImageStudy(Object y,DicomImageReferencedE z)
+	{
+		
+		
+			ImageStudy imastdy
+					imastdy=  new ImageStudy(instanceUid:(String)y.instanceUid.'@root')
+					//println imastdy.instanceUid
+					// no startDate and starttime
+					println "///"+(String)y.instanceUid.'@root'
+					//if(node.name())
+					fillImageSeries(y.imageSeries,imastdy)
+					z.setImagestudy(imastdy)
+					
+		
+	}
+	void fillImageSeries(Object y,ImageStudy z)
+	{
+		
+		//println "entreeeeeee"
+		
+			ImageSeries imastdySeries
+					imastdySeries=  new ImageSeries(instanceUid:(String)y.instanceUid.'@root')
+					// no modality
+					println "///"+(String)y.instanceUid.'@root'
+					//fillImages(node.imageCollection,imastdySeries)
+					z.setImageSeries(imastdySeries)
+					
+		
+	}
+	void fillImages(Object y,ImageSeries z)
+	{
+		y.children().each {node ->
+			
+						//def markTYPE
+						//String imageref=node.imageReferenceUid.'@root'
+						//String referenframe = node.referencedFrameNumber.'@value'
+						Image imag
+						//if(node.'@xsi:type'.text()=='DicomImageReferenceEntity'){
+							
+							imag =  new Image(sopClassUid:(String)node.sopClassUid.'@root',
+								sopInstanceUid:(String)node.sopInstanceUid.'@root')
+			
+							//llImageStudy(node.imageStudy,reff)
+							//println markTYPE
+						//}
+						z.imageCollection.add(imag)
+					}
+		
+	}
+	
 	void fillAnnotations(Object y, AnnotationsAIM4 z)
 	{
 
@@ -409,6 +482,8 @@ class parserAIMFILES
 				if(node2.name()=='calculationEntityCollection'){fillcalculationEntity(node2,anno)}
 				if(node2.name()=='markupEntityCollection'){fillmarkupEntity(node2,anno)}
 				if(node2.name()=='imagingObservationEntityCollection'){fillimagingObservationEntity(node2,anno)}
+				if(node2.name()=='imageReferenceEntityCollection'){fillimageReferenceEntity(node2,anno)}
+				
 				//def tre = new DicomImageReferencedE()
 
 

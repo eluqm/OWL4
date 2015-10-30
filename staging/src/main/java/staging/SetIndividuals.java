@@ -97,6 +97,7 @@ public class SetIndividuals {
 		
 	}
 	// create individuals of annotation class
+	@SuppressWarnings("unchecked")
 	void annotationIndividuals(OWLOntologyManager m,OWLOntology o,List<AnnotationsAIM4> ao,File fileformated) throws OWLOntologyStorageException
 	{
 		String IRIontology = o.getOntologyID().getOntologyIRI().toString();
@@ -111,13 +112,14 @@ public class SetIndividuals {
 		OWLObjectProperty hasmarkup = factory.getOWLObjectProperty(IRI.create(IRIontology + "#hasMarkupEntity"));
 		// object properties from annotationEntity hasCalculationEntity
 				OWLObjectProperty hascalculation = factory.getOWLObjectProperty(IRI.create(IRIontology + "#hasCalculationEntity"));
+				OWLObjectProperty hasreferenceImage = factory.getOWLObjectProperty(IRI.create(IRIontology + "#hasImageReference"));
 				OWLObjectProperty haslesion = factory.getOWLObjectProperty(IRI.create(IRIontology + "#hasLesion"));
 		
 		List<MarkupEntity> markelements;
 		List<ImagingObservationEntity> obs;
 		List<ImagingPhysicalEntity> phys;
 		List<CalculationEntity> calc;
-		
+		List<ImageReferenceEntity> reff;
 		OWLIndividual indannotation;
 		Set<OWLAxiom> axioms = new HashSet<OWLAxiom>();
 		
@@ -157,6 +159,7 @@ public class SetIndividuals {
 			    obs = (List<ImagingObservationEntity>)ann.getImagingObservationEntityCollection();
 			    phys = (List<ImagingPhysicalEntity>)ann.getImagingPhysicalEntityCollection();
 			    calc= (List<CalculationEntity>)ann.getCalculationEntityCollection();
+			    reff=(List<ImageReferenceEntity>)ann.getImagereferencedCollection();
 			    //iterate over all markupentities from an annotation
 			    
 			    for(MarkupEntity an: markelements) {
@@ -215,6 +218,11 @@ public class SetIndividuals {
 			    	
 			    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hascalculation,ind,indannotation));
 			    }
+			    for(ImageReferenceEntity an: reff) {
+			    	indannotation=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
+			    	
+			    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasreferenceImage,ind,indannotation));
+			    }
 		        
 		        
 		        
@@ -255,6 +263,7 @@ public class SetIndividuals {
 		axions.add(factory.getOWLObjectPropertyAssertionAxiom(hasLesion,ind,ind2));
 		
 	}
+	@SuppressWarnings("unchecked")
 	void imageannotationscollectIndividuals(OWLOntologyManager m,OWLOntology o,List<AnnotationsAIM4> ao,File fileformated) throws OWLOntologyStorageException
 	{
 		String IRIontology = o.getOntologyID().getOntologyIRI().toString();
@@ -312,6 +321,7 @@ public class SetIndividuals {
 		
 		
 	}
+	@SuppressWarnings("unchecked")
 	void markupIndividuals(OWLOntologyManager m,OWLOntology o,List<AnnotationsAIM4> ao,File fileformated) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IntrospectionException
 	{	String IRIontology = o.getOntologyID().getOntologyIRI().toString();
 		OWLDataFactory factory = m.getOWLDataFactory();
@@ -451,6 +461,7 @@ public class SetIndividuals {
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	void setDataProperties(Object markindv,OWLClass cls,Set<OWLAxiom> axioms,OWLDataFactory factory,OWLOntology o,OWLNamedIndividual ind) throws IntrospectionException, IllegalAccessException
 	{
 		//System.out.println("*****************************+++");
@@ -523,7 +534,7 @@ public class SetIndividuals {
 	@SuppressWarnings("unchecked")
 	void imagingphysicalentityIndividuals(OWLOntologyManager m,OWLOntology o,List<AnnotationsAIM4> ao,File fileformated) throws OWLOntologyStorageException
 	{
-		String IRIontology = o.getOntologyID().getOntologyIRI().toString();
+		//String IRIontology = o.getOntologyID().getOntologyIRI().toString();
 		OWLDataFactory factory = m.getOWLDataFactory();
 		OWLClass cls ;
 		Set<OWLAxiom> axioms = new HashSet<OWLAxiom>();
@@ -574,6 +585,7 @@ public class SetIndividuals {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	void imagingObservationentityIndividuals(OWLOntologyManager m,OWLOntology o,List<AnnotationsAIM4> ao,File fileformated)
 	{
 		//String IRIontology = o.getOntologyID().getOntologyIRI().toString();
@@ -618,9 +630,10 @@ public class SetIndividuals {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	void calculationEntityCollection(OWLOntologyManager m,OWLOntology o,List<AnnotationsAIM4> ao,File fileformated) throws IntrospectionException, IllegalAccessException
 	{
-		String IRIontology = o.getOntologyID().getOntologyIRI().toString();
+		//String IRIontology = o.getOntologyID().getOntologyIRI().toString();
 		OWLDataFactory factory = m.getOWLDataFactory();
 		OWLClass cls ;
 		Set<OWLAxiom> axioms = new HashSet<OWLAxiom>();
@@ -728,9 +741,13 @@ public class SetIndividuals {
 		OWLDataFactory factory = m.getOWLDataFactory();
 		OWLClass cls ;
 		Set<OWLAxiom> axioms = new HashSet<OWLAxiom>();
+		
+		
 		OWLObjectProperty hasCalculationResult = factory.getOWLObjectProperty(IRI
                 .create(IRIontology + "#hasCalculationResult"));
 		OWLIndividual SpatialCoordinateind;
+		
+		
 		for (calculationResult element : ao) {
 			OWLDataProperty hasproperty;
 			OWLLiteral literal;
@@ -839,6 +856,7 @@ public class SetIndividuals {
 		axioms.clear();
 	}
 	
+	@SuppressWarnings("unchecked")
 	void calculationData(OWLOntologyManager m,OWLOntology o,ExtendedCalculationResult a,String uniq,Set<OWLAxiom> axioms,OWLNamedIndividual ind)
 	{
 		OWLDataFactory factory = m.getOWLDataFactory();
@@ -856,7 +874,282 @@ public class SetIndividuals {
 		}
 		
 	}
+	void imageSeriesIndividuals(OWLOntologyManager m,OWLOntology o,Set<OWLAxiom> axioms,ImageStudy imaref,OWLNamedIndividual imageStdyind) throws IntrospectionException, IllegalAccessException
+	{
+		//System.out.println("entreeeeee");
+		String IRIontology = o.getOntologyID().getOntologyIRI().toString();
+		OWLDataFactory factory = m.getOWLDataFactory();
+		OWLClass cls ;
+		OWLDataProperty hasproperty;
+		PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
+		OWLLiteral literal;
+		
+		OWLObjectProperty hasImageSerie = factory.getOWLObjectProperty(IRI
+                .create(IRIontology + "#hasImageSeries"));
+		OWLIndividual imageSrieind;
+		
+		ImageSeries imgStdy= imaref.getImageSeries();	
+		
+		cls=m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#ImageSeries"));
+		OWLNamedIndividual imageSeries = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+imgStdy.getInstanceUid()));
+		axioms.add(factory.getOWLClassAssertionAxiom(cls,imageSeries));
+		
+		BeanInfo beanInfo = Introspector.getBeanInfo(imgStdy.getClass());
+		
+		// set all dataProperties of markupentity individuals 
+		//System.out.println("/////////////////");
+		for (PropertyDescriptor propertyDesc : beanInfo.getPropertyDescriptors()) {
+		    // get the name of class property
+			String propertyName = propertyDesc.getName();
+			
+			
+		    try {
+		    	//get value of property
+				Object value = propertyDesc.getReadMethod().invoke(imgStdy);
+				
+				if(value != null ){
+					if(!propertyName.equals("class") && !propertyName.equals("metaClass") && !propertyName.endsWith("Collection"))
+					{
+						//creating ... dataProperty into ontology
+						//System.out.println(propertyName);
+						//System.out.println(value);
+						hasproperty = factory.getOWLDataProperty(propertyName, pm);
+						//literal=(value.getClass() == tem.getClass())?factory.getOWLLiteral(value.toString(),booleans):factory.getOWLLiteral((String)value,literalDatatype);;
+						
+						literal=factory.getOWLLiteral(value.toString(),typess.get(value.getClass()));
+						axioms.add(factory.getOWLDataPropertyAssertionAxiom(hasproperty,imageStdyind,literal));
+					
+					}
+					if(propertyName.endsWith("Collection"))
+					{	
+						//imageSeriesIndividuals(m,o,axioms,imgStdy,imageStdyind);
+						//imagestudyIndividuals(m,o,axioms,imarefindvDicom,ind);
+						//spatialcoordinatecollectIndividuals(m, o, imarefindv,imarefindv.getType());
+					}
+				
+					}
+		    } catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		//System.out.println("*******************");
+		/**
+		 * adding OBjectproperties , 
+		 * 
+		 * */
+		//imageStdyind=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+imaref.getUniqueIdentifier()));
+    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasImageSerie,imageStdyind,imageSeries));
+		
+		
+	}
+	void imagestudyIndividuals(OWLOntologyManager m,OWLOntology o,Set<OWLAxiom> axioms,DicomImageReferencedE imaref,OWLNamedIndividual ind) throws IllegalAccessException, IntrospectionException
+	{
+		String IRIontology = o.getOntologyID().getOntologyIRI().toString();
+		OWLDataFactory factory = m.getOWLDataFactory();
+		OWLClass cls ;
+		OWLDataProperty hasproperty;
+		PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
+		OWLLiteral literal;
+		
+		
+		OWLObjectProperty hasImageStudys = factory.getOWLObjectProperty(IRI
+                .create(IRIontology + "#hasImageStudy"));
+		
+		
+		
+		ImageStudy imgStdy= imaref.getImagestudy();	
+		System.out.println(imgStdy.getInstanceUid());
+		cls=m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#ImageStudy"));
+		OWLNamedIndividual imageStdyind = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+imgStdy.getInstanceUid()));
+		axioms.add(factory.getOWLClassAssertionAxiom(cls,imageStdyind));
+		
+		//Boolean tem=new Boolean("true");
+		
+		BeanInfo beanInfo = Introspector.getBeanInfo(imgStdy.getClass());
+		
+		// set all dataProperties of markupentity individuals 
+		//
+		for (PropertyDescriptor propertyDesc : beanInfo.getPropertyDescriptors()) {
+		    // get the name of class property
+			String propertyName = propertyDesc.getName();
+			
+			
+		    try {
+		    	//get value of property
+				Object value = propertyDesc.getReadMethod().invoke(imgStdy);
+				System.out.println(propertyName);
+				System.out.println(value);
+				if(value != null ){
+					if(!propertyName.equals("class") && !propertyName.equals("metaClass") && !propertyName.endsWith("Collection") && !propertyName.equals("imageSeries"))
+					{
+						//creating ... dataProperty into ontology
+						//System.out.println(propertyName);
+						//System.out.println(value);
+						hasproperty = factory.getOWLDataProperty(propertyName, pm);
+						//literal=(value.getClass() == tem.getClass())?factory.getOWLLiteral(value.toString(),booleans):factory.getOWLLiteral((String)value,literalDatatype);;
+						
+						literal=factory.getOWLLiteral(value.toString(),typess.get(value.getClass()));
+						axioms.add(factory.getOWLDataPropertyAssertionAxiom(hasproperty,imageStdyind,literal));
+					
+					}
+					if(propertyName.equals("imageSeries"))
+					{	//System.out.println("entreeeeaaaa");
+						imageSeriesIndividuals(m,o,axioms,imgStdy,imageStdyind);
+						//imagestudyIndividuals(m,o,axioms,imarefindvDicom,ind);
+						//spatialcoordinatecollectIndividuals(m, o, imarefindv,imarefindv.getType());
+					}
+				
+					}
+		    } catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println("*******************");
+		
+		
+		//setDataProperties(markindv, cls, axioms, factory, o, ind);
+		
+		//ImageSeries imgSrie = imgStdy.getImageSeries();
+		
+		/**
+		 * adding OBjectproperties , 
+		 * 
+		 * */
+		//imageStdyind=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+imaref.getUniqueIdentifier()));
+    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasImageStudys,ind,imageStdyind));
 	
+	
+	}
+	void imageReferencedIndividuals(OWLOntologyManager m,OWLOntology o,List<AnnotationsAIM4> ao,File fileformated) throws IntrospectionException, IllegalAccessException
+	{
+		String IRIontology = o.getOntologyID().getOntologyIRI().toString();
+		OWLDataFactory factory = m.getOWLDataFactory();
+		OWLClass cls ;
+		Set<OWLAxiom> axioms = new HashSet<OWLAxiom>();
+		
+		
+		
+		
+		
+		
+		// iterate over all patient annotation 
+		for (AnnotationsAIM4 element : ao) {
+			
+			List<Annotation> elements= (List<Annotation>) element.getImageAnnotations();
+			for(Annotation ann: elements)
+			{
+				//System.out.println("Dicom");
+				
+				List<ImageReferenceEntity> markelements= (List<ImageReferenceEntity>) ann.getImagereferencedCollection();
+				
+				//System.out.println(markelements.size());
+				for(ImageReferenceEntity imarefindv:markelements)
+				{
+					
+					cls=m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#"+imarefindv.getType()));
+					
+					PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
+					
+					OWLDataProperty hasproperty;
+					OWLLiteral literal; 
+					
+					
+					if(imarefindv.getType().equals("DicomImageReferenceEntity"))
+					{
+						
+					DicomImageReferencedE imarefindvDicom = (DicomImageReferencedE)imarefindv;
+							
+					OWLNamedIndividual ind = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+imarefindvDicom.getUniqueIdentifier()));
+					axioms.add(factory.getOWLClassAssertionAxiom(cls,ind));
+					
+					//Boolean tem=new Boolean("true");
+					
+					BeanInfo beanInfo = Introspector.getBeanInfo(imarefindvDicom.getClass());
+					
+					// set all dataProperties of markupentity individuals 
+					for (PropertyDescriptor propertyDesc : beanInfo.getPropertyDescriptors()) {
+					    // get the name of class property
+						String propertyName = propertyDesc.getName();
+						//
+					    try {
+					    	//get value of property
+							Object value = propertyDesc.getReadMethod().invoke(imarefindvDicom);
+							if(value != null ){
+								if(!propertyName.equals("class") && !propertyName.equals("metaClass") && !propertyName.endsWith("Collection") && !propertyName.equals("imagestudy"))
+								{
+									//creating ... dataProperty into ontology
+									hasproperty = factory.getOWLDataProperty(propertyName, pm);
+									//literal=(value.getClass() == tem.getClass())?factory.getOWLLiteral(value.toString(),booleans):factory.getOWLLiteral((String)value,literalDatatype);;
+									
+									literal=factory.getOWLLiteral(value.toString(),typess.get(value.getClass()));
+									axioms.add(factory.getOWLDataPropertyAssertionAxiom(hasproperty,ind,literal));
+								
+								}
+								if(propertyName.equals("imagestudy"))
+								{	
+									imagestudyIndividuals(m,o,axioms,imarefindvDicom,ind);
+									//spatialcoordinatecollectIndividuals(m, o, imarefindv,imarefindv.getType());
+								}
+							
+								}
+					    } catch (IllegalArgumentException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (InvocationTargetException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+			       
+					
+					/**
+					 * adding OBjectproperties , 
+					 * 
+					 * */
+					
+									    
+				  /*  if(imarefindv.getType().equals("TwoDimensionMultiPoint"))
+					{	
+						twoDimensionType tempp= (twoDimensionType) imarefindv; 
+						for(twoDSCCollection collectt :(List<twoDSCCollection>)tempp.getTwoDspatialCoordinateCollection())
+						{
+							SpatialCoordinateind=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+imarefindv.getUniqueIdentifier()+collectt.getCoordinateIndex()));
+					    	
+					    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasSpatialCoordinate,ind,SpatialCoordinateind));
+											
+						}
+					}*/
+					
+					
+					
+				    
+				    				
+					
+				}
+					
+					
+				}
+				
+				
+			}
+		    
+		    
+			
+		}
+				
+		m.addAxioms(o, axioms);
+		axioms.clear();
+	
+	
+	}
 	
 	
 }
