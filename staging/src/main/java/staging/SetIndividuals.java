@@ -891,14 +891,14 @@ public class SetIndividuals {
 		ImageSeries imgStdy= imaref.getImageSeries();	
 		
 		cls=m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#ImageSeries"));
-		OWLNamedIndividual imageSeries = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+imgStdy.getInstanceUid()));
+		OWLNamedIndividual imageSeries = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#12"+imgStdy.getInstanceUid()));
 		axioms.add(factory.getOWLClassAssertionAxiom(cls,imageSeries));
 		
 		BeanInfo beanInfo = Introspector.getBeanInfo(imgStdy.getClass());
 		
 		// set all dataProperties of markupentity individuals 
 		//System.out.println("/////////////////");
-		for (PropertyDescriptor propertyDesc : beanInfo.getPropertyDescriptors()) {
+		/*for (PropertyDescriptor propertyDesc : beanInfo.getPropertyDescriptors()) {
 		    // get the name of class property
 			String propertyName = propertyDesc.getName();
 			
@@ -935,7 +935,7 @@ public class SetIndividuals {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}/*
 		//System.out.println("*******************");
 		/**
 		 * adding OBjectproperties , 
@@ -1063,7 +1063,7 @@ public class SetIndividuals {
 					
 					
 					if(imarefindv.getType().equals("DicomImageReferenceEntity"))
-					{
+					{int count=0;
 						
 					DicomImageReferencedE imarefindvDicom = (DicomImageReferencedE)imarefindv;
 							
@@ -1094,7 +1094,7 @@ public class SetIndividuals {
 								
 								}
 								if(propertyName.equals("imagestudy"))
-								{	
+								{	count++;
 									imagestudyIndividuals(m,o,axioms,imarefindvDicom,ind);
 									//spatialcoordinatecollectIndividuals(m, o, imarefindv,imarefindv.getType());
 								}
@@ -1108,7 +1108,7 @@ public class SetIndividuals {
 							e.printStackTrace();
 						}
 					}
-			       
+			      // System.out.println(count);
 					
 					/**
 					 * adding OBjectproperties , 

@@ -38,6 +38,11 @@ public class Image {
 	 * Unique identifier specific for a Service-Object Pair (SOP) class, as specified
 	 * in the DICOM standard.
 	 */
+	@Override
+	public String toString()
+	{
+		return "ClassPojo [sopClassUid = "+sopClassUid+" sopInstanceUid ="+ sopInstanceUid+ "]+"
+	}
 	
 }//end Image
 
@@ -119,6 +124,9 @@ class ImageSeries {
 	String modality;
 	//private ImageStudy imageStudy;
 	def imageCollection= new ArrayList<Image>();
-
-	
+	@Override
+	public String toString()
+	{
+		return "ClassPojo [instanceUid = "+instanceUid+" Modality ="+ modality +" imageCollection= "+ imageCollection+"]+"
+	}
 }//end ImageSeries

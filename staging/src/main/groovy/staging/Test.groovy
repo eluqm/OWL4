@@ -34,8 +34,8 @@ class Test {
 		double y=205.159
 		double y2=278.045
 		double resp=6.966
-		double spacin = calculateLineLength(x,x1,y,y2,resp);
-		println spacin;
+		//double spacin = calculateLineLength(x,x1,y,y2,resp);
+		//println spacin;
 	}
 	
 	public double calculateLineLength(Double x,Double  x1,Double y ,Double y2,Double resp) {
@@ -290,9 +290,9 @@ class parserAIMFILES
 									/* You can use toInteger() over the GPathResult object */
 									map2.add(typ.attributes())
 								}
-								println "pasando "
+								//println "pasando "
 								fillcalculationData(node.calculationDataCollection,calc)
-								println "pasando fillcalculation"
+								//println "pasando fillcalculation"
 								//println markTYPE
 								calc.dataType = map2
 								}
@@ -326,7 +326,7 @@ class parserAIMFILES
 			fillCalculationResult(node.calculationResultCollection,calc)
 			//println node.algorithm
 			fillCalculationAlgorithm(node.algorithm,calc)
-			println "pasando fillcalculation"
+			//println "pasando fillcalculation"
 			calc.typeCode = map2
 			z.calculationEntityCollection.add(calc)
 			//println calc.typeCode
@@ -401,12 +401,13 @@ class parserAIMFILES
 	{
 		
 		
-			ImageStudy imastdy
+					ImageStudy imastdy
 					imastdy=  new ImageStudy(instanceUid:(String)y.instanceUid.'@root')
 					//println imastdy.instanceUid
 					// no startDate and starttime
 					println "///"+(String)y.instanceUid.'@root'
 					//if(node.name())
+					//println y.imageSeries.name()
 					fillImageSeries(y.imageSeries,imastdy)
 					z.setImagestudy(imastdy)
 					
@@ -417,31 +418,25 @@ class parserAIMFILES
 		
 		//println "entreeeeeee"
 		
-			ImageSeries imastdySeries
+					ImageSeries imastdySeries
 					imastdySeries=  new ImageSeries(instanceUid:(String)y.instanceUid.'@root')
 					// no modality
-					println "///"+(String)y.instanceUid.'@root'
-					//fillImages(node.imageCollection,imastdySeries)
+					
+					fillImages(y.imageCollection,imastdySeries)
+					println "///"+imastdySeries.toString()
 					z.setImageSeries(imastdySeries)
 					
 		
 	}
 	void fillImages(Object y,ImageSeries z)
 	{
+		
 		y.children().each {node ->
 			
-						//def markTYPE
-						//String imageref=node.imageReferenceUid.'@root'
-						//String referenframe = node.referencedFrameNumber.'@value'
-						Image imag
-						//if(node.'@xsi:type'.text()=='DicomImageReferenceEntity'){
-							
-							imag =  new Image(sopClassUid:(String)node.sopClassUid.'@root',
-								sopInstanceUid:(String)node.sopInstanceUid.'@root')
-			
-							//llImageStudy(node.imageStudy,reff)
-							//println markTYPE
-						//}
+				
+						Image imag =  new Image(sopInstanceUid:(String)node.sopInstanceUid.'@root')
+						String str=(String)node.sopClassUid.'@root'
+						println str
 						z.imageCollection.add(imag)
 					}
 		
