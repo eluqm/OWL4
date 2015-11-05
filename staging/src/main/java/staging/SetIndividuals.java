@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URI;
 
 import jdk.nashorn.internal.runtime.ListAdapter;
 
@@ -28,6 +29,7 @@ import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLDataPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLDatatype;
+import org.semanticweb.owlapi.model.OWLDifferentIndividualsAxiom;
 import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
@@ -314,10 +316,22 @@ public class SetIndividuals {
 		
 		}
 		
+							Set<OWLIndividual> annots = new   HashSet<OWLIndividual>();
+		
+				      		
 		 
 			
-			m.addAxioms(o, axioms);
-			axioms.clear();
+				             m.addAxioms(o, axioms);
+				             annots=cls.getIndividuals(o);
+				 			
+					            
+					      		System.out.println("numero de individuals: "+annots.size());
+					             OWLDifferentIndividualsAxiom differentCountriesAx =  
+					            		 factory.getOWLDifferentIndividualsAxiom(annots);
+					             m.addAxiom(o, differentCountriesAx);
+				             
+				             
+				             axioms.clear();
 		
 		
 	}
@@ -867,11 +881,12 @@ public class SetIndividuals {
 		for(CalculationData ao: (List<CalculationData>)a.getCalculationDataCollection())
 		{
 			
-			hasproperty = factory.getOWLDataProperty("value", pm);
-			literal=factory.getOWLLiteral(Float.toString(ao.getValue()),flo);
+			hasproperty = factory.getOWLDataProperty("values", pm);
+			literal=factory.getOWLLiteral(Float.toString(ao.getValues()),flo);
 			axioms.add(factory.getOWLDataPropertyAssertionAxiom(hasproperty,ind,literal));
 			
 		}
+		//setDataProperties(markindv, cls, axioms, factory, o, ind);
 		
 	}
 	void imageSeriesIndividuals(OWLOntologyManager m,OWLOntology o,Set<OWLAxiom> axioms,ImageStudy imaref,OWLNamedIndividual imageStdyind) throws IntrospectionException, IllegalAccessException

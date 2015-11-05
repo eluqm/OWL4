@@ -8,7 +8,7 @@ class algorithm{
 }
 class CalculationData
 {
-	float value
+	float values
 	
 }
 class calculationResult

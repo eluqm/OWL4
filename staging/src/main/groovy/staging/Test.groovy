@@ -265,7 +265,7 @@ class parserAIMFILES
 		// iterate over CalculationData
 		y.children().each {node ->
 			def calc = new CalculationData()
-			calc.value =Float.parseFloat((String) node.value.'@value')
+			calc.values =Float.parseFloat((String) node.value.'@value')
 			
 				z.calculationDataCollection.add(calc)
 			

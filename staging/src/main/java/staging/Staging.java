@@ -76,12 +76,12 @@ public class Staging {
         if (System.getProperty("os.name").toLowerCase().contains("linux")){
 			
         	file = new File(pathlinux + "/AIM4.owl");
-        	fileformated = new File( pathlinux + "/AIM4ind3.owl");
+        	fileformated = new File( pathlinux + "/AIM4ind4.owl");
         } else {
 			if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 			
 				file = new File(pathmac + "/AIM4.owl");
-	        	fileformated = new File( pathmac + "/AIM4ind3.owl");
+	        	fileformated = new File( pathmac + "/AIM4ind4.owl");
 			} 	
 			
 		}
@@ -157,7 +157,7 @@ public class Staging {
 							
 							for(CalculationData aaaa:(List<CalculationData>) aaa.getCalculationDataCollection())
 							{
-								resp=(double) aaaa.getValue();
+								resp=(double) aaaa.getValues();
 								
 							}
 							
@@ -219,6 +219,8 @@ public class Staging {
 			individuals.imageannotationscollectIndividuals(m, o, ao, fileformated);
 			individuals.personIndividuals(m,o,ao,fileformated);
 			individuals.annotationIndividuals(m, o, ao, fileformated);
+			
+			
 			
 			
 			NodeSet<OWLNamedIndividual> instances;
