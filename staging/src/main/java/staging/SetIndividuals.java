@@ -173,7 +173,7 @@ public class SetIndividuals {
 			    	PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
 		    		OWLDataProperty hasproperty;
 		    		OWLLiteral literal; 
-		    		hasproperty = factory.getOWLDataProperty("hasLesion", pm);	
+		    		hasproperty = factory.getOWLDataProperty("hasLesionBool", pm);	
 		    		
 		    		
 		    		indannotation=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
@@ -202,7 +202,7 @@ public class SetIndividuals {
 			    	PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
 		    		OWLDataProperty hasproperty;
 		    		OWLLiteral literal; 
-		    		hasproperty = factory.getOWLDataProperty("hasLesion", pm);
+		    		hasproperty = factory.getOWLDataProperty("hasLesionBool", pm);
 		    		literal=factory.getOWLLiteral("false",typess.get(Boolean.class));
 					axioms.add(factory.getOWLDataPropertyAssertionAxiom(hasproperty,ind,literal));
 			    }
@@ -240,6 +240,21 @@ public class SetIndividuals {
 		    axioms.clear();
 			
 		}
+				
+				Set<OWLIndividual> annots = new   HashSet<OWLIndividual>();
+		
+  		
+		 
+		
+					/***
+						all individuals diferents
+					****/
+						annots=cls.getIndividuals(o);
+		       		System.out.println("numero de individuals: "+annots.size());
+					OWLDifferentIndividualsAxiom differentCountriesAx =  
+							factory.getOWLDifferentIndividualsAxiom(annots);
+					m.addAxiom(o, differentCountriesAx);
+					/**********************************/
 		
 				OWLOntologyFormat format = m.getOntologyFormat(o);
 				
