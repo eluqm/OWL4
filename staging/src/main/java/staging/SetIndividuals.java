@@ -89,8 +89,16 @@ public class SetIndividuals {
 		}
 		
 		
-		
-		
+		Set<OWLIndividual> annots = new   HashSet<OWLIndividual>();
+		/***
+		all individuals diferents
+	****/
+		annots=cls.getIndividuals(o);
+		System.out.println("numero de individuals: "+annots.size());
+	OWLDifferentIndividualsAxiom differentCountriesAx =  
+			factory.getOWLDifferentIndividualsAxiom(annots);
+	m.addAxiom(o, differentCountriesAx);
+	/**********************************/
 		OWLOntologyFormat format = m.getOntologyFormat(o);
 		
 		m.saveOntology(o,format,IRI.create(fileformated.toURI()));
