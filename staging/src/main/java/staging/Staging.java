@@ -70,6 +70,7 @@ public class Staging {
         
         // file to save ontology + individuals
         String pathmac="/Users/edson/OWL4/owl4versions";
+        String pathwindows="C:\\OWL4\\owl4versions";
         File fileformated=null;
        // File fileformated = new File("/home/edson/Documentos/OWL4/OWL4/AIM4ind.owl");
         
@@ -82,7 +83,15 @@ public class Staging {
 			
 				file = new File(pathmac + "/AIM4.owl");
 	        	fileformated = new File( pathmac + "/AIM4ind4.owl");
-			} 	
+			}
+			else{
+				if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+					
+					file = new File(pathwindows + "/AIM4.owl");
+		        	fileformated = new File( pathwindows + "/AIM4ind5.owl");
+				}
+				
+			}
 			
 		}
         

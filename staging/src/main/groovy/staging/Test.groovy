@@ -117,6 +117,7 @@ class parserAIMFILES
 	def list=[]
 	def pathLinux="/home/edson/Documentos/OWL4/annotations"
 	def pathmac="/Users/edson/OWL4/annotations"
+	def pathwindows="C:\\OWL4\\annotations"
 	def dir
 	def num=0
 	def aimfile
@@ -143,9 +144,12 @@ class parserAIMFILES
 			if (System.properties['os.name'].toLowerCase().contains('mac')) {
 				println "it's mac"
 				dir = new File(pathmac)
-			} 	else {
+			}else{
+			if(System.properties['os.name'].toLowerCase().contains('windows'))
+				println "it's  Windows"
+				dir = new File(pathwindows)
 			}
-			println "it's  Windows"
+			
 		}
 
 		dir.eachFileRecurse(FileType.FILES) {
