@@ -1620,14 +1620,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#description"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#type"/>
+                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#type"/>
-                <owl:minCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minCardinality>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#description"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1646,7 +1646,13 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeDesignator"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#label"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1670,14 +1676,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#label"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isPresent"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1688,8 +1688,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isPresent"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeDesignator"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1702,7 +1702,19 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeMeaning"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#label"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeValue"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1720,25 +1732,13 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#label"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeValue"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#annotatorConfidence"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeMeaning"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1752,49 +1752,7 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#name"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#precedentReferencedAnnotationUID"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeValue"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#uniqueIdentifier"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#dateTime"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeVersion"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeDesignator"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1812,7 +1770,49 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeDesignator"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#dateTime"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#aimVersion"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeValue"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#precedentReferencedAnnotationUID"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeVersion"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#name"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1826,7 +1826,7 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#description"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#aimVersion"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1838,7 +1838,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#aimVersion"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#description"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1858,13 +1858,13 @@
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Entity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#typeCode"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#precedentReferencedAnnotationUID"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#precedentReferencedAnnotationUID"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#typeCode"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1922,25 +1922,25 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeMeaning"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeValue"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#roleSequenceNumber"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#roleSequenceNumber"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeValue"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1960,13 +1960,13 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#subjectUniqueIdentifier"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#objectUniqueIdentifier"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#objectUniqueIdentifier"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#subjectUniqueIdentifier"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1994,12 +1994,6 @@
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Entity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#mathML"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#description"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
@@ -2014,6 +2008,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#questionIndex"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#mathML"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2038,12 +2038,6 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#unitOfMeasure"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#type"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
@@ -2051,6 +2045,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#dateType"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#unitOfMeasure"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2064,14 +2064,14 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#annotatorConfidence"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#name"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#name"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#annotatorConfidence"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2090,13 +2090,13 @@
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#CalculationResult"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#compression"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#encoding"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#encoding"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#compression"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2116,13 +2116,13 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#dimensionIndex"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#position"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#position"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#dimensionIndex"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2150,13 +2150,13 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#size"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#label"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#label"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#size"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2185,14 +2185,8 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#manufacturerModelName"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#softwareVersion"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2203,8 +2197,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#softwareVersion"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#manufacturerModelName"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2232,13 +2232,7 @@
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#MarkupEntity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#shapeIdentifier"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#lineOpacity"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#lineColor"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2250,25 +2244,31 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#lineColor"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#lineStyle"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#includeFlag"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#lineOpacity"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#lineThickness"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#shapeIdentifier"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#lineStyle"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2366,13 +2366,13 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#sopClassUID"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#sopInstanceUID"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#sopInstanceUID"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#sopClassUID"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2458,12 +2458,6 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#startDate"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#procedureDescription"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
@@ -2480,6 +2474,12 @@
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#startDate"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2490,7 +2490,13 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeMeaning"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#label"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2502,20 +2508,20 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#comment"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeValue"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeMeaning"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#annotatorConfidence"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2526,13 +2532,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#label"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#annotatorConfidence"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#comment"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2546,25 +2546,13 @@
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Entity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#annotatorConfidence"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeValue"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeDesignator"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#label"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeMeaning"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2576,18 +2564,6 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isPresent"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeMeaning"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#typeCode"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;string"/>
@@ -2595,14 +2571,38 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeVersion"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#label"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isPresent"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeDesignator"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeValue"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#annotatorConfidence"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeVersion"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2654,19 +2654,25 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeVersion"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeDesignator"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeMeaning"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeMeaning"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeValue"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2678,13 +2684,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeValue"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeDesignator"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2710,25 +2710,25 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#minOperator"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#maxOperator"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#minValue"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#minOperator"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#maxValue"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#maxOperator"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2740,12 +2740,6 @@
 
     <owl:Class rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion">
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Tumor"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isCloseToVein"/>
-                <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#HepaticVascularity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Vasculature_Proximity"/>
@@ -2790,6 +2784,12 @@
                         </owl:oneOf>
                     </rdfs:Datatype>
                 </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isCloseToVein"/>
+                <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#HepaticVascularity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2854,13 +2854,19 @@
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#CharacteristicQuantification"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeValue"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeDesignator"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeDesignator"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeMeaning"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeValue"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2868,12 +2874,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codingSchemeVersion"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#codeMeaning"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2886,12 +2886,6 @@
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#CharacteristicQuantification"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#values"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#operator"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
@@ -2899,6 +2893,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#ucumString"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#values"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2911,7 +2911,7 @@
     <owl:Class rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#Parameter">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#dataType"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#name"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2923,7 +2923,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#name"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#dataType"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2947,14 +2947,14 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#sex"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#sex"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2965,14 +2965,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#ethnicGroup"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#name"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#name"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#ethnicGroup"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2991,13 +2991,13 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#sopInstanceUID"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#sopInstanceUID"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3025,13 +3025,13 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#referencedAnnotationUID"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#referencedAnnotationUID"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3045,13 +3045,13 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#uniqueIdentifier"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#uniqueIdentifier"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3124,13 +3124,13 @@
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#CharacteristicQuantification"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#comment"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#description"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#description"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#comment"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3165,13 +3165,13 @@
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#TNMliver"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isNotLocatedInRegion"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isLocatedInRegion"/>
                 <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Region"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isLocatedInRegion"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isNotLocatedInRegion"/>
                 <owl:allValuesFrom rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Region"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3184,12 +3184,6 @@
 
     <owl:Class rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#Segmentation">
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#sopInstanceUID"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#segmentNumber"/>
@@ -3205,6 +3199,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#sopClassUID"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#sopInstanceUID"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3281,19 +3281,25 @@
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#fontEffect"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#fontOpacity"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#text"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#fontSize"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#text"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3311,13 +3317,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#fontSize"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#fontEffect"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#textJustify"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3329,8 +3329,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#textJustify"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#cagridId"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3343,7 +3343,7 @@
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#GeometricShapeEntity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#y"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#x"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3355,7 +3355,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#x"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#y"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3429,6 +3429,12 @@
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#GeometricShapeEntity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Uri"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#referencedFrameNumber"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
@@ -3436,12 +3442,6 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#imageReferenceUID"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Uri"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3478,6 +3478,12 @@
     <owl:Class rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#TwoDimensionSpatialCoordinate">
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#coordinateIndex"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#y"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
@@ -3485,12 +3491,6 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#x"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#coordinateIndex"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3528,13 +3528,13 @@
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#ImageReferenceEntity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#uri"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#mineType"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#mineType"/>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#uri"/>
                 <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3546,6 +3546,18 @@
 
     <owl:Class rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#User">
         <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#name"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#roleInTrial"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#loginName"/>
@@ -3562,18 +3574,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#numberWithinRoleOfClinicalTrial"/>
                 <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#roleInTrial"/>
-                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#name"/>
-                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3624,7 +3624,11 @@
     <!-- http://www.owl-ontologies.com/Ontology1311106921.owl#tnm -->
 
     <owl:Class rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#tnm">
-        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#TumorStageT"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:complementOf rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#multiTx"/>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -8062,38 +8066,41 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#VAG-1-385-319433"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#12yo41am1275kqwxswcvxifmasy4l04bvwe92mvu"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#1k120uhuwdzi1dca54bb5voliml5cxou9ubvript"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#2ra100di9lmzd56hgkpskanc8xwugxbbotneq1hy"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#32n10hxaibutivjsia5barkbuzov8w4fwxzik3k0"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#33sk06izc6dxx0bpkr6k9lf6dphfpv77cuicu94z"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#3jjl9x8mqwi37h543xp016x2gl3cpc6n66bvc32w"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#6cio6gwqos69wnntxgjjw7m68kfge4v33qqjq1bg"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#7g0qhsbx1zghghxrsi4f63nbluqknlathzbjkh07"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#7mrpf7j8aim5k7qnafdiqw4b2nae5c6bdzod64at"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#7x6dog27d4inwokuu6hoap0vvh8uuohzsbafwc6y"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#8asnauwofzfid1f00pqxvzsth7cc3uoqtmaw8ofk"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#8ixmtfhbiqujozezrep1r90t1n0po8wxyfy5svzs"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#cce2vybfmv478f1yn8rbtjhnc6e18viszcjt5cf6"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#du7wlht8jux1tznlvky7c1c8w9mcm5y5gen42z2p"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#dye33rel0dss9oeytktfwdqhuv1gqr4hfq2olf5j"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#gkb8r42y5wov3hcnapyngcrodjdztpey9jfq2w6z"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#h5k33t76t6cte9ka8x9winxe7nn6bfngjry4y5cd"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#habaatfnuty165fujvwubtlzdi0tpkq730po7a8c"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#la4c8wnuqxovs225rvx32barjuyg9jyfp5tya9e8"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#morvw4b3q3e79v70vo889eboru2tet1oedkwbw1l"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#o5bn9x9mbr36kmt5di86rejyf9632v2vi82sjo8p"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#ojbwwweg5kykzrogz4pdbqxhuaixljw5y1ou37za"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#or28x6t3mja447whd2kg7qynqenao7l8r2x58kz8"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#poc08rz9w61hakp9pnbcf4wtpybkdnxkhwujkpkj"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#q3trlhclt7ovmuu1yn4j3s8dqnp6zbkfbe9e6ecm"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#rrgbxbxj5ph29nsnbnp8xjsq8c7xgkihd26k6nn0"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#u2c6jgwoywl0f9rd0uerbrg2l27r19qh3e9vbfbf"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#z8rpezou0l3jlf957oz3rhb4guxm5l51nwf58f6n"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#GMC-1-455-195325"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#CRG-1-849-187579"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#GG-1-220-214415"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#JCZ-1-215-141706"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#JEL-1-204-137836"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#JM-1-270-183974"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#VL-1-599-130329"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#MAA-1-161-172151"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#PN-1-106-275407"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
@@ -8132,7 +8139,50 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#JM-1-270-183974"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#WD-1-215-145626"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#PN-1-106-275407"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#GL-1-160-282690"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#GG-1-220-214415"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#JCZ-1-215-141706"/>
             <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#JEL-1-204-137836"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#JM-1-270-183974"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#GMC-1-455-195325"/>
             <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
         </owl:distinctMembers>
     </rdf:Description>
@@ -8146,8 +8196,8 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#PN-1-106-275407"/>
             <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RT-1-286-156785"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
@@ -8161,13 +8211,20 @@
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#WD-1-215-145626"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#VL-1-599-130329"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#JM-1-270-183974"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#JEL-1-204-137836"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#CRG-1-849-187579"/>
             <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
         </owl:distinctMembers>
     </rdf:Description>
@@ -8175,27 +8232,7 @@
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#MAA-1-161-172151"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#PN-1-106-275407"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#TN-1-876-126634"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#TN-1-876-126634"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#WD-1-215-145626"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#VAG-1-385-319433"/>
         </owl:distinctMembers>
     </rdf:Description>
     <rdf:Description>
@@ -8208,55 +8245,22 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDifferent"/>
         <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#TN-1-876-126634"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#WD-1-215-145626"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#TN-1-876-126634"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
             <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#TK-1-331-293694"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RT-1-286-156785"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#GL-1-160-282690"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#RB-1-792-293068"/>
-        </owl:distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDifferent"/>
-        <owl:distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#12yo41am1275kqwxswcvxifmasy4l04bvwe92mvu"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#1k120uhuwdzi1dca54bb5voliml5cxou9ubvript"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#2ra100di9lmzd56hgkpskanc8xwugxbbotneq1hy"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#32n10hxaibutivjsia5barkbuzov8w4fwxzik3k0"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#33sk06izc6dxx0bpkr6k9lf6dphfpv77cuicu94z"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#3jjl9x8mqwi37h543xp016x2gl3cpc6n66bvc32w"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#6cio6gwqos69wnntxgjjw7m68kfge4v33qqjq1bg"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#7g0qhsbx1zghghxrsi4f63nbluqknlathzbjkh07"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#7mrpf7j8aim5k7qnafdiqw4b2nae5c6bdzod64at"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#7x6dog27d4inwokuu6hoap0vvh8uuohzsbafwc6y"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#8asnauwofzfid1f00pqxvzsth7cc3uoqtmaw8ofk"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#8ixmtfhbiqujozezrep1r90t1n0po8wxyfy5svzs"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#cce2vybfmv478f1yn8rbtjhnc6e18viszcjt5cf6"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#du7wlht8jux1tznlvky7c1c8w9mcm5y5gen42z2p"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#dye33rel0dss9oeytktfwdqhuv1gqr4hfq2olf5j"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#gkb8r42y5wov3hcnapyngcrodjdztpey9jfq2w6z"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#h5k33t76t6cte9ka8x9winxe7nn6bfngjry4y5cd"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#habaatfnuty165fujvwubtlzdi0tpkq730po7a8c"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#la4c8wnuqxovs225rvx32barjuyg9jyfp5tya9e8"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#morvw4b3q3e79v70vo889eboru2tet1oedkwbw1l"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#o5bn9x9mbr36kmt5di86rejyf9632v2vi82sjo8p"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#ojbwwweg5kykzrogz4pdbqxhuaixljw5y1ou37za"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#or28x6t3mja447whd2kg7qynqenao7l8r2x58kz8"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#poc08rz9w61hakp9pnbcf4wtpybkdnxkhwujkpkj"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#q3trlhclt7ovmuu1yn4j3s8dqnp6zbkfbe9e6ecm"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#rrgbxbxj5ph29nsnbnp8xjsq8c7xgkihd26k6nn0"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#u2c6jgwoywl0f9rd0uerbrg2l27r19qh3e9vbfbf"/>
-            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#z8rpezou0l3jlf957oz3rhb4guxm5l51nwf58f6n"/>
         </owl:distinctMembers>
     </rdf:Description>
     
@@ -8305,7 +8309,7 @@
                         <rdf:first>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#SegmentII"/>
+                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#SegmentIII"/>
                                 <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isLocatedInSegment"/>
                                 <swrl:argument1 rdf:resource="urn:swrl#x"/>
                             </rdf:Description>
@@ -8321,6 +8325,92 @@
                 </rdf:first>
             </rdf:Description>
         </swrl:body>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#SegmentIVa"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isLocatedInSegment"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
+                        <swrl:argument2>invaded</swrl:argument2>
+                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Vasculature_Proximity"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#SegmentV"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isLocatedInSegment"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
+                        <swrl:argument2>invaded</swrl:argument2>
+                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Vasculature_Proximity"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>
@@ -8392,59 +8482,9 @@
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
-                        <swrl:argument2>invaded</swrl:argument2>
-                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Vasculature_Proximity"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest rdf:resource="&rdf;nil"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#SegmentV"/>
-                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isLocatedInSegment"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                            </rdf:Description>
-                        </rdf:first>
-                    </rdf:Description>
-                </rdf:rest>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:body>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -8459,6 +8499,13 @@
                         </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
             </rdf:Description>
         </swrl:body>
         <swrl:head>
@@ -8481,140 +8528,6 @@
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Person"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest rdf:resource="&rdf;nil"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                                <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Tx"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                            </rdf:Description>
-                        </rdf:first>
-                    </rdf:Description>
-                </rdf:rest>
-            </rdf:Description>
-        </swrl:body>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#tnm"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
-                        <swrl:argument2>invaded</swrl:argument2>
-                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Vasculature_Proximity"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest rdf:resource="&rdf;nil"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#SegmentIVa"/>
-                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isLocatedInSegment"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                            </rdf:Description>
-                        </rdf:first>
-                    </rdf:Description>
-                </rdf:rest>
-            </rdf:Description>
-        </swrl:body>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
-                        <swrl:argument2>other</swrl:argument2>
-                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Vasculature_Proximity"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;AtomList"/>
-                        <rdf:rest rdf:resource="&rdf;nil"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#SegmentIII"/>
-                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isLocatedInSegment"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                            </rdf:Description>
-                        </rdf:first>
-                    </rdf:Description>
-                </rdf:rest>
-            </rdf:Description>
-        </swrl:body>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -8629,6 +8542,13 @@
                         </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
             </rdf:Description>
         </swrl:body>
         <swrl:head>
@@ -8639,6 +8559,49 @@
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
                         <swrl:argument2>invaded</swrl:argument2>
+                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Vasculature_Proximity"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:argument2 rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#SegmentII"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isLocatedInSegment"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
+                        <swrl:argument2>other</swrl:argument2>
                         <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Vasculature_Proximity"/>
                         <swrl:argument1 rdf:resource="urn:swrl#x"/>
                     </rdf:Description>
