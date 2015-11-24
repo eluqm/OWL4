@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -49,6 +50,10 @@ import uk.ac.manchester.cs.owl.owlapi.OWLLiteralImplBoolean;
 public class SetIndividuals {
 	
 	HashMap<Class, OWLDatatype> typess = new HashMap<Class,OWLDatatype>();
+	
+	//mappinng of pacient in order to identify if have 2 or more lesion by ImageStudy and Imageannotation
+	HashMap<String,List<String>> tempLesion = new HashMap<String, List<String>>();
+	
 	SetIndividuals(OWLOntologyManager m)
 	{
 		OWLDataFactory factory = m.getOWLDataFactory();
@@ -80,7 +85,6 @@ public class SetIndividuals {
 		// iterate over all patient annotation 
 		for (AnnotationsAIM4 element : ao) {
 			
-		    
 		    OWLNamedIndividual ind = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+element.getPerson().getName().toString()));
 			OWLAxiom axiom = factory.getOWLClassAssertionAxiom(cls,ind);
 			AddAxiom addAxion = new AddAxiom(o, axiom);
@@ -91,16 +95,16 @@ public class SetIndividuals {
 		
 		Set<OWLIndividual> annots = new   HashSet<OWLIndividual>();
 		/***
-		all individuals diferents
-	****/
+			all individuals diferents
+		 ****/
 		annots=cls.getIndividuals(o);
 		System.out.println("numero de individuals: "+annots.size());
-	OWLDifferentIndividualsAxiom differentCountriesAx =  
-			factory.getOWLDifferentIndividualsAxiom(annots);
-	m.addAxiom(o, differentCountriesAx);
-	/**********************************/
+		OWLDifferentIndividualsAxiom differentCountriesAx =  
+				factory.getOWLDifferentIndividualsAxiom(annots);
+		m.addAxiom(o, differentCountriesAx);
+		/**********************************/
 		OWLOntologyFormat format = m.getOntologyFormat(o);
-		
+
 		m.saveOntology(o,format,IRI.create(fileformated.toURI()));
 		
 		
@@ -138,13 +142,12 @@ public class SetIndividuals {
 			List<Annotation> elements= (List<Annotation>) element.getImageAnnotations();
 			for(Annotation ann: elements)
 			{
-				
-				
-				OWLNamedIndividual ind = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+ann.getUniqueIdentifier().toString()));
-				OWLAxiom axiom = factory.getOWLClassAssertionAxiom(cls,ind);
+				OWLNamedIndividual ind = 
+						factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+ann.getUniqueIdentifier().toString()));
+				OWLAxiom axiom = 
+						factory.getOWLClassAssertionAxiom(cls,ind);
 				axioms.add(axiom);
-				
-				
+			
 				/**
 				 * adding Dataproperties 
 				 * 
@@ -173,24 +176,24 @@ public class SetIndividuals {
 			    //iterate over all markupentities from an annotation
 			    
 			    for(MarkupEntity an: markelements) {
-			    	indannotation=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
-			    	
+			    	indannotation=
+			    			factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
 			    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasmarkup,ind,indannotation));
 			    }
 			    for(ImagingObservationEntity an: obs) {
-			    	PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
+			    	PrefixManager pm = 
+			    			new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
 		    		OWLDataProperty hasproperty;
 		    		OWLLiteral literal; 
-		    		hasproperty = factory.getOWLDataProperty("hasLesionBool", pm);	
-		    		
-		    		
-		    		indannotation=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
+		    		hasproperty = 
+		    				factory.getOWLDataProperty("hasLesionBool", pm);	
+		    		indannotation=
+		    				factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
 			    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasmObservation,ind,indannotation));
 			    	
 			    	if(an.getLabel().equals("Lesion")){
 			    							
 						//for(HashMap<String,String>values:(ArrayList<HashMap<String, String>>) value)
-						
 							//System.out.println(values.toString());
 							literal=factory.getOWLLiteral("true",typess.get(Boolean.class));
 							axioms.add(factory.getOWLDataPropertyAssertionAxiom(hasproperty,ind,literal));
@@ -198,13 +201,12 @@ public class SetIndividuals {
 							 * adding OBjectproperties , 
 							 * 
 							 * */
-							indannotation=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+"Lesion"+an.getUniqueIdentifier().toString()));
+							indannotation=
+									factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+"Lesion"+an.getUniqueIdentifier().toString()));
 							axioms.add(factory.getOWLObjectPropertyAssertionAxiom(haslesion,ind,indannotation));
 			    		
 			    	}
-			    	
-			    	
-			    	
+			    				    			    	
 			    }
 			    if(phys.size()==0){
 			    	PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
@@ -217,32 +219,27 @@ public class SetIndividuals {
 			    else{
 			    	for(ImagingPhysicalEntity an: phys) {
 			    	
-			    		indannotation=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
-			    		
+			    		indannotation=
+			    				factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
 			    		axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasPhysical,ind,indannotation));
 			    }
 			    }
 			    
 			    for(CalculationEntity an: calc) {
-			    	indannotation=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
-			    	
-			    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hascalculation,ind,indannotation));
+			    		indannotation=
+			    				factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
+			    	   	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hascalculation,ind,indannotation));
 			    }
+			   
 			    for(ImageReferenceEntity an: reff) {
-			    	indannotation=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
-			    	
-			    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasreferenceImage,ind,indannotation));
+			    		indannotation=
+			    				factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
+			    		axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasreferenceImage,ind,indannotation));
 			    }
-		        
-		        
-		        
-		        
-		        
+			   
+		       	        
 		        m.addAxioms(o, axioms);
-				
-				
-				
-				
+							
 			}
 		    
 		    axioms.clear();
@@ -250,11 +247,7 @@ public class SetIndividuals {
 		}
 				
 				Set<OWLIndividual> annots = new   HashSet<OWLIndividual>();
-		
-  		
-		 
-		
-					/***
+				/***
 						all individuals diferents
 					****/
 						annots=cls.getIndividuals(o);
@@ -270,12 +263,15 @@ public class SetIndividuals {
 		
 	}
 	void addLesionIndividuals(ImagingPhysicalEntity a,ImagingObservationEntity b,Annotation c,Set<OWLAxiom> axions,OWLOntologyManager m,OWLOntology o)
-	{	String IRIontology = o.getOntologyID().getOntologyIRI().toString();
+	{	
+		String IRIontology = o.getOntologyID().getOntologyIRI().toString();
 		OWLDataFactory factory = m.getOWLDataFactory();
 		OWLClass cls = m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#Lesion"));
 		String str=a.getTypeCode().get(1).get("codeSystem");
-		OWLIndividual ind = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+"Lesion"+b.getUniqueIdentifier()));
-		OWLIndividual ind2 = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+str.replaceAll(" ", "_")));
+		OWLIndividual ind = 
+				factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+"Lesion"+b.getUniqueIdentifier()));
+		OWLIndividual ind2 = 
+				factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+str.replaceAll(" ", "_")));
 		
 		axions.add(factory.getOWLClassAssertionAxiom(cls,ind));
 		
@@ -310,7 +306,8 @@ public class SetIndividuals {
 		for (AnnotationsAIM4 element : ao) {
 			
 			//create imageannotationCollection individual
-		    OWLIndividual ind = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+element.getUid()));
+		    OWLIndividual ind = 
+		    		factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+element.getUid()));
 		    //set axioms 
 		    axioms.add(factory.getOWLClassAssertionAxiom(cls,ind));
 		    OWLIndividual indannotation;
@@ -321,7 +318,8 @@ public class SetIndividuals {
 			 * 
 			 * */
 		    // set objectproperty hasPerson domain: class imageAnnotationCollection range: Person 1-> 0...1
-		    perannotation=factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+element.getPerson().getName().toString()));
+		    perannotation=
+		    		factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+element.getPerson().getName().toString()));
 		    axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasPerson,ind,perannotation));
 		    
 		    // set objectproperty hasImageAnnotation domain: class imageAnnotationCollection range: ImageAnnotation 1 -> 1...*
@@ -329,26 +327,15 @@ public class SetIndividuals {
 		    elements = (List<Annotation>) element.getImageAnnotations();
 		    //iterate over all annotations
 		    for(Annotation an: elements) {
-		    	indannotation=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
-		    	
-		    	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasImageAnnotations,ind,indannotation));
+		    	indannotation=
+		    		factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+an.getUniqueIdentifier().toString()));
+		    axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasImageAnnotations,ind,indannotation));
 		    }
-		    
-		    
-		   
-		
-		}
-		
+		    }
 							Set<OWLIndividual> annots = new   HashSet<OWLIndividual>();
-		
-				      		
-		 
-			
 				             m.addAxioms(o, axioms);
 				             annots=cls.getIndividuals(o);
-				 			
-					            
-					      		System.out.println("numero de individuals: "+annots.size());
+				      		System.out.println("numero de individuals: "+annots.size());
 					             OWLDifferentIndividualsAxiom differentCountriesAx =  
 					            		 factory.getOWLDifferentIndividualsAxiom(annots);
 					             m.addAxiom(o, differentCountriesAx);
@@ -998,9 +985,24 @@ public class SetIndividuals {
                 .create(IRIontology + "#hasImageStudy"));
 		
 		
-		
+		//relation 1 imagereferenced to 1 imageStudy
 		ImageStudy imgStdy= imaref.getImagestudy();	
-		System.out.println(imgStdy.getInstanceUid());
+		//System.out.println(imgStdy.getInstanceUid());
+		
+		/**
+		******************************
+									**/
+		if(tempLesion.containsKey(imgStdy.getInstanceUid()))
+		{tempLesion.get(imgStdy.getInstanceUid()).add(imaref.getUniqueIdentifier());}else
+		{
+			List<String> ls= new ArrayList<String>();
+			ls.add(imaref.getUniqueIdentifier());
+			tempLesion.put(imgStdy.getInstanceUid(),ls);
+		}
+		
+		
+		
+		
 		cls=m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#ImageStudy"));
 		OWLNamedIndividual imageStdyind = factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+imgStdy.getInstanceUid()));
 		axioms.add(factory.getOWLClassAssertionAxiom(cls,imageStdyind));
@@ -1009,7 +1011,7 @@ public class SetIndividuals {
 		
 		BeanInfo beanInfo = Introspector.getBeanInfo(imgStdy.getClass());
 		
-		// set all dataProperties of markupentity individuals 
+		// set all dataProperties of individuals 
 		//
 		for (PropertyDescriptor propertyDesc : beanInfo.getPropertyDescriptors()) {
 		    // get the name of class property
@@ -1063,7 +1065,8 @@ public class SetIndividuals {
 		 * */
 		//imageStdyind=factory.getOWLNamedIndividual(IRI.create(IRIontology+"#"+imaref.getUniqueIdentifier()));
     	axioms.add(factory.getOWLObjectPropertyAssertionAxiom(hasImageStudys,ind,imageStdyind));
-	
+    	
+    	//System.out.println(tempLesion);
 	
 	}
 	void imageReferencedIndividuals(OWLOntologyManager m,OWLOntology o,List<AnnotationsAIM4> ao,File fileformated) throws IntrospectionException, IllegalAccessException
@@ -1072,26 +1075,19 @@ public class SetIndividuals {
 		OWLDataFactory factory = m.getOWLDataFactory();
 		OWLClass cls ;
 		Set<OWLAxiom> axioms = new HashSet<OWLAxiom>();
-		
-		
-		
-		
-		
-		
+			
 		// iterate over all patient annotation 
 		for (AnnotationsAIM4 element : ao) {
 			
 			List<Annotation> elements= (List<Annotation>) element.getImageAnnotations();
 			for(Annotation ann: elements)
 			{
-				//System.out.println("Dicom");
-				
 				List<ImageReferenceEntity> markelements= (List<ImageReferenceEntity>) ann.getImagereferencedCollection();
 				
 				//System.out.println(markelements.size());
 				for(ImageReferenceEntity imarefindv:markelements)
 				{
-					
+					//case where a single lesion is deteccted in the code
 					cls=m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#"+imarefindv.getType()));
 					
 					PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
@@ -1189,5 +1185,38 @@ public class SetIndividuals {
 	
 	}
 	
-	
+	void setModifiesImageStudy(OWLOntologyManager m,OWLOntology o,File fileformated) throws OWLOntologyStorageException
+	{
+		OWLDataFactory factory = m.getOWLDataFactory();
+		OWLClass cls ;
+		PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
+		
+		OWLDataProperty hasproperty;
+		OWLLiteral literal;
+		Set<OWLAxiom> axioms = new HashSet<OWLAxiom>();
+		Boolean bl=true;
+		cls=m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#ImageStudy"));
+		for(Map.Entry<String, List<String> > entry: tempLesion.entrySet())
+		{
+			if(entry.getValue().size()==1)
+			{
+				OWLNamedIndividual ind = 
+						factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+entry.getKey()));
+				
+				hasproperty = factory.getOWLDataProperty("singleLesion", pm);
+				//literal=(value.getClass() == tem.getClass())?factory.getOWLLiteral(value.toString(),booleans):factory.getOWLLiteral((String)value,literalDatatype);;
+				
+				literal=factory.getOWLLiteral(bl.toString(),typess.get(Boolean.class));
+				axioms.add(factory.getOWLDataPropertyAssertionAxiom(hasproperty,ind,literal));
+				//axioms.add(factory.getOWLClassAssertionAxiom(cls,ind));
+			}
+		}
+		
+		m.addAxioms(o, axioms);
+		axioms.clear();
+		OWLOntologyFormat format = m.getOntologyFormat(o);
+		
+		m.saveOntology(o,format,IRI.create(fileformated.toURI()));
+		
+	}
 }

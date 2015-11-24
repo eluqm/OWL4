@@ -49,7 +49,7 @@ public class Reasoninng {
 				if (System.getProperty("os.name").toLowerCase().contains("windows")) {
 					
 					file = new File(pathwindows + "/AIM4.owl");
-		        	fileformated = new File( pathwindows + "/AIM4ind5.owl");
+		        	fileformated = new File( pathwindows + "/AIM4ind4.owl");
 				}
 				
 			}

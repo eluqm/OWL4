@@ -77,17 +77,17 @@ public class Staging {
         if (System.getProperty("os.name").toLowerCase().contains("linux")){
 			
         	file = new File(pathlinux + "/AIM4.owl");
-        	fileformated = new File( pathlinux + "/AIM4ind4.owl");
+        	fileformated = new File( pathlinux + "/AIM4ind5.owl");
         } else {
 			if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 			
 				file = new File(pathmac + "/AIM4.owl");
-	        	fileformated = new File( pathmac + "/AIM4ind4.owl");
+	        	fileformated = new File( pathmac + "/AIM4ind5.owl");
 			}
 			else{
 				if (System.getProperty("os.name").toLowerCase().contains("windows")) {
 					
-					file = new File(pathwindows + "/AIM4.owl");
+					file = new File(pathwindows + "/AIM4ind4.owl");
 		        	fileformated = new File( pathwindows + "/AIM4ind5.owl");
 				}
 				
@@ -112,7 +112,7 @@ public class Staging {
  
 			//System.out.println(o.getLogicalAxiomCount());
 			//System.out.println("termino carga onto");
-			System.out.println("++++++++++++++++++++");
+			//System.out.println("++++++++++++++++++++");
 			
 			// Get Thing
 			//OWLClass clazz = o.getOWLThing();
@@ -228,11 +228,12 @@ public class Staging {
 			individuals.imageannotationscollectIndividuals(m, o, ao, fileformated);
 			individuals.personIndividuals(m,o,ao,fileformated);
 			individuals.annotationIndividuals(m, o, ao, fileformated);
+			individuals.setModifiesImageStudy(m,o,fileformated);
+			//System.out.println(individuals.tempLesion);
 			
 			
 			
-			
-			NodeSet<OWLNamedIndividual> instances;
+			/*NodeSet<OWLNamedIndividual> instances;
 			for (OWLClass c : o.getClassesInSignature()) {
 		       instances = reasoner.getInstances(c, true);
 		       //System.out.println(c.getIRI().getFragment());
@@ -245,18 +246,13 @@ public class Staging {
 		        
 		       
 
-		    }
+		    }*/
 			
-			
-			
-			//reasoner.getKB().realize();
-			//reasoner.getKB().printClassTree();
-			//m.saveOntology(o,format,IRI.create(fileformated.toURI()));
 			if(reasoner.isConsistent()){
 			System.out.println("terminooo y es consistente la ontologia");
 			}
 			
-			par.printAnnotations();
+			//par.printAnnotations();
 			
 			String namepat="GL-1-160-282690^^^^";
 			//System.out.println(ao.size());
