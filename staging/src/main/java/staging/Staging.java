@@ -81,8 +81,8 @@ public class Staging {
         } else {
 			if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 			
-				file = new File(pathmac + "/AIM4_v_0.1.owl");
-	        	fileformated = new File( pathmac + "/AIM4ind5.owl");
+				file = new File(pathmac + "/AIM4ind5.owl");
+	        	fileformated = new File( pathmac + "/AIM4ind6.owl");
 			}
 			else{
 				if (System.getProperty("os.name").toLowerCase().contains("windows")) {

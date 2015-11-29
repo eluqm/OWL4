@@ -272,6 +272,13 @@ public class SetIndividuals {
 		// case : lESION INSIDE THE tnmTYPE organ or outside the organ such as adjacent organs  
 		OWLClass cls = m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#Lesion"));
 		OWLClass cls2 = m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#outside_Lesion"));
+		PrefixManager pm = new DefaultPrefixManager(o.getOntologyID().getOntologyIRI().toString()+"#");
+		OWLDataProperty hasproperty;
+		OWLLiteral literal; 
+		
+		
+		hasproperty = factory.getOWLDataProperty("isRegionalLymphNodeAffected", pm);
+		literal=factory.getOWLLiteral("false",typess.get(Boolean.class));
 		
 		//creating individuals of lesion realted with organs
 		String str=a.getTypeCode().get(1).get("codeSystem");
@@ -296,6 +303,7 @@ public class SetIndividuals {
 	                .create(IRIontology + "#isLocatedInSegment"));
 			OWLObjectProperty hasLesion2 = factory.getOWLObjectProperty(IRI
 	                .create(IRIontology + "#hasLocation"));
+			axions.add(factory.getOWLDataPropertyAssertionAxiom(hasproperty,ind,literal));
 			axions.add(factory.getOWLObjectPropertyAssertionAxiom(hasLesion,ind,ind2));
 			axions.add(factory.getOWLObjectPropertyAssertionAxiom(hasLesion2,ind,indorgan));
 			
@@ -312,8 +320,21 @@ public class SetIndividuals {
 			 * */
 			OWLObjectProperty hasLesion = factory.getOWLObjectProperty(IRI
 	                .create(IRIontology + "#hasLocation"));
-			axions.add(factory.getOWLObjectPropertyAssertionAxiom(hasLesion,ind,indorgan));
-		}
+			
+			
+			if(!str2organ.replaceAll(" ", "_").equals("lymph_node"))
+			
+			{	axions.add(factory.getOWLDataPropertyAssertionAxiom(hasproperty,ind,literal));
+				axions.add(factory.getOWLObjectPropertyAssertionAxiom(hasLesion,ind,indorgan));
+				
+			}else{
+				
+				axions.add(factory.getOWLObjectPropertyAssertionAxiom(hasLesion,ind,indorgan));
+				
+			}
+			}
+			
+			
 		
 		
 		

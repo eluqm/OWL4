@@ -43,7 +43,7 @@ public class Reasoninng {
 			if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 			
 				file = new File(pathmac + "/AIM4.owl");
-	        	fileformated = new File( pathmac + "/AIM4ind4.owl");
+	        	fileformated = new File( pathmac + "/AIM4ind5.owl");
 			}
 			else{
 				if (System.getProperty("os.name").toLowerCase().contains("windows")) {
@@ -96,12 +96,15 @@ ConsoleProgressMonitor progressMonitor = new ConsoleProgressMonitor();
 			
 			//OWLReasoner reasoner2 = reasonerfac.
 			//reasoner.getKB().realize();
+			long start = System.nanoTime();    
+			//methodToBeTimed();
+			
 			reasoner.precomputeInferences();
 			Reasoninng sr=new Reasoninng();
 			String src="tnm3";
 			sr.ShowIndividualsClass(src, o, reasoner);
-			
-			 System.out.println("finishied ++++++++++++++++++++");
+			long elapsedTime = System.nanoTime() - start;
+			 System.out.println("finishied ++++++++++++++++++++ in : "+ elapsedTime);
         
         
 	}
