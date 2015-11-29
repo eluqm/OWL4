@@ -3033,10 +3033,15 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#hasLesion"/>
                 <owl:someValuesFrom>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#hasLocation"/>
-                        <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#noadjacentOrganGroup"/>
-                    </owl:Restriction>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#hasLocation"/>
+                                <owl:someValuesFrom rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#noadjacentOrganGroup"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </owl:equivalentClass>
@@ -9044,6 +9049,20 @@ No regional lymph node metastasis</rdfs:comment>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
+                        <swrl:argument2>other</swrl:argument2>
+                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Vasculature_Proximity"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -9070,20 +9089,6 @@ No regional lymph node metastasis</rdfs:comment>
                 </rdf:first>
             </rdf:Description>
         </swrl:body>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
-                        <swrl:argument2>other</swrl:argument2>
-                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Vasculature_Proximity"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>
@@ -9146,13 +9151,6 @@ No regional lymph node metastasis</rdfs:comment>
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#ImageAnnotation"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -9204,6 +9202,13 @@ No regional lymph node metastasis</rdfs:comment>
                         </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#ImageAnnotation"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
             </rdf:Description>
         </swrl:body>
     </rdf:Description>
@@ -9269,6 +9274,13 @@ No regional lymph node metastasis</rdfs:comment>
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -9283,6 +9295,14 @@ No regional lymph node metastasis</rdfs:comment>
                         </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;ClassAtom"/>
@@ -9290,27 +9310,6 @@ No regional lymph node metastasis</rdfs:comment>
                         <swrl:argument1 rdf:resource="urn:swrl#x"/>
                     </rdf:Description>
                 </rdf:first>
-            </rdf:Description>
-        </swrl:body>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#N0a"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -9325,15 +9324,21 @@ No regional lymph node metastasis</rdfs:comment>
                         </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#N0a"/>
                         <swrl:argument1 rdf:resource="urn:swrl#x"/>
                     </rdf:Description>
                 </rdf:first>
             </rdf:Description>
-        </swrl:body>
+        </swrl:head>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>
@@ -9411,6 +9416,14 @@ No regional lymph node metastasis</rdfs:comment>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isImageStudyOf"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#y"/>
+                            </rdf:Description>
+                        </rdf:first>
                         <rdf:rest>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -9437,14 +9450,6 @@ No regional lymph node metastasis</rdfs:comment>
                                 </rdf:rest>
                             </rdf:Description>
                         </rdf:rest>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#isImageStudyOf"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                                <swrl:argument2 rdf:resource="urn:swrl#y"/>
-                            </rdf:Description>
-                        </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
                 <rdf:first>
@@ -9478,6 +9483,14 @@ No regional lymph node metastasis</rdfs:comment>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#hasLesion"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#y"/>
+                            </rdf:Description>
+                        </rdf:first>
                         <rdf:rest>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -9516,14 +9529,6 @@ No regional lymph node metastasis</rdfs:comment>
                                 </rdf:rest>
                             </rdf:Description>
                         </rdf:rest>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#hasLesion"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                                <swrl:argument2 rdf:resource="urn:swrl#y"/>
-                            </rdf:Description>
-                        </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
                 <rdf:first>
@@ -9541,13 +9546,6 @@ No regional lymph node metastasis</rdfs:comment>
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#ImageAnnotation"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -9612,6 +9610,13 @@ No regional lymph node metastasis</rdfs:comment>
                         </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#ImageAnnotation"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
             </rdf:Description>
         </swrl:body>
         <swrl:head>
@@ -9630,19 +9635,6 @@ No regional lymph node metastasis</rdfs:comment>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#T4a"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -9682,22 +9674,36 @@ No regional lymph node metastasis</rdfs:comment>
                 </rdf:first>
             </rdf:Description>
         </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#T4a"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#ImageStudy"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#singleLesion"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#val"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                            </rdf:Description>
+                        </rdf:first>
                         <rdf:rest>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -9723,16 +9729,15 @@ No regional lymph node metastasis</rdfs:comment>
                                 </rdf:first>
                             </rdf:Description>
                         </rdf:rest>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="&swrl;DatavaluedPropertyAtom"/>
-                                <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#singleLesion"/>
-                                <swrl:argument2 rdf:resource="urn:swrl#val"/>
-                                <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                            </rdf:Description>
-                        </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#ImageStudy"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
             </rdf:Description>
         </swrl:body>
         <swrl:head>
@@ -9760,14 +9765,6 @@ No regional lymph node metastasis</rdfs:comment>
                         <rdf:rest>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;AtomList"/>
-                                <rdf:first>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#hasCalculationResult"/>
-                                        <swrl:argument1 rdf:resource="urn:swrl#y"/>
-                                        <swrl:argument2 rdf:resource="urn:swrl#z"/>
-                                    </rdf:Description>
-                                </rdf:first>
                                 <rdf:rest>
                                     <rdf:Description>
                                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -9806,6 +9803,14 @@ No regional lymph node metastasis</rdfs:comment>
                                         </rdf:rest>
                                     </rdf:Description>
                                 </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#hasCalculationResult"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#y"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#z"/>
+                                    </rdf:Description>
+                                </rdf:first>
                             </rdf:Description>
                         </rdf:rest>
                         <rdf:first>
@@ -9860,6 +9865,13 @@ No regional lymph node metastasis</rdfs:comment>
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -9874,13 +9886,6 @@ No regional lymph node metastasis</rdfs:comment>
                         </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
             </rdf:Description>
         </swrl:body>
     </rdf:Description>
@@ -9929,36 +9934,22 @@ No regional lymph node metastasis</rdfs:comment>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#T0"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Person"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
                         <rdf:rest>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;AtomList"/>
-                                <rdf:first>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-                                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#hasImageAnnotations"/>
-                                        <swrl:argument1 rdf:resource="urn:swrl#y"/>
-                                        <swrl:argument2 rdf:resource="urn:swrl#z"/>
-                                    </rdf:Description>
-                                </rdf:first>
                                 <rdf:rest>
                                     <rdf:Description>
                                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -9973,6 +9964,14 @@ No regional lymph node metastasis</rdfs:comment>
                                         </rdf:first>
                                     </rdf:Description>
                                 </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#hasImageAnnotations"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#y"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#z"/>
+                                    </rdf:Description>
+                                </rdf:first>
                             </rdf:Description>
                         </rdf:rest>
                         <rdf:first>
@@ -9985,21 +9984,47 @@ No regional lymph node metastasis</rdfs:comment>
                         </rdf:first>
                     </rdf:Description>
                 </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
                 <rdf:first>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Person"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#T0"/>
                         <swrl:argument1 rdf:resource="urn:swrl#x"/>
                     </rdf:Description>
                 </rdf:first>
             </rdf:Description>
-        </swrl:body>
+        </swrl:head>
     </rdf:Description>
     <rdf:Description>
         <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#N1a"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
         <swrl:body>
             <rdf:Description>
                 <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
                 <rdf:rest>
                     <rdf:Description>
                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -10013,6 +10038,13 @@ No regional lymph node metastasis</rdfs:comment>
                         <rdf:rest>
                             <rdf:Description>
                                 <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#outside_Lesion"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                                    </rdf:Description>
+                                </rdf:first>
                                 <rdf:rest>
                                     <rdf:Description>
                                         <rdf:type rdf:resource="&swrl;AtomList"/>
@@ -10027,39 +10059,12 @@ No regional lymph node metastasis</rdfs:comment>
                                         </rdf:first>
                                     </rdf:Description>
                                 </rdf:rest>
-                                <rdf:first>
-                                    <rdf:Description>
-                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#outside_Lesion"/>
-                                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                                    </rdf:Description>
-                                </rdf:first>
                             </rdf:Description>
                         </rdf:rest>
                     </rdf:Description>
                 </rdf:rest>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#Lesion"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
             </rdf:Description>
         </swrl:body>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="&swrl;AtomList"/>
-                <rdf:rest rdf:resource="&rdf;nil"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
-                        <swrl:classPredicate rdf:resource="http://www.owl-ontologies.com/Ontology1311106921.owl#N1a"/>
-                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
-                    </rdf:Description>
-                </rdf:first>
-            </rdf:Description>
-        </swrl:head>
     </rdf:Description>
 </rdf:RDF>
 
