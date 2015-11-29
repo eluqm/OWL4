@@ -81,7 +81,7 @@ public class Staging {
         } else {
 			if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 			
-				file = new File(pathmac + "/AIM4.owl");
+				file = new File(pathmac + "/AIM4_v_0.1.owl");
 	        	fileformated = new File( pathmac + "/AIM4ind5.owl");
 			}
 			else{
@@ -208,7 +208,7 @@ public class Staging {
 		  
 			
 	        //creating person individuals 
-			SetIndividuals individuals = new SetIndividuals(m);
+			SetIndividuals individuals = new SetIndividuals(m,"liver");
 			try {
 				individuals.markupIndividuals(m, o, ao, fileformated);
 			} catch (ClassNotFoundException e) {

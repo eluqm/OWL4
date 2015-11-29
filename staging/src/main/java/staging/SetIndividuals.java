@@ -53,8 +53,9 @@ public class SetIndividuals {
 	
 	//mappinng of pacient in order to identify if have 2 or more lesion by ImageStudy and Imageannotation
 	HashMap<String,List<String>> tempLesion = new HashMap<String, List<String>>();
+	String TNMclassification;
 	
-	SetIndividuals(OWLOntologyManager m)
+	SetIndividuals(OWLOntologyManager m,String TNMClassificationType)
 	{
 		OWLDataFactory factory = m.getOWLDataFactory();
 		OWLDatatype booleans = factory
@@ -74,6 +75,7 @@ public class SetIndividuals {
 		typess.put(Boolean.class, factory.getBooleanOWLDatatype());
 		typess.put(java.util.Date.class, datess);
 		typess.put(java.util.ArrayList.class, literalDatatype);
+		TNMclassification=TNMClassificationType;
 		
 	}
 	
@@ -262,26 +264,63 @@ public class SetIndividuals {
 				m.saveOntology(o,format,IRI.create(fileformated.toURI()));
 		
 	}
+	//add new class lesion to locate physical position of tumor on body 
 	void addLesionIndividuals(ImagingPhysicalEntity a,ImagingObservationEntity b,Annotation c,Set<OWLAxiom> axions,OWLOntologyManager m,OWLOntology o)
 	{	
 		String IRIontology = o.getOntologyID().getOntologyIRI().toString();
 		OWLDataFactory factory = m.getOWLDataFactory();
+		// case : lESION INSIDE THE tnmTYPE organ or outside the organ such as adjacent organs  
 		OWLClass cls = m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#Lesion"));
+		OWLClass cls2 = m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#outside_Lesion"));
+		
+		//creating individuals of lesion realted with organs
 		String str=a.getTypeCode().get(1).get("codeSystem");
-		OWLIndividual ind = 
-				factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+"Lesion"+b.getUniqueIdentifier()));
-		OWLIndividual ind2 = 
-				factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+str.replaceAll(" ", "_")));
+		String str2organ=a.getTypeCode().get(0).get("codeSystem");
 		
-		axions.add(factory.getOWLClassAssertionAxiom(cls,ind));
+		OWLClass cls3 = m.getOWLDataFactory().getOWLClass(IRI.create(o.getOntologyID().getOntologyIRI() + "#"+str2organ.replaceAll(" ", "_")));
 		
-		/**
-		 * adding OBjectproperties , 
-		 * 
-		 * */
-		OWLObjectProperty hasLesion = factory.getOWLObjectProperty(IRI
-                .create(IRIontology + "#isLocatedInSegment"));
-		axions.add(factory.getOWLObjectPropertyAssertionAxiom(hasLesion,ind,ind2));
+		if(TNMclassification.equals(str2organ)){//case: lesion is inside of organ 
+			OWLIndividual ind = 
+					factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+"Lesion"+b.getUniqueIdentifier()));
+			OWLIndividual indorgan = 
+					factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+str2organ+a.getUniqueIdentifier()));
+			OWLIndividual ind2 = 
+					factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+str.replaceAll(" ", "_")));
+			axions.add(factory.getOWLClassAssertionAxiom(cls,ind));
+			axions.add(factory.getOWLClassAssertionAxiom(cls3,indorgan));
+			/**
+			 * adding OBjectproperties , 
+			 * 
+			 * */
+			OWLObjectProperty hasLesion = factory.getOWLObjectProperty(IRI
+	                .create(IRIontology + "#isLocatedInSegment"));
+			OWLObjectProperty hasLesion2 = factory.getOWLObjectProperty(IRI
+	                .create(IRIontology + "#hasLocation"));
+			axions.add(factory.getOWLObjectPropertyAssertionAxiom(hasLesion,ind,ind2));
+			axions.add(factory.getOWLObjectPropertyAssertionAxiom(hasLesion2,ind,indorgan));
+			
+		}else{
+			OWLIndividual indorgan= 
+					factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+str2organ.replaceAll(" ", "_")+a.getUniqueIdentifier()));
+			OWLIndividual ind = 
+					factory.getOWLNamedIndividual(IRI.create(o.getOntologyID().getOntologyIRI()+"#"+"Lesion"+b.getUniqueIdentifier()));
+			axions.add(factory.getOWLClassAssertionAxiom(cls2,ind));
+			axions.add(factory.getOWLClassAssertionAxiom(cls3,indorgan));
+			/**
+			 * adding OBjectproperties , 
+			 * 
+			 * */
+			OWLObjectProperty hasLesion = factory.getOWLObjectProperty(IRI
+	                .create(IRIontology + "#hasLocation"));
+			axions.add(factory.getOWLObjectPropertyAssertionAxiom(hasLesion,ind,indorgan));
+		}
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 	@SuppressWarnings("unchecked")
@@ -578,7 +617,7 @@ public class SetIndividuals {
 											
 							//pds: the individual is adding in the follow method
 							try {
-							//	System.out.println("entre aca");
+							
 								setDataProperties(collectt, cls, axioms, factory, o, ind);
 								List<ImagingObservationEntity> lisobs=(List<ImagingObservationEntity>)ann.getImagingObservationEntityCollection();
 								for(ImagingObservationEntity lisob:lisobs)
@@ -603,8 +642,7 @@ public class SetIndividuals {
 				
 				m.addAxioms(o, axioms);
 				axioms.clear();
-				//OWLOntologyFormat format = m.getOntologyFormat(o);
-				//m.saveOntology(o,format,IRI.create(fileformated.toURI()));
+				
 		
 	}
 	
